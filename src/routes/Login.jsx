@@ -1,13 +1,12 @@
-import Nav from "../Nav"
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import Nav from "../Nav";
 
 
 
 export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    let token;
 
 
 
@@ -38,7 +37,7 @@ export default function Login() {
                 password: password
             })
         };
-        fetch('http://127.0.0.1:8000/api/login', requestOptions)
+        fetch('http://127.0.0.1:8000/api/users/login', requestOptions)
             .then(response => response.json())
             .then(data => checkLogin(data)
             );

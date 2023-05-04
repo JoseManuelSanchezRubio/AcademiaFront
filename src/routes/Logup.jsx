@@ -13,7 +13,7 @@ export default function Logup() {
     const [confirmPassword, setConfirmPassword] = useState("");
 
 
-    function checkLogup(data) { //falta comprobar si el email ya esta registrado en el backend
+    function checkLogup(data) {
         if (data.status) {
             sessionStorage.setItem('token', data.token)
             sessionStorage.setItem('user', JSON.stringify(data.user))
