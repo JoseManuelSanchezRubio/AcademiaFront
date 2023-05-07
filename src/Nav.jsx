@@ -30,6 +30,12 @@ export default function Nav(props) {
                     <li className="nav-item">
                         <Link className="nav-link" to="/profile">Mi perfil</Link>
                     </li>
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/courses">Nuestros cursos</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/events">Eventos</Link>
+                    </li>
                 </ul>
                 <div className="navbar-nav me-5">
                     <a className="nav-link" onClick={logout} style={{ cursor: 'pointer' }}>Cerrar sesión</a>

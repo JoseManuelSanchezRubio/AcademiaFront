@@ -6,9 +6,11 @@ export default function Forum() {
 
 
     const [messages, setMessages] = useState([]);
+    const [message, setMessage] = useState('');
+    const forum_id = window.location.pathname.split("/")[2];
+    const userId = JSON.parse(sessionStorage.getItem("user")).id;
 
     useEffect(() => {
-        const forum_id = window.location.pathname.split("/")[2];
         const requestOptions = {
             method: 'POST',
             headers: {
@@ -25,7 +27,25 @@ export default function Forum() {
 
     }, []);
 
-    console.log();
+    async function saveMessage(e) {
+        if (message == '') return alert('Debes escribir un mensaje');
+        e.preventDefault();
+        const requestOptions = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                body: message,
+                forum_id: forum_id,
+                user_id: userId
+            })
+        };
+        await fetch('http://127.0.0.1:8000/api/messages/', requestOptions)
+        window.location.reload();
+
+
+    }
 
     let isLogged = false;
     if (sessionStorage.getItem('token')) isLogged = true;
@@ -36,11 +56,17 @@ export default function Forum() {
         <div>
             <Nav isLogged={isLogged}></Nav>
             <h1>Mensajes del foro</h1>
-            <ul>
+            <div>
                 {messages.map(message => (
-                    <li key={message.id}>{message.body} ({message.user.name})</li>
+                    <div key={message.id} className={message.user_id == userId ? 'text-end' : ''}>{message.body} ({message.user.name})</div>
                 ))}
-            </ul>
+            </div>
+            <form>
+                <div className="form-group">
+                    <input type="text" className="form-control" id="msg" placeholder="Mensaje" onChange={(e) => setMessage(e.target.value)} />
+                </div>
+                <button type="submit" className="btn btn-primary" onClick={(e) => saveMessage(e)}>Enviar</button>
+            </form>
         </div>
     )
 }

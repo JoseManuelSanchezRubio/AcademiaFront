@@ -7,15 +7,27 @@ import Nav from "../Nav";
 export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [isProfessor, setIsProfessor] = useState(false);
 
-
+    function handleCheck() {
+        if (isProfessor) {
+            setIsProfessor(false);
+        } else {
+            setIsProfessor(true);
+        }
+    }
 
     function checkLogin(data) {
         if (data.status) {
-            sessionStorage.setItem('token', data.token)
-            sessionStorage.setItem('user', JSON.stringify(data.user))
-            console.log(data)
-            window.location.href = '/profile'
+            if (isProfessor) {
+                sessionStorage.setItem('token', data.token)
+                sessionStorage.setItem('professor', JSON.stringify(data.professor))
+                window.location.href = '/professor'
+            } else {
+                sessionStorage.setItem('token', data.token)
+                sessionStorage.setItem('user', JSON.stringify(data.user))
+                window.location.href = '/profile'
+            }
         } else {
             alert(data.message);
         }
@@ -26,22 +38,37 @@ export default function Login() {
         e.preventDefault();
         if (email == '') return alert("Debes introducir un email");
         if (password == '') return alert("Debes introducir una contraseña");
-
-        const requestOptions = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                email: email,
-                password: password
-            })
-        };
-        fetch('http://127.0.0.1:8000/api/users/login', requestOptions)
-            .then(response => response.json())
-            .then(data => checkLogin(data)
-            );
-
+        if (isProfessor) {
+            const requestOptions = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email: email,
+                    password: password
+                })
+            };
+            fetch('http://127.0.0.1:8000/api/professors/login', requestOptions)
+                .then(response => response.json())
+                .then(data => checkLogin(data)
+                );
+        } else {
+            const requestOptions = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email: email,
+                    password: password
+                })
+            };
+            fetch('http://127.0.0.1:8000/api/users/login', requestOptions)
+                .then(response => response.json())
+                .then(data => checkLogin(data)
+                );
+        }
     }
 
     let isLogged = false;
@@ -64,6 +91,12 @@ export default function Login() {
                             <input type="password" id="form2Example2" className="form-control" onChange={(e) => setPassword(e.target.value)} />
                         </div>
 
+                        <div className="form-check">
+                            <input className="form-check-input" type="checkbox" value="" id="check" onChange={handleCheck} />
+                            <label className="form-check-label mb-3" htmlFor="check">
+                                Soy un profesor
+                            </label>
+                        </div>
                         <button type="submit" className="btn btn-primary btn-block mb-4" onClick={handleSubmit}>Iniciar sesión</button>
 
 
