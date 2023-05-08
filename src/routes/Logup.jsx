@@ -61,32 +61,36 @@ export default function Logup() {
     return (
         <div>
             <Nav isLogged={isLogged} />
-            <section className="d-flex justify-content-center pt-5">
+            <section className="d-flex justify-content-center p-5">
                 <div>
                     <h1 className="mb-4">Crear cuenta</h1>
-                    <form style={{ width: "30vw" }}>
-                        <div className="form-outline mb-4">
-                            <label className="form-label" htmlFor="name">Nombre</label>
-                            <input type="text" id="name" className="form-control" onChange={(e) => setName(e.target.value)} />
-                        </div>
-                        <div className="form-outline mb-4">
-                            <label className="form-label" htmlFor="surname">Apellidos</label>
-                            <input type="text" id="surname" className="form-control" onChange={(e) => setSurname(e.target.value)} />
-                        </div>
-
-                        <div className="form-outline mb-4">
-                            <label className="form-label" htmlFor="dni">DNI</label>
-                            <input type="text" id="dni" className="form-control" onChange={(e) => setDni(e.target.value)} />
-                        </div>
-
-                        <div className="form-outline mb-4">
-                            <label className="form-label" htmlFor="address">Dirección</label>
-                            <input type="text" id="address" className="form-control" onChange={(e) => setAddress(e.target.value)} />
+                    <form>
+                        <div className="row">
+                            <div className="form-outline mb-4 col">
+                                <label className="form-label" htmlFor="name">Nombre</label>
+                                <input type="text" id="name" className="form-control" onChange={(e) => setName(e.target.value)} />
+                            </div>
+                            <div className="form-outline mb-4 col">
+                                <label className="form-label" htmlFor="surname">Apellidos</label>
+                                <input type="text" id="surname" className="form-control" onChange={(e) => setSurname(e.target.value)} />
+                            </div>
+                            <div className="form-outline mb-4 col">
+                                <label className="form-label" htmlFor="dni">DNI</label>
+                                <input type="text" id="dni" className="form-control" onChange={(e) => setDni(e.target.value)} />
+                            </div>
                         </div>
 
-                        <div className="form-outline mb-4">
-                            <label className="form-label" htmlFor="phone">Teléfono</label>
-                            <input type="text" id="phone" className="form-control" onChange={(e) => setPhone(e.target.value)} />
+
+                        <div className="row">
+                            <div className="form-outline mb-4 col">
+                                <label className="form-label" htmlFor="address">Dirección</label>
+                                <input type="text" id="address" className="form-control" onChange={(e) => setAddress(e.target.value)} />
+                            </div>
+
+                            <div className="form-outline mb-4 col">
+                                <label className="form-label" htmlFor="phone">Teléfono</label>
+                                <input type="text" id="phone" className="form-control" onChange={(e) => setPhone(e.target.value)} />
+                            </div>
                         </div>
 
                         <div className="form-outline mb-4">

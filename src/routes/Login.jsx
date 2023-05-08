@@ -76,19 +76,19 @@ export default function Login() {
     return (
         <div>
             <Nav isLogged={isLogged} />
-            <section className="d-flex justify-content-center pt-5">
+            <section className="p-5 container">
                 <div>
                     <h1 className="mb-4">Iniciar sesión</h1>
-                    <form style={{ width: "30vw" }}>
+                    <form>
                         <div className="form-outline mb-4">
-                            <label className="form-label" htmlFor="form2Example1">Email</label>
-                            <input type="email" id="form2Example1" className="form-control" onChange={(e) => setEmail(e.target.value)} />
+                            <label className="form-label" htmlFor="emailForm">Email</label>
+                            <input type="email" id="emailForm" className="form-control" onChange={(e) => setEmail(e.target.value)} />
                         </div>
 
 
                         <div className="form-outline mb-4">
-                            <label className="form-label" htmlFor="form2Example2">Contraseña</label>
-                            <input type="password" id="form2Example2" className="form-control" onChange={(e) => setPassword(e.target.value)} />
+                            <label className="form-label" htmlFor="passwordForm">Contraseña</label>
+                            <input type="password" id="passwordForm" className="form-control" onChange={(e) => setPassword(e.target.value)} />
                         </div>
 
                         <div className="form-check">
@@ -101,7 +101,7 @@ export default function Login() {
 
 
                         <div className="text-center">
-                            <p>¿No tienes una cuenta? <Link to='/logup'>Regístrate</Link></p>
+                            <div>¿No tienes una cuenta? <Link to='/logup'>Regístrate</Link></div>
                         </div>
                     </form>
                 </div>
