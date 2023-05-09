@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Nav from "../Nav";
+import NavProfessor from "../NavProfessor";
 
 
 
@@ -34,7 +34,7 @@ export default function Professor() {
     if (!isLogged) return window.location.href = '/login';
     return (
         <div>
-            <Nav isLogged={isLogged} />
+            <NavProfessor isLogged={isLogged} />
             <h1>Bienvenido, {professor ? professor.name : ''}</h1>
             <ul>{coursesList}</ul>
         </div>
