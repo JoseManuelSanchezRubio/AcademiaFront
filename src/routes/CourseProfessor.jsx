@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Nav from "../Nav";
+import NavProfessor from "../NavProfessor";
 
 
 export default function CourseProfessor() {
@@ -52,7 +52,7 @@ export default function CourseProfessor() {
     if (!isLogged) return window.location.href = '/login';
     return (
         <div>
-            <Nav isLogged={isLogged}></Nav>
+            <NavProfessor isLogged={isLogged}></NavProfessor>
             <div>
                 <h1>{course.name}</h1>
                 <Link to={url}>Alumnos</Link>
@@ -62,7 +62,7 @@ export default function CourseProfessor() {
                         <ul>
                             <li>{unit.theory}</li>
                             <li>{unit.exercises}</li>
-                            <li>{unit.user_data ? unit.user_data : 'El alumno no ha subido nada'}</li>
+                            {/* <li>{unit.user_data ? unit.user_data : 'El alumno no ha subido nada'}</li> */}
                         </ul>
                     </li>))}
             </div>
