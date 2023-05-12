@@ -1,23 +1,20 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min';
-import ReactDOM from 'react-dom/client';
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
-import '../src/index.css';
-import ErrorPage from './ErrorPage';
-import Course from './routes/Course';
-import CourseProfessor from './routes/CourseProfessor';
-import Courses from './routes/Courses';
-import Events from './routes/Events';
-import Forum from './routes/Forum';
-import LandingPage from './routes/LandingPage';
-import Login from './routes/Login';
-import Logup from './routes/Logup';
-import Professor from './routes/Professor';
-import Profile from './routes/Profile';
-import Users from './routes/Users';
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min";
+import ReactDOM from "react-dom/client";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import "./index.scss";
+import ErrorPage from "./ErrorPage";
+import Course from "./routes/Course";
+import CourseProfessor from "./routes/CourseProfessor";
+import Courses from "./routes/Courses";
+import Events from "./routes/Events";
+import Forum from "./routes/Forum";
+import LandingPage from "./routes/LandingPage";
+import Login from "./routes/Login";
+import Logup from "./routes/Logup";
+import Professor from "./routes/Professor";
+import Profile from "./routes/Profile";
+import Users from "./routes/Users";
 
 const router = createBrowserRouter([
   {
@@ -77,6 +74,6 @@ const router = createBrowserRouter([
   },
 ]);
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <RouterProvider router={router} />
-)
+);
