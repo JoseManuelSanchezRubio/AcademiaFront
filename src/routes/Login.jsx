@@ -19,14 +19,18 @@ export default function Login() {
 
     function checkLogin(data) {
         if (data.status) {
-            if (isProfessor) {
+            if (email == 'admin@learningenjoying.com') {
+                sessionStorage.setItem('token', data.token)
+                sessionStorage.setItem('admin', JSON.stringify(data.user))
+                window.location.href = '/admin'
+            } else if (isProfessor) {
                 sessionStorage.setItem('token', data.token)
                 sessionStorage.setItem('professor', JSON.stringify(data.professor))
                 window.location.href = '/professor'
             } else {
                 sessionStorage.setItem('token', data.token)
                 sessionStorage.setItem('user', JSON.stringify(data.user))
-                window.location.href = '/profile'
+                window.location.href = '/user'
             }
         } else {
             alert(data.message);

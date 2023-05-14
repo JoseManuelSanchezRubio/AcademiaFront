@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 
 
 
-export default function Nav(props) {
+export default function NavAdmin(props) {
     function logout() {
         sessionStorage.removeItem("token");
-        sessionStorage.removeItem("user");
+        sessionStorage.removeItem("admin");
         sessionStorage.removeItem("courseId");
         window.location.href = "/";
     }
@@ -21,13 +21,13 @@ export default function Nav(props) {
                 <div className={props.isLogged ? "collapse navbar-collapse" : "collapse navbar-collapse visually-hidden"} id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item">
-                            <Link className="nav-link" to="/user">Mis cursos</Link>
+                            <Link className="nav-link" to="/admin">Inicio</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/courses">Comprar cursos</Link>
+                            <Link className="nav-link" to="/new-course">Nuevo curso</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/events">Eventos</Link>
+                            <Link className="nav-link" to="/new-professor">Añadir profesor</Link>
                         </li>
                     </ul>
                     <div className="navbar-nav me-5">

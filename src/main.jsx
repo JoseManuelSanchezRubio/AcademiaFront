@@ -2,8 +2,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import "./index.scss";
 import ErrorPage from "./ErrorPage";
+import "./index.scss";
+import Admin from "./routes/Admin";
 import Course from "./routes/Course";
 import CourseProfessor from "./routes/CourseProfessor";
 import Courses from "./routes/Courses";
@@ -12,8 +13,10 @@ import Forum from "./routes/Forum";
 import LandingPage from "./routes/LandingPage";
 import Login from "./routes/Login";
 import Logup from "./routes/Logup";
+import NewCourse from "./routes/NewCourse";
+import NewProfessor from "./routes/NewProfessor";
 import Professor from "./routes/Professor";
-import Profile from "./routes/Profile";
+import User from "./routes/User";
 import Users from "./routes/Users";
 
 const router = createBrowserRouter([
@@ -33,8 +36,8 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
-    path: "/profile",
-    element: <Profile />,
+    path: "/user",
+    element: <User />,
     errorElement: <ErrorPage />,
   },
   {
@@ -70,6 +73,21 @@ const router = createBrowserRouter([
   {
     path: "/events",
     element: <Events />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/admin",
+    element: <Admin />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/new-course",
+    element: <NewCourse />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/new-professor",
+    element: <NewProfessor />,
     errorElement: <ErrorPage />,
   },
 ]);

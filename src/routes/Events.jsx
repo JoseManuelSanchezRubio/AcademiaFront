@@ -29,6 +29,71 @@ export default function Events() {
 
     }, []);
 
+    const eventsList = events.map((event) => {
+        const start_date = new Date(event.start_date).toLocaleDateString();
+        const end_date = new Date(event.end_date).toLocaleDateString();
+        return (
+            <div className="accordion" id={`idd${event.id}`} key={event.id}>
+                <div className="accordion-item mb-3">
+                    <h2 className="accordion-header">
+                        <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target={`#id${event.id}`} aria-expanded="false" aria-controls={`id${event.id}`}>
+                            <h5>{event.title}</h5>
+                        </button>
+                    </h2>
+                    <div id={`id${event.id}`} className="accordion-collapse collapse" data-bs-parent={`#idd${event.id}`}>
+                        <div className="accordion-body">
+                            <p className="card-text text-secondary">{event.description ? event.description : 'Este evento no tiene descripción'}</p>
+                            <div className="card-text">Desde {start_date}</div>
+                            <div className="card-text mb-3">Hasta {end_date}</div>
+                            <button type="button" className="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#editEventModal">
+                                Editar
+                            </button>
+
+                            <div className="modal fade" id="editEventModal" tabIndex="-1" aria-labelledby="modal" aria-hidden="true">
+                                <div className="modal-dialog">
+                                    <div className="modal-content">
+                                        <div className="modal-header">
+                                            <h1 className="modal-title fs-5" id="modal">Editar evento</h1>
+                                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div className="modal-body">
+                                            <form onSubmit={updateEvent}>
+                                                <div className="mb-3">
+                                                    <label htmlFor="title-modal" className="form-label">Título</label>
+                                                    <input type="text" className="form-control" id="title-modal" defaultValue={event.title} />
+                                                </div>
+                                                <div className="mb-3">
+                                                    <label htmlFor="description-modal" className="form-label">Descripción</label>
+                                                    <textarea cols="30" rows="3" className="form-control" id="description-modal" defaultValue={event.description}></textarea>
+                                                </div>
+                                                <div className="mb-3">
+                                                    <label htmlFor="startDate-modal" className="form-label">Fecha de inicio</label>
+                                                    <input type="date" className="form-control" id="startDate-modal" defaultValue={event.start_date} />
+                                                </div>
+                                                <div className="mb-3">
+                                                    <label htmlFor="endDate-modal" className="form-label">Fecha de fin</label>
+                                                    <input type="date" className="form-control" id="endDate-modal" defaultValue={event.end_date} />
+                                                </div>
+
+                                            </form>
+                                        </div>
+                                        <div className="modal-footer">
+                                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                            <button type="submit" className="btn btn-primary" onClick={(e) => updateEvent(e)}>Guardar los cambios</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="btn btn-danger" id={event.id} onClick={(e) => deleteEvent(e.target.id)}>Eliminar</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        )
+    });
+
+
+
     async function deleteEvent(event_id) {
         if (confirm('Seguro que quieres eliminar este evento?')) {
             const requestOptions = {
@@ -44,6 +109,7 @@ export default function Events() {
 
     async function updateEvent(e) {
         e.preventDefault();
+        alert();
         //next.js
     }
 
@@ -75,7 +141,7 @@ export default function Events() {
     return (
         <div>
             <Nav isLogged={isLogged}></Nav>
-            <div className="row">
+            <div className="row mx-5 my-4">
                 <div className="col">
                     <h1>Añadir evento</h1>
                     <form>
@@ -102,59 +168,8 @@ export default function Events() {
                     </form>
                 </div>
                 <aside className="col-4">
-                    <h1>Tus eventos (acordeón)</h1>
-                    {events.map(event => (
-
-                        <div className="card mb-3" key={event.id}>
-                            <div className="card-body">
-                                <h5 className="card-title">{event.title}</h5>
-                                <p className="card-text text-secondary">{event.description ? event.description : 'Este evento no tiene descripción'}</p>
-                                <div className="card-text">Desde {event.start_date}</div>
-                                <div className="card-text mb-3">Hasta {event.end_date}</div>
-                                <button type="button" className="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                    Editar
-                                </button>
-
-                                <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="modal" aria-hidden="true">
-                                    <div className="modal-dialog">
-                                        <div className="modal-content">
-                                            <div className="modal-header">
-                                                <h1 className="modal-title fs-5" id="modal">Editar evento</h1>
-                                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <div className="modal-body">
-                                                <form onSubmit={updateEvent}>
-                                                    <div className="mb-3">
-                                                        <label htmlFor="title-modal" className="form-label">Título</label>
-                                                        <input type="text" className="form-control" id="title-modal" defaultValue={event.title} />
-                                                    </div>
-                                                    <div className="mb-3">
-                                                        <label htmlFor="description-modal" className="form-label">Descripción</label>
-                                                        <textarea cols="30" rows="3" className="form-control" id="description-modal" defaultValue={event.description}></textarea>
-                                                    </div>
-                                                    <div className="mb-3">
-                                                        <label htmlFor="startDate-modal" className="form-label">Fecha de inicio</label>
-                                                        <input type="date" className="form-control" id="startDate-modal" defaultValue={event.start_date} />
-                                                    </div>
-                                                    <div className="mb-3">
-                                                        <label htmlFor="endDate-modal" className="form-label">Fecha de fin</label>
-                                                        <input type="date" className="form-control" id="endDate-modal" defaultValue={event.end_date} />
-                                                    </div>
-
-                                                </form>
-                                            </div>
-                                            <div className="modal-footer">
-                                                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                                <button type="submit" className="btn btn-primary">Guardar los cambios</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="btn btn-danger" id={event.id} onClick={(e) => deleteEvent(e.target.id)}>Eliminar</div>
-                            </div>
-                        </div>
-
-                    ))}
+                    <h1 className="text-end mb-3">Tus eventos</h1>
+                    {eventsList}
                 </aside>
             </div>
 

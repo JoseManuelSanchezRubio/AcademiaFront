@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Announcements from "../Announcements";
 import Nav from "../Nav";
 
 
@@ -32,19 +33,26 @@ export default function Course() {
     return (
         <div>
             <Nav isLogged={isLogged}></Nav>
-            <div>
-                <h1>{course.name}</h1>
-                <Link to={url}>Tus compañeros</Link>
-                {units.map(unit => (
-                    <li key={unit.id}>
-                        {unit.name}
-                        <ul>
-                            <li><Link to={`/forum/${unit.id}`}>Foro de la unidad</Link></li>
-                            <li>{unit.theory}</li>
-                            <li>{unit.exercises}</li>
-                            <li>Subir ejercicios: <input type="file" /></li>
-                        </ul>
-                    </li>))}
+            <div className="d-flex mx-5 my-4">
+
+                <div className='col-9'>
+                    <div>
+                        <h1>{course.name} &bull; <Link to={url} className="">Compañeros</Link></h1>
+
+                        {units.map(unit => (
+                            <div key={unit.id} className="card mb-4 me-4">
+                                <div className="card-body">
+                                    <h5 className="card-title">{unit.name}</h5>
+                                    <div className="card-subtitle mb-2 text-body-secondary text-secondary">{unit.description}</div>
+                                    <div className="card-text">{unit.theory}</div>
+                                    <div className="card-text">{unit.exercises}</div>
+                                </div>
+                            </div>))}
+                    </div>
+                </div>
+                <aside>
+                    <Announcements className='col-3' courseId={courseId}></Announcements>
+                </aside>
             </div>
         </div>
     )

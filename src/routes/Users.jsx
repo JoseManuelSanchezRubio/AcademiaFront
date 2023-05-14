@@ -38,7 +38,6 @@ export default function Users() {
         )
     })
 
-
     let isLogged = false;
     if (sessionStorage.getItem('token')) {
         isLogged = true;
@@ -51,10 +50,10 @@ export default function Users() {
             <div>
                 {users.map(user => (
                     <li key={user.id}>
-                        {user.name}
-                        <button type="button" id={user.id} className="btn btn-primary ms-2" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={(e) => setUserId(e.target.id)}>
+                        {user.name} {user.surname}
+                        {sessionStorage.getItem('professor') && (<button type="button" id={user.id} className="btn btn-primary ms-2" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={(e) => setUserId(e.target.id)}>
                             Ver archvos subidos
-                        </button>
+                        </button>)}
 
                         <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="modal" aria-hidden="true">
                             <div className="modal-dialog">

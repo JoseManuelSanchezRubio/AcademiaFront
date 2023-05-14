@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Announcements from "../Announcements";
 import NavProfessor from "../NavProfessor";
 
 
@@ -8,11 +9,12 @@ export default function CourseProfessor() {
     const [course, setCourse] = useState([]);
     const [units, setUnits] = useState([]);
     const [unitName, setUnitName] = useState('');
+    const [unitDescription, setUnitDescription] = useState('');
     const [unitTheory, setUnitTheory] = useState('');
     const [unitExercises, setUnitExercises] = useState('');
-    //const [user_data, setUser_data] = useState('');
 
     const courseId = JSON.parse(sessionStorage.getItem("courseId"));
+    const professorId = JSON.parse(sessionStorage.getItem("professor")).id;
     const url = `/users/${courseId}`;
     useEffect(() => {
         fetch(`http://127.0.0.1:8000/api/courses/${courseId}`)
@@ -25,6 +27,7 @@ export default function CourseProfessor() {
     }, []);
 
     async function createUnit() {
+        console.log(unitName, unitTheory, unitExercises, courseId);
         const requestOptions = {
             method: 'POST',
             headers: {
@@ -32,6 +35,7 @@ export default function CourseProfessor() {
             },
             body: JSON.stringify({
                 name: unitName,
+                description: unitDescription,
                 theory: unitTheory,
                 exercises: unitExercises,
                 course_id: courseId
@@ -49,58 +53,70 @@ export default function CourseProfessor() {
         isLogged = true;
     }
 
+
     if (!isLogged) return window.location.href = '/login';
     return (
         <div>
             <NavProfessor isLogged={isLogged}></NavProfessor>
-            <div>
-                <h1>{course.name}</h1>
-                <Link to={url}>Alumnos</Link>
-                {units.map(unit => (
-                    <li key={unit.id}>
-                        {unit.name}
-                        <ul>
-                            <li>{unit.theory}</li>
-                            <li>{unit.exercises}</li>
-                            {/* <li>{unit.user_data ? unit.user_data : 'El alumno no ha subido nada'}</li> */}
-                        </ul>
-                    </li>))}
-            </div>
+            <div className="d-flex mx-5 my-4">
+                <div className="col-9">
+                    <div>
+                        <h1>{course.name} &bull; <Link to={url} className="">Alumnos</Link></h1>
 
-            <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                Añadir unidad
-            </button>
+                        {units.map(unit => (
+                            <div key={unit.id} className="card mb-4 me-4">
+                                <div className="card-body">
+                                    <h5 className="card-title">{unit.name}</h5>
+                                    <div className="card-subtitle mb-2 text-body-secondary text-secondary">{unit.description}</div>
+                                    <div className="card-text">{unit.theory}</div>
+                                    <div className="card-text">{unit.exercises}</div>
+                                </div>
+                            </div>))}
+                    </div>
 
-            <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="modal" aria-hidden="true">
-                <div className="modal-dialog">
-                    <div className="modal-content">
-                        <div className="modal-header">
-                            <h1 className="modal-title fs-5" id="modal">Añadir una nueva unidad</h1>
-                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div className="modal-body">
-                            <form>
-                                <div className="mb-3">
-                                    <label htmlFor="name-modal" className="form-label">Nombre de la unidad</label>
-                                    <input type="text" className="form-control" id="name-modal" onChange={(e) => setUnitName(e.target.value)} />
-                                </div>
-                                <div className="mb-3">
-                                    <label htmlFor="theory-modal" className="form-label">Teoría</label>
-                                    <input type="text" className="form-control" id="theory-modal" onChange={(e) => setUnitTheory(e.target.value)} />
-                                </div>
-                                <div className="mb-3">
-                                    <label htmlFor="exercises-modal" className="form-label">Ejercicios</label>
-                                    <input type="text" className="form-control" id="exercises-modal" onChange={(e) => setUnitExercises(e.target.value)} />
-                                </div>
+                    <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Añadir unidad
+                    </button>
 
-                            </form>
-                        </div>
-                        <div className="modal-footer">
-                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                            <button type="button" className="btn btn-primary" onClick={createUnit}>Guardar los cambios</button>
+                    <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="modal" aria-hidden="true">
+                        <div className="modal-dialog">
+                            <div className="modal-content">
+                                <div className="modal-header">
+                                    <h1 className="modal-title fs-5" id="modal">Añadir una nueva unidad</h1>
+                                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div className="modal-body">
+                                    <form>
+                                        <div className="mb-3">
+                                            <label htmlFor="name-modal" className="form-label">Nombre de la unidad</label>
+                                            <input type="text" className="form-control" id="name-modal" onChange={(e) => setUnitName(e.target.value)} />
+                                        </div>
+                                        <div className="mb-3">
+                                            <label htmlFor="desc-modal" className="form-label">Descripción de la unidad</label>
+                                            <textarea id="desc-modal" cols="30" rows="3" className="form-control" onChange={(e) => setUnitDescription(e.target.value)}></textarea>
+                                        </div>
+                                        <div className="mb-3">
+                                            <label htmlFor="theory-modal" className="form-label">Teoría</label>
+                                            <input type="text" className="form-control" id="theory-modal" onChange={(e) => setUnitTheory(e.target.value)} />
+                                        </div>
+                                        <div className="mb-3">
+                                            <label htmlFor="exercises-modal" className="form-label">Ejercicios</label>
+                                            <input type="text" className="form-control" id="exercises-modal" onChange={(e) => setUnitExercises(e.target.value)} />
+                                        </div>
+
+                                    </form>
+                                </div>
+                                <div className="modal-footer">
+                                    <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                    <button type="button" className="btn btn-primary" onClick={createUnit}>Guardar los cambios</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <aside className="col-3">
+                    <Announcements courseId={courseId} professorId={professorId}></Announcements>
+                </aside>
             </div>
         </div>
     )

@@ -1,7 +1,7 @@
 import { useState } from "react";
-import Nav from "../Nav";
+import NavAdmin from "../NavAdmin";
 
-export default function Logup() {
+export default function NewProfessor() {
 
     const [name, setName] = useState("");
     const [surname, setSurname] = useState("");
@@ -15,10 +15,8 @@ export default function Logup() {
 
     function checkLogup(data) {
         if (data.status) {
-            sessionStorage.setItem('token', data.token)
-            sessionStorage.setItem('user', JSON.stringify(data.user))
-            alert("Cuenta creada correctamente");
-            window.location.href = "/login";
+            alert("Profesor añadido correctamente");
+            window.location.href = "/admin";
         } else {
             alert(data.message);
         }
@@ -46,23 +44,23 @@ export default function Logup() {
                 password: password
             })
         };
-        fetch('http://127.0.0.1:8000/api/users', requestOptions)
+        fetch('http://127.0.0.1:8000/api/professors', requestOptions)
             .then(response => response.json())
             .then(data => checkLogup(data)
             );
     }
 
-
     let isLogged = false;
-    if (sessionStorage.getItem('token')) isLogged = true;
+    if (sessionStorage.getItem('token') && sessionStorage.getItem('admin')) isLogged = true;
 
+    if (!isLogged) return window.location.href = '/login';
 
     return (
         <div>
-            <Nav isLogged={isLogged} />
+            <NavAdmin isLogged={isLogged} />
             <section className="d-flex justify-content-center p-5">
                 <div>
-                    <h1 className="mb-4">Crear cuenta</h1>
+                    <h1 className="mb-4">Añadir profesor</h1>
                     <form>
                         <div className="row">
                             <div className="form-outline mb-4 col">
@@ -108,7 +106,7 @@ export default function Logup() {
                             <input type="password" id="confirmPass" className="form-control" onChange={(e) => setConfirmPassword(e.target.value)} />
                         </div>
 
-                        <button type="submit" className="btn btn-primary btn-block mb-4" onClick={handleSubmit}>Crear cuenta</button>
+                        <button type="submit" className="btn btn-primary btn-block mb-4" onClick={handleSubmit}>Añadir</button>
 
                     </form>
                 </div>

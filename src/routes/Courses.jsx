@@ -27,26 +27,63 @@ export default function Courses() {
 
     async function buyCourse(e) {
 
-        for (let i = 0; i < userCourses.length; i++) {
-            if (userCourses[i].id == e.target.id) return alert("Ya has comprado ese curso")
+        if (confirm("Está apunto de comprar el curso, ¿seguro que desea continuar?")) {
+            for (let i = 0; i < userCourses.length; i++) {
+                if (userCourses[i].id == e.target.id) return alert("Ya has comprado ese curso")
+            }
+
+            const requestOptions = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    user_id: userId,
+                    course_id: e.target.id
+                })
+            };
+            await fetch('http://127.0.0.1:8000/api/users/course', requestOptions)
+
+            alert("Compra realizada");
+            window.location.href('profile')
         }
 
-        const requestOptions = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                user_id: userId,
-                course_id: e.target.id
-            })
-        };
-        await fetch('http://127.0.0.1:8000/api/users/course', requestOptions)
-
-        alert("Compra realizada");
-        window.location.href('profile')
-
     }
+
+    let coursesList = courses.map((item) => {
+        let random = Math.floor(Math.random() * 10);
+        let color = '';
+        if (random === 1) {
+            color = '#F0A990'
+        } else if (random === 2) {
+            color = '#FBF18A'
+        } else if (random === 3) {
+            color = '#C6FB8A'
+        } else if (random === 4) {
+            color = '#A5FCE5'
+        } else if (random === 5) {
+            color = '#A5E2FC'
+        } else if (random === 6) {
+            color = '#CDBFFE'
+        } else if (random === 7) {
+            color = '#FFD1F9'
+        } else if (random === 8) {
+            color = '#FF8C8C'
+        } else if (random === 9) {
+            color = '#8CA8FF'
+        } else {
+            color = '#9EFE9E'
+        }
+        return (
+            <div key={item.id} className={"card"} style={{ width: '250px', backgroundColor: color }}>
+                <div className="card-body">
+                    <h5 className="card-title">{item.name}</h5>
+                    <p className="card-text">{item.description}</p>
+                    <button className="btn btn-primary" id={item.id} onClick={(e) => buyCourse(e)}>Comprar</button>
+                </div>
+            </div>
+        )
+    })
 
     let isLogged = false;
     if (sessionStorage.getItem('token')) {
@@ -58,16 +95,11 @@ export default function Courses() {
     return (
         <div>
             <Nav isLogged={isLogged} />
-            <h1>Nuestros cursos</h1>
-            <div>
-                {courses.map(course => (
-                    <div className="card" key={course.id}>
-                        <div className="card-body">
-                            <h5 className="card-title">{course.name}</h5>
-                            <button className="btn btn-primary" id={course.id} onClick={(e) => buyCourse(e)}>Comprar</button>
-                        </div>
-                    </div>
-                ))}
+            <div className="container">
+                <h1 className="my-5">Estos son nuestros cursos:</h1>
+                <div className="d-flex flex-wrap gap-5">
+                    {coursesList}
+                </div>
             </div>
         </div>
     )

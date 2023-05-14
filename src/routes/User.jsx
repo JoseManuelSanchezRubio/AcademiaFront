@@ -1,20 +1,19 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import NavProfessor from "../NavProfessor";
+import Nav from "../Nav";
+
+export default function User() {
 
 
-
-export default function Professor() {
-
-    /* const [professor, setProfessor] = useState(); */
+    /* const [user, setUser] = useState(); */
     const [courses, setCourses] = useState([]);
 
     useEffect(() => {
-        const professorId = JSON.parse(sessionStorage.getItem("professor")).id;
-        fetch(`http://127.0.0.1:8000/api/professors/${professorId}`)
+        const userId = JSON.parse(sessionStorage.getItem("user")).id;
+        fetch(`http://127.0.0.1:8000/api/users/${userId}`)
             .then(response => response.json())
             .then((data) => {
-                /* setProfessor(data.professor); */
+                /* setUser(data.user); */
                 setCourses(data.courses);
             })
     }, []);
@@ -48,23 +47,27 @@ export default function Professor() {
                 <div className="card-body">
                     <h5 className="card-title">{item.name}</h5>
                     <p className="card-text">{item.description}</p>
-                    <Link to={`/professor/course`} id={item.id} onClick={(e) => handleCourse(e)}>Entrar</Link>
+                    <Link to={`/course`} id={item.id} onClick={(e) => handleCourse(e)}>Entrar</Link>
                 </div>
             </div>
         )
     })
+
+
     function handleCourse(e) {
-        console.log(e.target.id);
         sessionStorage.setItem("courseId", JSON.stringify(e.target.id));
     }
 
     let isLogged = false;
-    if (sessionStorage.getItem('token')) isLogged = true;
+    if (sessionStorage.getItem('token')) {
+        isLogged = true;
+    }
 
     if (!isLogged) return window.location.href = '/login';
+
     return (
         <div>
-            <NavProfessor isLogged={isLogged} />
+            <Nav isLogged={isLogged}></Nav>
             <div className="container">
                 <h1 className="my-5">Bienvenido, estos son tus cursos:</h1>
                 <div className="d-flex flex-wrap gap-5">

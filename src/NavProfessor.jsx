@@ -7,6 +7,7 @@ export default function NavProfessor(props) {
     function logout() {
         sessionStorage.removeItem("token");
         sessionStorage.removeItem("professor");
+        sessionStorage.removeItem("courseId");
         window.location.href = "/";
     }
 
