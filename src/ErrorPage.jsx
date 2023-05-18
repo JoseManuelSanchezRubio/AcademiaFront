@@ -21,14 +21,14 @@ export default function ErrorPage() {
         );
     } else {
         return (
-            <div id="error-page" className="text-center p-5">
-                <h1>Whoops!</h1>
-                <div>Parece que ha habido un error...</div>
-                <p>
-                    <i>{error.status} - {error.statusText}</i>
-                </p>
-                <Link to='/' className="btn btn-primary">Volver a la página principal</Link>
-            </div>
+          <div id="error-page" className="text-center p-5">
+            <h1>Whoops!</h1>
+            <div>Parece que ha habido un error...</div>
+            <br></br>
+            <Link to="/" className="btn btn-primary">
+              Volver a la página principal
+            </Link>
+          </div>
         );
     }
 
