@@ -58,6 +58,7 @@ export default function Announcements(props) {
     return (
         <div className="border-start h-100">
             <h1 className="text-end">Anuncios</h1>
+            {announcements.length == 0 && (<div className="p-4 text-secondary">Todavía no hay ningún anuncio</div>)}
             <div>{announcementsList}</div>
             <div>{props.professorId && (
                 <div><button type="button" className="btn btn-primary ms-4" data-bs-toggle="modal" data-bs-target="#addAnnouncement">

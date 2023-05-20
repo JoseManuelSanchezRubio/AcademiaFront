@@ -10,7 +10,6 @@ export default function Course() {
     const [units, setUnits] = useState([]);
     const courseId = JSON.parse(sessionStorage.getItem("courseId"));
     const url = `/users/${courseId}`;
-    //const [user_data, setUser_data] = useState('');
 
     useEffect(() => {
         const courseId = JSON.parse(sessionStorage.getItem("courseId"));
@@ -38,7 +37,7 @@ export default function Course() {
                 <div className='col-9'>
                     <div>
                         <h1>{course.name} &bull; <Link to={url} className="">Compañeros</Link></h1>
-
+                        {units.length == 0 && (<div className="py-4 text-secondary">Vaya... parece que el profesor todavía no ha añadido ninguna unidad.</div>)}
                         {units.map(unit => (
                             <div key={unit.id} className="card mb-4 me-4">
                                 <div className="card-body">
