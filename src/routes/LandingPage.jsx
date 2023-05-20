@@ -156,7 +156,7 @@ export default function LandingPage() {
           <div className="col-lg-6 d-flex align-items-center">
             <img
               className="rounded shadow"
-              src="src\assets\girl.jpg"
+              src="src\assets\girl-min.jpg"
               width="100%"
             ></img>
           </div>
