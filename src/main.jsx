@@ -18,6 +18,7 @@ import NewProfessor from "./routes/NewProfessor";
 import Professor from "./routes/Professor";
 import User from "./routes/User";
 import Users from "./routes/Users";
+import Email from "./routes/Email";
 
 const router = createBrowserRouter([
   {
@@ -88,6 +89,11 @@ const router = createBrowserRouter([
   {
     path: "/new-professor",
     element: <NewProfessor />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/email",
+    element: <Email />,
     errorElement: <ErrorPage />,
   },
 ]);
