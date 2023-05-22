@@ -62,7 +62,7 @@ export default function CourseProfessor() {
                 <div className="col-9">
                     <div>
                         <h1>{course.name} &bull; <Link to={url} className="">Alumnos</Link></h1>
-
+                        {units.length == 0 && (<div className="py-4 text-secondary">El curso todavía no tiene ninguna unidad. ¡Añade una!</div>)}
                         {units.map(unit => (
                             <div key={unit.id} className="card mb-4 me-4">
                                 <div className="card-body">
