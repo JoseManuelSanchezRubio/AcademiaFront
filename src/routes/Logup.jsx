@@ -1,7 +1,9 @@
 import { useState } from "react";
 import Nav from "../Nav";
+import { Tooltip } from "reactstrap";
 
 export default function Logup() {
+  const [popoverOpen, setPopoverOpen] = useState(false);
 
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
@@ -12,10 +14,14 @@ export default function Logup() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
+  const [errorName, setErrorName] = useState("");
+  const [errorSurname, setErrorSurname] = useState("");
   const [errorDni, setErrorDni] = useState("");
+  const [errorAddress, setErrorAddress] = useState("");
   const [errorEmail, setErrorEmail] = useState("");
   const [errorPhone, setErrorPhone] = useState("");
   const [errorPassword, setErrorPassword] = useState("");
+  const [errorConfirmPassword, setErrorConfirmPassword] = useState("");
 
   function checkLogup(data) {
     if (data.status) {
@@ -28,6 +34,22 @@ export default function Logup() {
     }
   }
 
+  function handleName(e) {
+    setName(e);
+    if (e == "") {
+      setErrorName("Debes rellenar este campo");
+    } else {
+      setErrorName("");
+    }
+  }
+  function handleSurname(e) {
+    setSurname(e);
+    if (e == "") {
+      setErrorSurname("Debes rellenar este campo");
+    } else {
+      setErrorSurname("");
+    }
+  }
   function handleDni(e) {
     let dniRegex = /^[0-9]{8}[TRWAGMYFPDXBNJZSQVHLCKE]$/i;
     setDni(e);
@@ -37,6 +59,14 @@ export default function Logup() {
       setErrorDni("");
     }
     if (e == "") setErrorDni("Debes rellenar este campo");
+  }
+  function handleAddress(e) {
+    setAddress(e);
+    if (e == "") {
+      setErrorAddress("Debes rellenar este campo");
+    } else {
+      setErrorAddress("");
+    }
   }
   function handleEmail(e) {
     let emailRegex = /^[^@]+@[^@]+\.[a-zA-Z]{2,}$/;
@@ -68,43 +98,60 @@ export default function Logup() {
     }
     if (e == "") setErrorPassword("Debes rellenar este campo");
   }
+  function handleConfirmPassword(e) {
+    setConfirmPassword(e);
+    if (password != e) {
+      setErrorConfirmPassword("Las contraseñas no coinciden.");
+    } else {
+      setErrorConfirmPassword("");
+    }
+    if (e == "") setErrorConfirmPassword("Debes rellenar este campo");
+  }
 
   function handleSubmit(e) {
     e.preventDefault();
 
-    if (
-      name == "" ||
-      surname == "" ||
-      dni == "" ||
-      email == "" ||
-      address == "" ||
-      phone == "" ||
-      password == "" ||
-      confirmPassword == ""
-    )
-      return alert("Todos los campos son obligatorios");
-    if (password !== confirmPassword)
-      return alert("Las contraseñas no coinciden");
+    if (name == "") setErrorName("Debes rellenar este campo");
+    if (surname == "") setErrorSurname("Debes rellenar este campo");
+    if (dni == "") setErrorDni("Debes rellenar este campo");
+    if (address == "") setErrorAddress("Debes rellenar este campo");
+    if (phone == "") setErrorPhone("Debes rellenar este campo");
+    if (email == "") setErrorEmail("Debes rellenar este campo");
+    if (password == "") setErrorPassword("Debes rellenar este campo");
+    if (confirmPassword == "")
+      setErrorConfirmPassword("Debes rellenar este campo");
+    if (password != confirmPassword)
+      setErrorConfirmPassword("Las contraseñas no coinciden");
 
-    /* const requestOptions = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                name: name,
-                surname: surname,
-                dni: dni,
-                address: address,
-                phone: phone,
-                email: email,
-                password: password
-            })
-        };
-        fetch('http://127.0.0.1:8000/api/users', requestOptions)
-            .then(response => response.json())
-            .then(data => checkLogup(data)
-            ); */
+    if (
+      errorName == "" ||
+      errorSurname == "" ||
+      errorDni == "" ||
+      errorAddress == "" ||
+      errorPhone == "" ||
+      errorEmail == "" ||
+      errorPassword == "" ||
+      errorConfirmPassword == ""
+    ) {
+      const requestOptions = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: name,
+          surname: surname,
+          dni: dni,
+          address: address,
+          phone: phone,
+          email: email,
+          password: password,
+        }),
+      };
+      fetch("http://127.0.0.1:8000/api/users", requestOptions)
+        .then((response) => response.json())
+        .then((data) => checkLogup(data));
+    }
   }
 
   let isLogged = false;
@@ -113,6 +160,7 @@ export default function Logup() {
   return (
     <div>
       <Nav isLogged={isLogged} />
+      <br></br>
       <section className="d-flex justify-content-center p-5">
         <div>
           <h1 className="mb-4">Crear cuenta</h1>
@@ -125,9 +173,14 @@ export default function Logup() {
                 <input
                   type="text"
                   id="name"
-                  className="form-control"
-                  onChange={(e) => setName(e.target.value)}
+                  className={
+                    errorName == ""
+                      ? "form-control"
+                      : "form-control border border-danger shadow-none"
+                  }
+                  onChange={(e) => handleName(e.target.value)}
                 />
+                <div className="text-danger fst-italic small">{errorName}</div>
               </div>
               <div className="form-outline mb-4 col">
                 <label className="form-label" htmlFor="surname">
@@ -136,9 +189,16 @@ export default function Logup() {
                 <input
                   type="text"
                   id="surname"
-                  className="form-control"
-                  onChange={(e) => setSurname(e.target.value)}
+                  className={
+                    errorSurname == ""
+                      ? "form-control"
+                      : "form-control border border-danger shadow-none"
+                  }
+                  onChange={(e) => handleSurname(e.target.value)}
                 />
+                <div className="text-danger fst-italic small">
+                  {errorSurname}
+                </div>
               </div>
               <div className="form-outline mb-4 col">
                 <label className="form-label" htmlFor="dni">
@@ -147,7 +207,11 @@ export default function Logup() {
                 <input
                   type="text"
                   id="dni"
-                  className="form-control"
+                  className={
+                    errorDni == ""
+                      ? "form-control"
+                      : "form-control border border-danger shadow-none"
+                  }
                   onChange={(e) => handleDni(e.target.value)}
                 />
                 <div className="text-danger fst-italic small">
@@ -164,9 +228,16 @@ export default function Logup() {
                 <input
                   type="text"
                   id="address"
-                  className="form-control"
-                  onChange={(e) => setAddress(e.target.value)}
+                  className={
+                    errorAddress == ""
+                      ? "form-control"
+                      : "form-control border border-danger shadow-none"
+                  }
+                  onChange={(e) => handleAddress(e.target.value)}
                 />
+                <div className="text-danger fst-italic small">
+                  {errorAddress}
+                </div>
               </div>
 
               <div className="form-outline mb-4 col">
@@ -176,7 +247,11 @@ export default function Logup() {
                 <input
                   type="text"
                   id="phone"
-                  className="form-control"
+                  className={
+                    errorPhone == ""
+                      ? "form-control"
+                      : "form-control border border-danger shadow-none"
+                  }
                   onChange={(e) => handlePhone(e.target.value)}
                 />
                 <div className="text-danger fst-italic small">{errorPhone}</div>
@@ -190,7 +265,11 @@ export default function Logup() {
               <input
                 type="email"
                 id="email"
-                className="form-control"
+                className={
+                  errorEmail == ""
+                    ? "form-control"
+                    : "form-control border border-danger shadow-none"
+                }
                 onChange={(e) => handleEmail(e.target.value)}
               />
               <div className="text-danger fst-italic small">{errorEmail}</div>
@@ -203,21 +282,38 @@ export default function Logup() {
               <input
                 type="password"
                 id="password"
-                className="form-control"
+                className={
+                  errorPassword == ""
+                    ? "form-control"
+                    : "form-control border border-danger shadow-none"
+                }
                 onChange={(e) => handlePassword(e.target.value)}
               />
               <div className="text-danger fst-italic small">
-                {password == "" ? (
+                {password == "" || errorPassword == "" ? (
                   errorPassword
                 ) : (
                   <div>
                     {errorPassword}
-                    <span className="ms-2">
+                    <span style={{ cursor: "pointer" }} className="ms-2">
                       <img
                         id="info"
                         src="src\assets\info.png"
                         style={{ width: "15px" }}
                       ></img>
+
+                      <Tooltip
+                        placement="bottom"
+                        isOpen={popoverOpen}
+                        target="info"
+                        toggle={() => {
+                          setPopoverOpen(!popoverOpen);
+                        }}
+                      >
+                        La contraseña debe tener al menos cuatro carácteres. Los
+                        carácteres especiales permitidos son: punto ( . ), guion
+                        ( - ) y guión bajo ( _ )
+                      </Tooltip>
                     </span>
                   </div>
                 )}
@@ -231,9 +327,16 @@ export default function Logup() {
               <input
                 type="password"
                 id="confirmPass"
-                className="form-control"
-                onChange={(e) => setConfirmPassword(e.target.value)}
+                className={
+                  errorConfirmPassword == ""
+                    ? "form-control"
+                    : "form-control border border-danger shadow-none"
+                }
+                onChange={(e) => handleConfirmPassword(e.target.value)}
               />
+              <div className="text-danger fst-italic small">
+                {errorConfirmPassword}
+              </div>
             </div>
 
             <button
