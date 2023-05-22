@@ -89,7 +89,7 @@ export default function NewCourse() {
   if (sessionStorage.getItem("token") && sessionStorage.getItem("admin"))
     isLogged = true;
 
-  /* if (!isLogged) return window.location.href = '/login'; */
+  if (!isLogged) return (window.location.href = "/login");
 
   return (
     <div>
