@@ -110,27 +110,50 @@ export default function Logup() {
 
   function handleSubmit(e) {
     e.preventDefault();
-
-    if (name == "") setErrorName("Debes rellenar este campo");
-    if (surname == "") setErrorSurname("Debes rellenar este campo");
-    if (dni == "") setErrorDni("Debes rellenar este campo");
-    if (address == "") setErrorAddress("Debes rellenar este campo");
-    if (phone == "") setErrorPhone("Debes rellenar este campo");
-    if (email == "") setErrorEmail("Debes rellenar este campo");
-    if (password == "") setErrorPassword("Debes rellenar este campo");
-    if (confirmPassword == "")
+    let error = false;
+    if (name == "") {
+      setErrorName("Debes rellenar este campo");
+      error = true;
+    }
+    if (surname == "") {
+      setErrorSurname("Debes rellenar este campo");
+      error = true;
+    }
+    if (dni == "") {
+      setErrorDni("Debes rellenar este campo");
+      error = true;
+    }
+    if (address == "") {
+      setErrorAddress("Debes rellenar este campo");
+      error = true;
+    }
+    if (phone == "") {
+      setErrorPhone("Debes rellenar este campo");
+      error = true;
+    }
+    if (email == "") {
+      setErrorEmail("Debes rellenar este campo");
+      error = true;
+    }
+    if (password == "") {
+      setErrorPassword("Debes rellenar este campo");
+      error = true;
+    }
+    if (confirmPassword == "") {
       setErrorConfirmPassword("Debes rellenar este campo");
-    if (password != confirmPassword)
-      setErrorConfirmPassword("Las contraseñas no coinciden");
+      error = true;
+    }
 
+    if (password != confirmPassword) {
+      setErrorConfirmPassword("Las contraseñas no coinciden");
+      error = true;
+    }
     if (
-      errorName == "" ||
-      errorSurname == "" ||
-      errorDni == "" ||
-      errorAddress == "" ||
-      errorPhone == "" ||
-      errorEmail == "" ||
-      errorPassword == "" ||
+      !error &&
+      errorDni == "" &&
+      errorPhone == "" &&
+      errorEmail == "" &&
+      errorPassword == "" &&
       errorConfirmPassword == ""
     ) {
       const requestOptions = {
