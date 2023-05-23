@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import NavAdmin from "../NavAdmin";
 
 export default function Admin() {
-
     const [users, setUsers] = useState([]);
     const [professors, setProfessors] = useState([]);
     const [courses, setCourses] = useState([]);
@@ -81,24 +80,32 @@ export default function Admin() {
 
     const coursesList = courses.map((course) => {
         return (
-            <div className="card" key={course.id} style={{ width: '250px' }}>
+            <div className="card" key={course.id} style={{ width: "250px" }}>
                 <div className="card-body">
                     <h5 className="card-title">{course.name}</h5>
-                    <p className="card-subtitle mb-2 text-secondary">{course.description}</p>
-                    <p className="card-text">Profesor: {course.professor.name} {course.professor.surname}</p>
-                    <div className="btn btn-danger" id={course.id} onClick={(e) => deleteCourse(e.target.id)}>Eliminar</div>
+                    <p className="card-subtitle mb-2 text-secondary">
+                        {course.description}
+                    </p>
+                    <p className="card-text">
+                        Profesor: {course.professor.name} {course.professor.surname}
+                    </p>
+                    <div
+                        className="btn btn-danger"
+                        id={course.id}
+                        onClick={(e) => deleteCourse(e.target.id)}
+                    >
+                        Eliminar
+                    </div>
                 </div>
             </div>
-        )
-    })
-
-
-
+        );
+    });
 
     let isLogged = false;
-    if (sessionStorage.getItem('token') && sessionStorage.getItem('admin')) isLogged = true;
+    if (sessionStorage.getItem("token") && sessionStorage.getItem("admin"))
+        isLogged = true;
 
-    if (!isLogged) return window.location.href = '/login';
+    if (!isLogged) return (window.location.href = "/login");
 
     return (
         <div>
@@ -112,36 +119,65 @@ export default function Admin() {
                 <span>Filtrar por: </span>
                 <div className="d-flex gap-4">
                     <div className="form-check">
-                        <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" defaultChecked onChange={() => setShowUsers(true)} />
+                        <input
+                            className="form-check-input"
+                            type="radio"
+                            name="flexRadioDefault"
+                            id="flexRadioDefault1"
+                            defaultChecked
+                            onChange={() => setShowUsers(true)}
+                        />
                         <label className="form-check-label" htmlFor="flexRadioDefault1">
                             Alumnos
                         </label>
                     </div>
                     <div className="form-check">
-                        <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" onChange={() => setShowUsers(false)} />
+                        <input
+                            className="form-check-input"
+                            type="radio"
+                            name="flexRadioDefault"
+                            id="flexRadioDefault2"
+                            onChange={() => setShowUsers(false)}
+                        />
                         <label className="form-check-label" htmlFor="flexRadioDefault2">
                             Profesores
                         </label>
                     </div>
                 </div>
-                <table className="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Nombre</th>
-                            <th scope="col">Apellidos</th>
-                            <th scope="col">DNI</th>
-                            <th scope="col">Dirección</th>
-                            <th scope="col">Teléfono</th>
-                            <th scope="col">Correo electrónico</th>
-                            <th scope="col"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {showUsers ? usersList : professorsList}
-                    </tbody>
-                </table>
+                <div className="table-responsive">
+                    <table className="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Apellidos</th>
+                                <th scope="col">DNI</th>
+                                <th scope="col">Dirección</th>
+                                <th scope="col">Teléfono</th>
+                                <th scope="col">Correo electrónico</th>
+                                {/* <th scope="col"></th> */}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {showUsers ? (
+                                usersList.length == 0 ? (
+                                    <div className="text-secondary mt-3">
+                                        Todavía no hay usuarios
+                                    </div>
+                                ) : (
+                                    usersList
+                                )
+                            ) : professorsList.length == 0 ? (
+                                <div className="text-secondary mt-3">
+                                    Todavía no hay profesores
+                                </div>
+                            ) : (
+                                professorsList
+                            )}
+                        </tbody>
+                    </table>
+                </div>
             </section>
         </div>
-    )
+    );
 }
