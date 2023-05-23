@@ -13,7 +13,7 @@ body {
   height: 100%;
 }
 
-.profile-picture { 
+.profile-picture {
   height: 150px;
   width: 150px;
   position: relative;
@@ -31,9 +31,18 @@ body {
   transform: translate(-50%, -50%);
 }
 
-.bg-blue{
+.open-button {
+  position: absolute;
+  top: 50%;
+  left: 98%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.bg-blue {
   background-color: #dceafc;
 }
-.bg-bluedark{
+
+.bg-bluedark {
   background-color: #bbd5f9;
 }

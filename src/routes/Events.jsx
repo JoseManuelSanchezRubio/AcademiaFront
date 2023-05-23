@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Nav from "../Nav";
+/* import UpdateEvent from "../UpdateEvent"; */
 
 
 export default function Events() {
@@ -45,45 +46,7 @@ export default function Events() {
                             <p className="card-text text-secondary">{event.description ? event.description : 'Este evento no tiene descripción'}</p>
                             <div className="card-text">Desde {start_date}</div>
                             <div className="card-text mb-3">Hasta {end_date}</div>
-                            <button type="button" className="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#editEventModal">
-                                Editar
-                            </button>
-
-                            <div className="modal fade" id="editEventModal" tabIndex="-1" aria-labelledby="modal" aria-hidden="true">
-                                <div className="modal-dialog">
-                                    <div className="modal-content">
-                                        <div className="modal-header">
-                                            <h1 className="modal-title fs-5" id="modal">Editar evento</h1>
-                                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div className="modal-body">
-                                            <form onSubmit={updateEvent}>
-                                                <div className="mb-3">
-                                                    <label htmlFor="title-modal" className="form-label">Título</label>
-                                                    <input type="text" className="form-control" id="title-modal" defaultValue={event.title} />
-                                                </div>
-                                                <div className="mb-3">
-                                                    <label htmlFor="description-modal" className="form-label">Descripción</label>
-                                                    <textarea cols="30" rows="3" className="form-control" id="description-modal" defaultValue={event.description}></textarea>
-                                                </div>
-                                                <div className="mb-3">
-                                                    <label htmlFor="startDate-modal" className="form-label">Fecha de inicio</label>
-                                                    <input type="date" className="form-control" id="startDate-modal" defaultValue={event.start_date} />
-                                                </div>
-                                                <div className="mb-3">
-                                                    <label htmlFor="endDate-modal" className="form-label">Fecha de fin</label>
-                                                    <input type="date" className="form-control" id="endDate-modal" defaultValue={event.end_date} />
-                                                </div>
-
-                                            </form>
-                                        </div>
-                                        <div className="modal-footer">
-                                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                            <button type="submit" className="btn btn-primary" onClick={(e) => updateEvent(e)}>Guardar los cambios</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            {/* <UpdateEvent event={event} /> */}
                             <div className="btn btn-danger" id={event.id} onClick={(e) => deleteEvent(e.target.id)}>Eliminar</div>
                         </div>
                     </div>
@@ -107,11 +70,7 @@ export default function Events() {
         }
     }
 
-    async function updateEvent(e) {
-        e.preventDefault();
-        alert();
-        //next.js
-    }
+
 
     async function saveEvent(e) {
         e.preventDefault();

@@ -39,6 +39,14 @@ export default function Admin() {
             window.location.reload();
         }
     }
+    async function deleteUser(e) {
+        if (confirm('Seguro que quieres eliminar a este usuario?')) {
+            await fetch(`http://127.0.0.1:8000/api/users/${e}`, {
+                method: 'DELETE'
+            });
+            window.location.reload();
+        }
+    }
 
     const usersList = users.map((user) => {
         if (user.email !== "admin@learningenjoying.com") {
@@ -51,7 +59,7 @@ export default function Admin() {
                     <td>{user.address}</td>
                     <td>{user.phone}</td>
                     <td>{user.email}</td>
-                    {/* <td><button className="btn btn-danger btn-sm">Eliminar</button></td> */}
+                    <td><button id={user.id} className="btn btn-danger btn-sm" onClick={(e) => deleteUser(e.target.id)}>Eliminar</button></td>
                 </tr>
             )
         }
@@ -66,7 +74,7 @@ export default function Admin() {
                 <td>{professor.address}</td>
                 <td>{professor.phone}</td>
                 <td>{professor.email}</td>
-                {/* <td><button className="btn btn-danger btn-sm">Eliminar</button></td> */}
+                <td>{/* <button className="btn btn-danger btn-sm">Eliminar</button> */}</td>
             </tr>
         )
     })
@@ -126,7 +134,7 @@ export default function Admin() {
                             <th scope="col">Dirección</th>
                             <th scope="col">Teléfono</th>
                             <th scope="col">Correo electrónico</th>
-                            {/* <th scope="col"></th> */}
+                            <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>

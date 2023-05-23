@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import NavProfessor from "../NavProfessor";
+import Profile from "../Profile";
 
 
 
@@ -8,6 +9,7 @@ export default function Professor() {
 
     /* const [professor, setProfessor] = useState(); */
     const [courses, setCourses] = useState([]);
+    const professor = JSON.parse(sessionStorage.getItem("professor"));
 
     useEffect(() => {
         const professorId = JSON.parse(sessionStorage.getItem("professor")).id;
@@ -65,11 +67,14 @@ export default function Professor() {
     return (
         <div>
             <NavProfessor isLogged={isLogged} />
-            <div className="container">
-                <h1 className="my-5">Bienvenido, estos son tus cursos:</h1>
-                <div className="d-flex flex-wrap gap-5">
-                    {coursesList}
+            <div>
+                <div className="container">
+                    <h1 className="my-5">Bienvenido, estos son tus cursos:</h1>
+                    <div className="d-flex flex-wrap gap-5">
+                        {coursesList}
+                    </div>
                 </div>
+                <Profile user={professor} />
             </div>
         </div>
     )

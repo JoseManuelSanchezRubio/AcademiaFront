@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Nav from "../Nav";
+import Profile from "../Profile";
 
 export default function User() {
 
 
     /* const [user, setUser] = useState(); */
     const [courses, setCourses] = useState([]);
+    const user = JSON.parse(sessionStorage.getItem("user"));
 
     useEffect(() => {
         const userId = JSON.parse(sessionStorage.getItem("user")).id;
@@ -68,11 +70,14 @@ export default function User() {
     return (
         <div>
             <Nav isLogged={isLogged}></Nav>
-            <div className="container">
-                <h1 className="my-5">Bienvenido, estos son tus cursos:</h1>
-                <div className="d-flex flex-wrap gap-5">
-                    {coursesList}
+            <div className="d-flex">
+                <div className="container">
+                    <h1 className="my-5">Bienvenido, estos son tus cursos:</h1>
+                    <div className="d-flex flex-wrap gap-5">
+                        {coursesList}
+                    </div>
                 </div>
+                <Profile user={user} />
             </div>
         </div>
     )
