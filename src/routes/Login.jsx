@@ -12,6 +12,15 @@ export default function Login() {
     const [errorEmail, setErrorEmail] = useState("");
     const [errorPassword, setErrorPassword] = useState("");
 
+    const [typeInput, setTypeInput] = useState("password");
+
+    function setInputTypeToText() {
+      setTypeInput("text");
+    }
+    function setInputTypeToPassword() {
+      setTypeInput("password");
+    }
+
     function handleCheck() {
       if (isProfessor) {
         setIsProfessor(false);
@@ -130,16 +139,28 @@ export default function Login() {
                 <label className="form-label" htmlFor="passwordForm">
                   Contraseña
                 </label>
-                <input
-                  type="password"
-                  id="passwordForm"
-                  className={
-                    errorPassword == ""
-                      ? "form-control"
-                      : "form-control border border-danger shadow-none"
-                  }
-                  onChange={(e) => handlePassword(e.target.value)}
-                />
+                <div className="position-relative">
+                  <input
+                    type={typeInput}
+                    id="passwordForm"
+                    className={
+                      errorPassword == ""
+                        ? "form-control"
+                        : "form-control border border-danger shadow-none"
+                    }
+                    onChange={(e) => handlePassword(e.target.value)}
+                  />
+                  <div className="position-absolute top-50 end-0 translate-middle-y pe-2">
+                    <img
+                      src="src\assets\show-password.png"
+                      width="20px"
+                      style={{ cursor: "pointer" }}
+                      onMouseDown={setInputTypeToText}
+                      onMouseUp={setInputTypeToPassword}
+                      onMouseLeave={setInputTypeToPassword}
+                    ></img>
+                  </div>
+                </div>
                 <div className="text-danger fst-italic small">
                   {errorPassword}
                 </div>

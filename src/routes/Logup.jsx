@@ -23,6 +23,25 @@ export default function Logup() {
   const [errorPassword, setErrorPassword] = useState("");
   const [errorConfirmPassword, setErrorConfirmPassword] = useState("");
 
+  const [typeInputPassword, setTypeInputPassword] = useState("password");
+  const [typeInputConfirmPassword, setTypeInputConfirmPassword] =
+    useState("password");
+
+  function setInputTypeToText(e) {
+    if (e == "password") {
+      setTypeInputPassword("text");
+    } else {
+      setTypeInputConfirmPassword("text");
+    }
+  }
+  function setInputTypeToPassword(e) {
+    if (e == "password") {
+      setTypeInputPassword("password");
+    } else {
+      setTypeInputConfirmPassword("password");
+    }
+  }
+
   function checkLogup(data) {
     if (data.status) {
       sessionStorage.setItem("token", data.token);
@@ -302,16 +321,29 @@ export default function Logup() {
               <label className="form-label" htmlFor="password">
                 Contraseña
               </label>
-              <input
-                type="password"
-                id="password"
-                className={
-                  errorPassword == ""
-                    ? "form-control"
-                    : "form-control border border-danger shadow-none"
-                }
-                onChange={(e) => handlePassword(e.target.value)}
-              />
+              <div className="position-relative">
+                <input
+                  type={typeInputPassword}
+                  id="passwordForm"
+                  className={
+                    errorPassword == ""
+                      ? "form-control"
+                      : "form-control border border-danger shadow-none"
+                  }
+                  onChange={(e) => handlePassword(e.target.value)}
+                />
+                <div className="position-absolute top-50 end-0 translate-middle-y pe-2">
+                  <img
+                    src="src\assets\show-password.png"
+                    width="20px"
+                    style={{ cursor: "pointer" }}
+                    id="password"
+                    onMouseDown={(e) => setInputTypeToText(e.target.id)}
+                    onMouseUp={(e) => setInputTypeToPassword(e.target.id)}
+                    onMouseLeave={(e) => setInputTypeToPassword(e.target.id)}
+                  ></img>
+                </div>
+              </div>
               <div className="text-danger fst-italic small">
                 {password == "" || errorPassword == "" ? (
                   errorPassword
@@ -347,16 +379,29 @@ export default function Logup() {
               <label className="form-label" htmlFor="confirmPass">
                 Repite contraseña
               </label>
-              <input
-                type="password"
-                id="confirmPass"
-                className={
-                  errorConfirmPassword == ""
-                    ? "form-control"
-                    : "form-control border border-danger shadow-none"
-                }
-                onChange={(e) => handleConfirmPassword(e.target.value)}
-              />
+              <div className="position-relative">
+                <input
+                  type={typeInputConfirmPassword}
+                  id="passwordForm"
+                  className={
+                    errorPassword == ""
+                      ? "form-control"
+                      : "form-control border border-danger shadow-none"
+                  }
+                  onChange={(e) => handleConfirmPassword(e.target.value)}
+                />
+                <div className="position-absolute top-50 end-0 translate-middle-y pe-2">
+                  <img
+                    src="src\assets\show-password.png"
+                    width="20px"
+                    style={{ cursor: "pointer" }}
+                    id="confirmPassword"
+                    onMouseDown={(e) => setInputTypeToText(e.target.id)}
+                    onMouseUp={(e) => setInputTypeToPassword(e.target.id)}
+                    onMouseLeave={(e) => setInputTypeToPassword(e.target.id)}
+                  ></img>
+                </div>
+              </div>
               <div className="text-danger fst-italic small">
                 {errorConfirmPassword}
               </div>
