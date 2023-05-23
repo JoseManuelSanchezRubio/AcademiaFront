@@ -10,6 +10,43 @@ export default function Events() {
   const [start_date, setStart_date] = useState("");
   const [end_date, setEnd_date] = useState("");
 
+  const [errorTitle, setErrorTitle] = useState("");
+  const [errorStart_date, setErrorStart_date] = useState("");
+  const [errorEnd_date, setErrorEnd_date] = useState("");
+
+  function handleTitle(e) {
+    setTitle(e);
+    if (e == "") {
+      setErrorTitle("Debes rellenar este campo");
+    } else {
+      setErrorTitle("");
+    }
+  }
+  function handleStart_date(e) {
+    setStart_date(e);
+    const dateIni = new Date(e);
+    if (e == "") {
+      setErrorStart_date("Debes rellenar este campo");
+    } else {
+      setErrorStart_date("");
+    }
+    if (end_date != null && dateIni > new Date(end_date)) {
+      setErrorStart_date("La fecha inicial no puede ser posterior a la final");
+    }
+  }
+  function handleEnd_date(e) {
+    setEnd_date(e);
+    const dateEnd = new Date(e);
+    if (e == "") {
+      setErrorEnd_date("Debes rellenar este campo");
+    } else {
+      setErrorEnd_date("");
+    }
+    if (start_date != null && dateEnd < new Date(start_date)) {
+      setErrorEnd_date("La fecha final no puede ser anterior a la inicial");
+    }
+  }
+
   useEffect(() => {
     const requestOptions = {
       method: "POST",
@@ -197,24 +234,42 @@ export default function Events() {
 
   async function saveEvent(e) {
     e.preventDefault();
-    if (title == "" || start_date == "" || end_date == "")
-      return alert("Faltan campos por rellenar");
-    const requestOptions = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        title: title,
-        description: description,
-        start_date: start_date,
-        end_date: end_date,
-        user_id: user_id,
-      }),
-    };
-    await fetch("http://127.0.0.1:8000/api/events/", requestOptions);
+    let error = false;
+    if (title == "") {
+      setErrorTitle("Debes rellenar este campo");
+      error = true;
+    }
+    if (start_date == "") {
+      setErrorStart_date("Debes rellenar este campo");
+      error = true;
+    }
+    if (end_date == "") {
+      setErrorEnd_date("Debes rellenar este campo");
+      error = true;
+    }
+    if (
+      !error &&
+      errorTitle == "" &&
+      errorStart_date == "" &&
+      errorEnd_date == ""
+    ) {
+      const requestOptions = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title: title,
+          description: description,
+          start_date: start_date,
+          end_date: end_date,
+          user_id: user_id,
+        }),
+      };
+      await fetch("http://127.0.0.1:8000/api/events/", requestOptions);
 
-    window.location.reload();
+      window.location.reload();
+    }
   }
 
   let isLogged = false;
@@ -234,10 +289,15 @@ export default function Events() {
               </label>
               <input
                 type="text"
-                className="form-control"
+                className={
+                  errorTitle == ""
+                    ? "form-control"
+                    : "form-control border border-danger shadow-none"
+                }
                 id="title"
-                onChange={(e) => setTitle(e.target.value)}
+                onChange={(e) => handleTitle(e.target.value)}
               />
+              <div className="text-danger fst-italic small">{errorTitle}</div>
             </div>
             <div className="mb-3">
               <label htmlFor="description" className="form-label">
@@ -258,10 +318,17 @@ export default function Events() {
                 </label>
                 <input
                   type="date"
-                  className="form-control"
+                  className={
+                    errorStart_date == ""
+                      ? "form-control"
+                      : "form-control border border-danger shadow-none"
+                  }
                   id="start_date"
-                  onChange={(e) => setStart_date(e.target.value)}
+                  onChange={(e) => handleStart_date(e.target.value)}
                 />
+                <div className="text-danger fst-italic small">
+                  {errorStart_date}
+                </div>
               </div>
               <div className="col mb-3">
                 <label htmlFor="end_date" className="form-label">
@@ -269,10 +336,17 @@ export default function Events() {
                 </label>
                 <input
                   type="date"
-                  className="form-control"
+                  className={
+                    errorEnd_date == ""
+                      ? "form-control"
+                      : "form-control border border-danger shadow-none"
+                  }
                   id="end_date"
-                  onChange={(e) => setEnd_date(e.target.value)}
+                  onChange={(e) => handleEnd_date(e.target.value)}
                 />
+                <div className="text-danger fst-italic small">
+                  {errorEnd_date}
+                </div>
               </div>
             </div>
 
