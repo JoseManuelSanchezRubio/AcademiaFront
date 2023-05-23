@@ -49,46 +49,55 @@ export default function Forum() {
   return (
     <div>
       <Nav isLogged={isLogged}></Nav>
-      <h1>Mensajes del foro</h1>
-      <div>
-        {messages.map((message) => (
-          <div
-            key={message.id}
-            className={message.user_id == userId ? "text-end" : ""}
-          >
-            {message.body} ({message.user.name})
-          </div>
-        ))}
-      </div>
-      <form>
-        <div className="form-group">
-          <input
-            type="text"
-            className="form-control"
-            id="msg"
-            placeholder="Mensaje"
-            onChange={(e) => setMessage(e.target.value)}
-          />
+      <div className="container pt-3">
+        <h1>Mensajes del foro</h1>
+        <div>
+          {messages.length == 0 && (
+            <div className="mb-2 text-secondary">
+              Todavía no hay ningún mensaje
+            </div>
+          )}
         </div>
-        {message == "" ? (
-          <button
-            type="submit"
-            className="btn btn-primary"
-            disabled
-            onClick={(e) => saveMessage(e)}
-          >
-            Enviar
-          </button>
-        ) : (
-          <button
-            type="submit"
-            className="btn btn-primary"
-            onClick={(e) => saveMessage(e)}
-          >
-            Enviar
-          </button>
-        )}
-      </form>
+        <div>
+          {messages.map((message) => (
+            <div
+              key={message.id}
+              className={message.user_id == userId ? "text-end" : ""}
+            >
+              {message.body} ({message.user.name})
+            </div>
+          ))}
+        </div>
+        <form>
+          <div className="form-group d-flex">
+            <input
+              type="text"
+              className="form-control me-2 rounded-pill"
+              id="msg"
+              placeholder="Mensaje"
+              onChange={(e) => setMessage(e.target.value)}
+            />
+            {message == "" ? (
+              <button
+                type="submit"
+                className="rounded-circle btn py-2 btn"
+                disabled
+                onClick={(e) => saveMessage(e)}
+              >
+                <img src="../src/assets/send.png" width="18px"></img>
+              </button>
+            ) : (
+              <button
+                type="submit"
+                className="rounded-circle py-2 btn border border-dark"
+                onClick={(e) => saveMessage(e)}
+              >
+                <img src="../src/assets/send.png" width="18px"></img>
+              </button>
+            )}
+          </div>
+        </form>
+      </div>
     </div>
   );
 }
