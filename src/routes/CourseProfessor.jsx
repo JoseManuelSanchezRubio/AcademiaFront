@@ -58,8 +58,8 @@ export default function CourseProfessor() {
     return (
         <div>
             <NavProfessor isLogged={isLogged}></NavProfessor>
-            <div className="d-flex mx-5 my-4">
-                <div className="col-9">
+            <div className="row mx-4 my-4">
+                <div className="col-lg-9 mb-4">
                     <div>
                         <h1>{course.name} &bull; <Link to={url} className="">Alumnos</Link></h1>
                         {units.length == 0 && (<div className="py-4 text-secondary">El curso todavía no tiene ninguna unidad. ¡Añade una!</div>)}
@@ -114,7 +114,7 @@ export default function CourseProfessor() {
                         </div>
                     </div>
                 </div>
-                <aside className="col-3">
+                <aside className="col-lg-3">
                     <Announcements courseId={courseId} professorId={professorId}></Announcements>
                 </aside>
             </div>

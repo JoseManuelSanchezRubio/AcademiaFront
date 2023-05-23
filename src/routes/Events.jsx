@@ -66,6 +66,7 @@ export default function Events() {
   const eventsList = events.map((event) => {
     const start_date = new Date(event.start_date).toLocaleDateString();
     const end_date = new Date(event.end_date).toLocaleDateString();
+
     return (
       <div className="accordion" id={`idd${event.id}`} key={event.id}>
         <div className="accordion-item mb-3">
@@ -102,12 +103,6 @@ export default function Events() {
       );
       window.location.reload();
     }
-  }
-
-  async function updateEvent(e) {
-    e.preventDefault();
-    alert();
-    //next.js
   }
 
   async function saveEvent(e) {
@@ -238,14 +233,9 @@ export default function Events() {
           </form>
         </div>
         <aside className="col-lg-4">
-          <h1 className="text-lg-end mb-3">Tus eventos</h1>
-          {eventsList.length == 0 ? (
-            <div className="text-secondary">
-              Vaya... parece que todavía no tienes eventos. ¡Añade uno!
-            </div>
-          ) : (
-            { eventsList }
-          )}
+          <h1 className="text-lg-end mb-4">Tus eventos</h1>
+          <div className="text-secondary text-end">{eventsList.length == 0 && <div>Vaya... parece que todavía no tienes eventos. ¡Añade uno!</div>}</div>
+          <div className="pt-3">{eventsList}</div>
         </aside>
       </div>
     </div>

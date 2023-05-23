@@ -155,7 +155,7 @@ export default function Admin() {
                                 <th scope="col">Dirección</th>
                                 <th scope="col">Teléfono</th>
                                 <th scope="col">Correo electrónico</th>
-                                {/* <th scope="col"></th> */}
+                                <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody>

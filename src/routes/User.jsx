@@ -72,8 +72,11 @@ export default function User() {
             <Nav isLogged={isLogged}></Nav>
             <div className="d-flex">
                 <div className="container">
-                    <h1 className="my-5">Bienvenido, estos son tus cursos:</h1>
-                    <div className="d-flex flex-wrap gap-5">
+                    <h1 className="mt-5">Bienvenido, estos son tus cursos:</h1>
+                    <div className="text-secondary">
+                        {coursesList.length == 0 && <div>Todavía no tienes ningún curso.</div>}
+                    </div>
+                    <div className="d-flex flex-wrap gap-5 mt-5">
                         {coursesList}
                     </div>
                 </div>
