@@ -58,7 +58,7 @@ export default function Pomodoro() {
         <div className="d-flex align-items-center">
           <div onClick={toggle}>Pomodoro</div>
           <span
-            id="info"
+            id="pomodoro-info"
             onClick={stopAndReset}
             className={
               isRunning
@@ -71,7 +71,7 @@ export default function Pomodoro() {
           <Tooltip
             placement="bottom"
             isOpen={popoverOpen}
-            target="info"
+            target="pomodoro-info"
             toggle={() => {
               setPopoverOpen(!popoverOpen);
             }}
