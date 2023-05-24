@@ -1,10 +1,4 @@
-import {
-  Modal,
-  ModalBody,
-  ModalHeader,
-  ModalFooter,
-  Tooltip,
-} from "reactstrap";
+import { Modal, ModalBody, ModalHeader, Tooltip } from "reactstrap";
 import { useState, useEffect } from "react";
 
 export default function Pomodoro() {
@@ -26,7 +20,7 @@ export default function Pomodoro() {
     if (studying && minutes == 25) {
       setStudying(false);
       setTime(0);
-      setLabelContent("Descanso");
+      setLabelContent("Tómate un descanso");
     }
     if (!studying && minutes == 5) {
       setStudying(true);
@@ -79,7 +73,7 @@ export default function Pomodoro() {
             Terminar
           </Tooltip>
           <span>
-            {isRunning && (
+            {time != 0 && (
               <span className="ms-2 pomodoro-label">
                 {minutes.toString().padStart(2, "0")}:
                 {seconds.toString().padStart(2, "0")}
@@ -88,38 +82,50 @@ export default function Pomodoro() {
           </span>
         </div>
         <Modal isOpen={modal} toggle={toggle}>
-          <ModalHeader toggle={toggle}>
+          <ModalHeader toggle={toggle} className="modal-header">
             <label>{lableContent}</label>
           </ModalHeader>
           <ModalBody>
-            <div>
-              <p className="text-secondary fst-italic small">
-                La técnica Pomodoro es un método de gestión de tiempo que
-                sugiere trabajar en intervalos de 25 minutos y añadir tiempos de
-                descanso de 5 minutos.
-              </p>
+            <p className="text-secondary fst-italic small">
+              La técnica Pomodoro es un método de gestión de tiempo que sugiere
+              trabajar en intervalos de 25 minutos y añadir tiempos de descanso
+              de 5 minutos.
+            </p>
+            <div className="d-flex justify-content-between">
+              <div className="w-25">
+                <div>
+                  {minutes.toString().padStart(2, "0")}:
+                  {seconds.toString().padStart(2, "0")}:
+                  {milliseconds.toString().padStart(2, "0")}
+                </div>
+                <div
+                  className="progress"
+                  role="progressbar"
+                  aria-label="Basic example"
+                  aria-valuenow="75"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                >
+                  <div className="progress-bar w-75"></div>
+                </div>
+              </div>
               <div>
-                {minutes.toString().padStart(2, "0")}:
-                {seconds.toString().padStart(2, "0")}:
-                {milliseconds.toString().padStart(2, "0")}
+                <button
+                  className={
+                    isRunning
+                      ? "me-2 btn btn-danger btn-sm"
+                      : "me-2 btn btn-primary btn-sm"
+                  }
+                  onClick={startAndStop}
+                >
+                  {isRunning ? "Stop" : "Start"}
+                </button>
+                <button className="btn btn-secondary btn-sm" onClick={reset}>
+                  Reset
+                </button>
               </div>
             </div>
           </ModalBody>
-          <ModalFooter>
-            <button
-              className={
-                isRunning
-                  ? "me-2 btn btn-danger btn-sm"
-                  : "me-2 btn btn-primary btn-sm"
-              }
-              onClick={startAndStop}
-            >
-              {isRunning ? "Stop" : "Start"}
-            </button>
-            <button className="btn btn-secondary btn-sm" onClick={reset}>
-              Reset
-            </button>
-          </ModalFooter>
         </Modal>
       </div>
     </div>
