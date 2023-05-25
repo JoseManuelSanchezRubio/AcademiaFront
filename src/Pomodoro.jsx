@@ -61,6 +61,7 @@ export default function Pomodoro() {
           <div>
             <div onClick={toggle}>Pomodoro</div>
             <Progress
+              name="pomodoro-progress-navbar"
               className="pomodoro-progress-navbar position-absolute"
               color={
                 isRunning ? (studying ? "primary" : "warning") : "secondary"
@@ -125,6 +126,7 @@ export default function Pomodoro() {
                   </span>
                 </div>
                 <Progress
+                  name="pomodoro-progress-modal"
                   className="pomodoro-progress"
                   animated={isRunning}
                   striped

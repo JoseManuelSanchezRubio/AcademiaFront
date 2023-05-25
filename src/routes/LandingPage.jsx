@@ -18,7 +18,7 @@ export default function LandingPage() {
       <div className="background-mainpage">
         <div className="text-center text-light">
           <h1 className="p-3">Learning Enjoying</h1>
-          <h3>La mejor academia para aprender</h3>
+          <p className="fs-4">La mejor academia para aprender</p>
           <button className="btn btn-primary m-5">Nuestros cursos</button>
         </div>
       </div>
@@ -27,11 +27,15 @@ export default function LandingPage() {
           <h1 className="text-center py-5">Te ayudamos a aprender</h1>
           <div className="row justify-content-center text-center">
             <div className="card col-lg-4">
-              <img src="src\assets\certificate.jpg" className="card-img-top" />
+              <img
+                alt="photo-of-girl-studying"
+                src="src\assets\certificate.jpg"
+                className="card-img-top"
+              />
               <div className="card-body">
-                <h5 className="card-title">
+                <div className="card-title fs-5 fw-bold">
                   ¿Quieres un título de inglés Cambridge?
-                </h5>
+                </div>
                 <p className="card-text">
                   Con nuestros cursos de inglés aprenderás inglés de una forma
                   amena y divertida, mientras te preparas para afrontar los
@@ -46,11 +50,15 @@ export default function LandingPage() {
             </div>
 
             <div className="card col-lg-4">
-              <img src="src\assets\opos.jpg" className="card-img-top" />
+              <img
+                alt="photo-of-girl-studying"
+                src="src\assets\opos.jpg"
+                className="card-img-top"
+              />
               <div className="card-body">
-                <h5 className="card-title">
+                <div className="card-title fs-5 fw-bold">
                   ¿Estás pensando en sacarte una oposición?
-                </h5>
+                </div>
                 <p className="card-text">
                   Si estás pensando en ser funcionario, te ayudamos a conseguir
                   tu plaza. Oposiciones de secundaria, primaria, estatales,
@@ -65,11 +73,15 @@ export default function LandingPage() {
             </div>
 
             <div className="card col-lg-4">
-              <img src="src\assets\math.jpg" className="card-img-top" />
+              <img
+                alt="photo-of-worried-girl"
+                src="src\assets\math.jpg"
+                className="card-img-top"
+              />
               <div className="card-body">
-                <h5 className="card-title">
+                <div className="card-title fs-5 fw-bold">
                   ¿Siempre se te han dado mal las matemáticas?
-                </h5>
+                </div>
                 <p className="card-text">
                   Con nuestro curso de matemáticas ya no volverás a tener esos
                   dolores de cabeza que a todos nos han dado las mátematicas.
@@ -94,6 +106,7 @@ export default function LandingPage() {
             <div>
               <span className="fs-5">
                 <img
+                  alt="quotations-symbol"
                   src="src\assets\quotes.png"
                   width="40px"
                   className="me-4 mt-4 float-start"
@@ -105,6 +118,7 @@ export default function LandingPage() {
                 buenos. A mi siempre me han costado mucho las matemáticas y
                 desde que me apunté al curso soy de los mejores de la clase.
                 <img
+                  alt="quotations-symbol"
                   src="src\assets\quotes.png"
                   width="40px"
                   className="ms-4"
@@ -119,6 +133,7 @@ export default function LandingPage() {
           </div>
           <div className="col-lg-6">
             <img
+              alt="photo-of-boy"
               className="rounded-circle shadow"
               src="src\assets\boy.png"
               width="100%"
@@ -130,6 +145,7 @@ export default function LandingPage() {
             <div>
               <span className="fs-5">
                 <img
+                  alt="quotations-symbol"
                   src="src\assets\quotes.png"
                   width="40px"
                   className="me-4 mt-4 float-start"
@@ -142,6 +158,7 @@ export default function LandingPage() {
                 <br></br>
                 Recomendable al 100%.
                 <img
+                  alt="quotations-symbol"
                   src="src\assets\quotes.png"
                   width="40px"
                   className="ms-4"
@@ -155,6 +172,7 @@ export default function LandingPage() {
           </div>
           <div className="col-lg-6 d-flex align-items-center">
             <img
+              alt="photo-of-girl"
               className="rounded shadow"
               src="src\assets\girl.jpg"
               width="100%"
@@ -166,6 +184,7 @@ export default function LandingPage() {
         <div>
           <Link to="https://facebook.com">
             <img
+              alt="facebook-logo"
               src="src\assets\facebook.png"
               width="20px"
               className="me-2"
@@ -173,6 +192,7 @@ export default function LandingPage() {
           </Link>
           <Link to="https://instagram.com">
             <img
+              alt="instagram-logo"
               src="src\assets\instagram.png"
               width="20px"
               className="me-2"
@@ -180,13 +200,14 @@ export default function LandingPage() {
           </Link>
           <Link to="https://whatsapp.com">
             <img
+              alt="whatsapp-logo"
               src="src\assets\whatsapp.png"
               width="20px"
               className="me-2"
             ></img>
           </Link>
           <Link to="https://gmail.com">
-            <img src="src\assets\email.png" width="20px"></img>
+            <img alt="email-logo" src="src\assets\email.png" width="20px"></img>
           </Link>
         </div>
         <div className="mt-2">
