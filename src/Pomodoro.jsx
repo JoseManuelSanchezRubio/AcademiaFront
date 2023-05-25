@@ -1,5 +1,6 @@
 import { Modal, ModalBody, ModalHeader, Tooltip, Progress } from "reactstrap";
 import { useState, useEffect } from "react";
+import ReactHowler from "react-howler";
 
 export default function Pomodoro() {
   const [lableContent, setLabelContent] = useState("¡A estudiar!");
@@ -9,31 +10,39 @@ export default function Pomodoro() {
   const minutes = Math.floor((time % 360000) / 6000);
   const seconds = Math.floor((time % 6000) / 100);
   const [modal, setModal] = useState(false);
+  const [tune, setTune] = useState("src/assets/to_study.mp3");
+  const [playHowler, setPlayHowler] = useState(false);
 
   const toggle = () => setModal(!modal);
 
   const [popoverOpen, setPopoverOpen] = useState(false);
-
+  console.log();
   useEffect(() => {
     let intervalId;
     if (studying && minutes == 25) {
       setStudying(false);
       setTime(0);
+      setTune("src/assets/to_break.mp3");
+      setPlayHowler(true);
       setLabelContent("Tómate un descanso");
     }
     if (!studying && minutes == 5) {
       setStudying(true);
       setTime(0);
+      setTune("src/assets/to_study.mp3");
+      setPlayHowler(true);
       setLabelContent("¡A estudiar!");
     }
     if (isRunning) {
       intervalId = setInterval(() => setTime(time + 1), 10);
     }
+    if (time == 200) setPlayHowler(false);
     return () => clearInterval(intervalId);
   }, [isRunning, time]);
 
   const startAndStop = () => {
     setIsRunning(!isRunning);
+    if (time == 0) setPlayHowler(true);
   };
 
   const reset = () => {
@@ -48,7 +57,17 @@ export default function Pomodoro() {
     <div>
       <div>
         <div className="d-flex align-items-center">
-          <div onClick={toggle}>Pomodoro</div>
+          <div>
+            <div onClick={toggle}>Pomodoro</div>
+            <Progress
+              className="pomodoro-progress-navbar position-absolute"
+              color={
+                isRunning ? (studying ? "primary" : "warning") : "secondary"
+              }
+              max={studying ? 150000 : 30000}
+              value={time}
+            />
+          </div>
           <span
             id="pomodoro-info"
             onClick={stopAndReset}
@@ -75,7 +94,8 @@ export default function Pomodoro() {
           <span>
             {time != 0 && (
               <span className="ms-2 pomodoro-label">
-                {minutes.toString().padStart(2, "0")}:
+                {minutes.toString().padStart(2, "0")}
+                <span>&nbsp;:&nbsp;</span>
                 {seconds.toString().padStart(2, "0")}
               </span>
             )}
@@ -86,6 +106,7 @@ export default function Pomodoro() {
             <label>{lableContent}</label>
           </ModalHeader>
           <ModalBody>
+            <ReactHowler src={tune} playing={playHowler} />
             <p className="text-secondary fst-italic small">
               La técnica Pomodoro es un método de gestión de tiempo que sugiere
               trabajar en intervalos de 25 minutos y añadir tiempos de descanso
@@ -104,7 +125,8 @@ export default function Pomodoro() {
                 </div>
                 <Progress
                   className="pomodoro-progress"
-                  animated="true"
+                  animated={isRunning}
+                  striped
                   color={
                     isRunning ? (studying ? "primary" : "warning") : "secondary"
                   }
@@ -116,14 +138,17 @@ export default function Pomodoro() {
                 <button
                   className={
                     isRunning
-                      ? "me-2 btn btn-danger btn-sm"
-                      : "me-2 btn btn-primary btn-sm"
+                      ? "me-2 btn btn-danger btn-sm pomodoro-button"
+                      : "me-2 btn btn-primary btn-sm pomodoro-button"
                   }
                   onClick={startAndStop}
                 >
                   {isRunning ? "Parar" : time == 0 ? "Empezar" : "Renaudar"}
                 </button>
-                <button className="btn btn-secondary btn-sm" onClick={reset}>
+                <button
+                  className="btn btn-secondary btn-sm pomodoro-button"
+                  onClick={reset}
+                >
                   Reiniciar
                 </button>
               </div>
