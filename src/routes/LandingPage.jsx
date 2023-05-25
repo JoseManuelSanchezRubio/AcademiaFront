@@ -10,6 +10,7 @@ export default function LandingPage() {
   if (sessionStorage.getItem("token")) isLogged = true;
   if (sessionStorage.getItem("professor")) isProfessor = true;
   if (sessionStorage.getItem("admin")) isAdmin = true;
+  console.log(screen.width);
   return (
     <div>
       {isProfessor && <NavProfessor isLogged={isLogged}></NavProfessor>}
@@ -29,7 +30,7 @@ export default function LandingPage() {
             <div className="card col-lg-4">
               <img
                 alt="photo-of-girl-studying"
-                src="src\assets\certificate.jpg"
+                src="src\assets\certificate.webp"
                 className="card-img-top"
               />
               <div className="card-body">
@@ -43,7 +44,7 @@ export default function LandingPage() {
                 </p>
                 <Link to="/courses">
                   <button className="btn btn-primary my-3">
-                    Más información
+                    Nuestros cursos
                   </button>
                 </Link>
               </div>
@@ -52,7 +53,7 @@ export default function LandingPage() {
             <div className="card col-lg-4">
               <img
                 alt="photo-of-girl-studying"
-                src="src\assets\opos.jpg"
+                src="src\assets\opos.webp"
                 className="card-img-top"
               />
               <div className="card-body">
@@ -66,7 +67,7 @@ export default function LandingPage() {
                 </p>
                 <Link to="/courses">
                   <button className="btn btn-primary my-3">
-                    Más información
+                    Nuestros cursos
                   </button>
                 </Link>
               </div>
@@ -75,7 +76,7 @@ export default function LandingPage() {
             <div className="card col-lg-4">
               <img
                 alt="photo-of-worried-girl"
-                src="src\assets\math.jpg"
+                src="src\assets\math.webp"
                 className="card-img-top"
               />
               <div className="card-body">
@@ -89,7 +90,7 @@ export default function LandingPage() {
                 </p>
                 <Link to="/courses">
                   <button className="btn btn-primary my-3">
-                    Más información
+                    Nuestros cursos
                   </button>
                 </Link>
               </div>
@@ -135,7 +136,7 @@ export default function LandingPage() {
             <img
               alt="photo-of-boy"
               className="rounded-circle shadow"
-              src="src\assets\boy.png"
+              src="src\assets\boy-min.webp"
               width="100%"
             ></img>
           </div>
@@ -174,7 +175,7 @@ export default function LandingPage() {
             <img
               alt="photo-of-girl"
               className="rounded shadow"
-              src="src\assets\girl.jpg"
+              src="src\assets\girl-min.webp"
               width="100%"
             ></img>
           </div>
@@ -201,13 +202,17 @@ export default function LandingPage() {
           <Link to="https://whatsapp.com">
             <img
               alt="whatsapp-logo"
-              src="src\assets\whatsapp.png"
+              src="src\assets\whatsapp.webp"
               width="20px"
               className="me-2"
             ></img>
           </Link>
           <Link to="https://gmail.com">
-            <img alt="email-logo" src="src\assets\email.png" width="20px"></img>
+            <img
+              alt="email-logo"
+              src="src\assets\email.webp"
+              width="20px"
+            ></img>
           </Link>
         </div>
         <div className="mt-2">

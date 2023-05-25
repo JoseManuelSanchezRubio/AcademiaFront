@@ -62,19 +62,19 @@ export default function Nav(props) {
                 </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" style={{ cursor: "pointer" }}>
+                <div className="nav-link" style={{ cursor: "pointer" }}>
                   <Pomodoro />
-                </a>
+                </div>
               </li>
             </ul>
             <div className="navbar-nav me-5">
-              <a
+              <div
                 className="nav-link"
                 onClick={logout}
                 style={{ cursor: "pointer" }}
               >
                 Cerrar sesión
-              </a>
+              </div>
             </div>
           </div>
         </div>
