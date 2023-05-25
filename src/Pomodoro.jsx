@@ -1,4 +1,4 @@
-import { Modal, ModalBody, ModalHeader, Tooltip } from "reactstrap";
+import { Modal, ModalBody, ModalHeader, Tooltip, Progress } from "reactstrap";
 import { useState, useEffect } from "react";
 
 export default function Pomodoro() {
@@ -8,7 +8,6 @@ export default function Pomodoro() {
   const [isRunning, setIsRunning] = useState(false);
   const minutes = Math.floor((time % 360000) / 6000);
   const seconds = Math.floor((time % 6000) / 100);
-  const milliseconds = time % 100;
   const [modal, setModal] = useState(false);
 
   const toggle = () => setModal(!modal);
@@ -45,7 +44,6 @@ export default function Pomodoro() {
     setIsRunning(false);
     setTime(0);
   };
-
   return (
     <div>
       <div>
@@ -57,9 +55,11 @@ export default function Pomodoro() {
             className={
               isRunning
                 ? studying
-                  ? "text-primary pomodoro-primary"
-                  : "text-warning pomodoro-warning"
-                : "text-danger pomodoro-danger"
+                  ? "pomodoro-primary"
+                  : "pomodoro-warning"
+                : time == 0
+                ? "pomodoro-danger"
+                : "pomodoro-secondary"
             }
           ></span>
           <Tooltip
@@ -91,23 +91,26 @@ export default function Pomodoro() {
               trabajar en intervalos de 25 minutos y añadir tiempos de descanso
               de 5 minutos.
             </p>
-            <div className="d-flex justify-content-between">
-              <div className="w-25">
+            <div className="d-flex justify-content-between align-items-center">
+              <div className="fs-4">
                 <div>
-                  {minutes.toString().padStart(2, "0")}:
-                  {seconds.toString().padStart(2, "0")}:
-                  {milliseconds.toString().padStart(2, "0")}
+                  <span className="pomodoro-minutes">
+                    {minutes.toString().padStart(2, "0")}
+                  </span>
+                  <span className="mx-2">:</span>
+                  <span className="pomodoro-seconds">
+                    {seconds.toString().padStart(2, "0")}
+                  </span>
                 </div>
-                <div
-                  className="progress"
-                  role="progressbar"
-                  aria-label="Basic example"
-                  aria-valuenow="75"
-                  aria-valuemin="0"
-                  aria-valuemax="100"
-                >
-                  <div className="progress-bar w-75"></div>
-                </div>
+                <Progress
+                  className="pomodoro-progress"
+                  animated="true"
+                  color={
+                    isRunning ? (studying ? "primary" : "warning") : "secondary"
+                  }
+                  max={studying ? 150000 : 30000}
+                  value={time}
+                />
               </div>
               <div>
                 <button
@@ -118,10 +121,10 @@ export default function Pomodoro() {
                   }
                   onClick={startAndStop}
                 >
-                  {isRunning ? "Stop" : "Start"}
+                  {isRunning ? "Parar" : time == 0 ? "Empezar" : "Renaudar"}
                 </button>
                 <button className="btn btn-secondary btn-sm" onClick={reset}>
-                  Reset
+                  Reiniciar
                 </button>
               </div>
             </div>
