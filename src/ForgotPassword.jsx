@@ -83,7 +83,7 @@ export default function ForgotPassword() {
 
   return (
     <div>
-      <div className="text-primary text-decoration-underline">
+      <div className="text-primary text-decoration-underline text-end">
         <span onClick={toggle} style={{ cursor: "pointer" }}>
           ¿Has olvidado la contraseña?
         </span>

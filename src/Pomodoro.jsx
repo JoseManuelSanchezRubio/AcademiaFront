@@ -47,6 +47,7 @@ export default function Pomodoro() {
 
   const reset = () => {
     setTime(0);
+    setPlayHowler(true);
   };
 
   const stopAndReset = () => {

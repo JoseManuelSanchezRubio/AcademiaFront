@@ -115,7 +115,7 @@ export default function Login() {
   return (
     <div>
       <Nav isLogged={isLogged} />
-      <section className="p-5 container">
+      <section className="login container py-md-5 p-4">
         <div>
           <h1 className="mb-4">Iniciar sesión</h1>
           <form>
@@ -168,7 +168,7 @@ export default function Login() {
             </div>
 
             <div className="d-flex justify-content-between">
-              <div className="form-check">
+              <div className="form-check col-6">
                 <input
                   className="form-check-input"
                   type="checkbox"
