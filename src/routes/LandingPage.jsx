@@ -20,14 +20,16 @@ export default function LandingPage() {
         <div className="text-center text-light">
           <h1 className="p-3">Learning Enjoying</h1>
           <p className="fs-4">La mejor academia para aprender</p>
-          <button className="btn btn-primary m-5">Nuestros cursos</button>
+          <Link to="/courses">
+            <button className="btn btn-primary m-5">Nuestros cursos</button>
+          </Link>
         </div>
       </div>
-      <div className="container py-5">
+      <div className="container-fluid py-5">
         <section>
           <h1 className="text-center py-5">Te ayudamos a aprender</h1>
           <div className="row justify-content-center text-center">
-            <div className="card col-lg-4">
+            <div className="card col-lg-3 my-2">
               <img
                 alt="photo-of-girl-studying"
                 src="src\assets\certificate.webp"
@@ -49,8 +51,8 @@ export default function LandingPage() {
                 </Link>
               </div>
             </div>
-
-            <div className="card col-lg-4">
+            <div className="padding-cards"></div>
+            <div className="card col-lg-3 my-2">
               <img
                 alt="photo-of-girl-studying"
                 src="src\assets\opos.webp"
@@ -72,8 +74,8 @@ export default function LandingPage() {
                 </Link>
               </div>
             </div>
-
-            <div className="card col-lg-4">
+            <div className="padding-cards"></div>
+            <div className="card col-lg-3 my-2">
               <img
                 alt="photo-of-worried-girl"
                 src="src\assets\math.webp"
@@ -181,7 +183,141 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-      <footer className="text-center text-secondary small pt-5 pb-3">
+      <section className="container my-5">
+        <h1 className="text-center my-5 ">Preguntas frecuentes</h1>
+        <div className="accordion" id="accordionQA">
+          <div className="accordion-item">
+            <h2 className="accordion-header">
+              <button
+                className="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseOne"
+                aria-expanded="false"
+                aria-controls="collapseOne"
+              >
+                ¿Cuál es la duración de los cursos?
+              </button>
+            </h2>
+            <div
+              id="collapseOne"
+              className="accordion-collapse collapse"
+              data-bs-parent="#accordionQA"
+            >
+              <div className="accordion-body">
+                La duración de los cursos depende del curso en el que estés
+                matriculado. Si estás matriculado en un curso de alguna
+                asignatura de la universidad, su duración será de un
+                cuatrimestre, es decir, igual que en la universidad. Otro tipo
+                de cursos, como son los de idiomas, tienen una duración de un
+                año, ya que los exámenes oficiales de idiomas son anuales.
+              </div>
+            </div>
+          </div>
+          <div className="accordion-item">
+            <h2 className="accordion-header">
+              <button
+                className="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseTwo"
+                aria-expanded="false"
+                aria-controls="collapseTwo"
+              >
+                ¿Se obtiene alguna titulación en la Academia?
+              </button>
+            </h2>
+            <div
+              id="collapseTwo"
+              className="accordion-collapse collapse"
+              data-bs-parent="#accordionQA"
+            >
+              <div className="accordion-body">
+                Actualmente no se obtiene ninguna titulación oficial por
+                estudiar en nuestra academia, si bien estamos trabajando en
+                poder ofrecerte una certificación proporcional a tu trabajo en
+                la academia.
+              </div>
+            </div>
+          </div>
+          <div className="accordion-item">
+            <h2 className="accordion-header">
+              <button
+                className="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseThree"
+                aria-expanded="false"
+                aria-controls="collapseThree"
+              >
+                ¿Cuántos estudiantes hay por grupo?
+              </button>
+            </h2>
+            <div
+              id="collapseThree"
+              className="accordion-collapse collapse"
+              data-bs-parent="#accordionQA"
+            >
+              <div className="accordion-body">
+                El tamaño de los grupos depende de la demanda que tenga.
+                Normalmente suelen asistir entre 10 y 15 alumnos, pero el máximo
+                es de 20 para poder un servicio de máxima calidad.
+              </div>
+            </div>
+          </div>
+          <div className="accordion-item">
+            <h2 className="accordion-header">
+              <button
+                className="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseFour"
+                aria-expanded="false"
+                aria-controls="collapseFour"
+              >
+                ¿Qué necesito traer?
+              </button>
+            </h2>
+            <div
+              id="collapseFour"
+              className="accordion-collapse collapse"
+              data-bs-parent="#accordionQA"
+            >
+              <div className="accordion-body">
+                En Learning Enjoying te proporcionamos los apuntes de la manera
+                en la que tú quieras, tanto en papel como en formato PDF. Por
+                tanto, al aula solo es necesario que traigas papel y boli para
+                tomar apuntes, aunque eres libre de traer lo que quieras.
+              </div>
+            </div>
+          </div>
+          <div className="accordion-item">
+            <h2 className="accordion-header">
+              <button
+                className="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseFive"
+                aria-expanded="false"
+                aria-controls="collapseFive"
+              >
+                ¿Ofrecéis descuentos?
+              </button>
+            </h2>
+            <div
+              id="collapseFive"
+              className="accordion-collapse collapse"
+              data-bs-parent="#accordionQA"
+            >
+              <div className="accordion-body">
+                Sí, si estás matriculado en una asignatura, te ofrecemos un
+                descuento del 10% si te apuntas al curso intensivo.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      {/* <footer className="text-center text-secondary small pt-5 pb-3">
         <div>
           <Link to="https://facebook.com">
             <img
@@ -217,6 +353,76 @@ export default function LandingPage() {
         </div>
         <div className="mt-2">
           © 2023 | Jose Manuel Sánchez | All rights reserved
+        </div>
+      </footer> */}
+      <footer className="footer">
+        <div className="d-flex justify-content-between container pt-5">
+          <div className="col-lg-6">
+            <h5 className="mb-3">Learning Enjoying</h5>
+            <p>
+              Nuestra academia busca provocar experiencias de aprendizaje
+              auténticas, completas, continuas, creativas y desafiantes para
+              ayudarte a ser mejor en lo que te propongas.
+            </p>
+            <p className="fst-italic">Learning Enjoying. Aprende y disfruta.</p>
+          </div>
+          <div className="col-lg-6">
+            <div className="d-flex text-lg-center">
+              <div className="col">
+                <div>
+                  <div className="fw-bold mb-3">Cursos</div>
+                  <div>aaaaaa</div>
+                  <div>bbbbbb</div>
+                  <div>cccccc</div>
+                </div>
+              </div>
+              <div className="col">
+                <div>
+                  <div className="fw-bold mb-3">Contacto</div>
+                  <div>+34 947 813 746</div>
+                  <div>learningenjoying-daw@gmail.com</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="text-center text-secondary small pt-5 pb-3">
+          <div>
+            <Link to="https://facebook.com">
+              <img
+                alt="facebook-logo"
+                src="src\assets\facebook.png"
+                width="20px"
+                className="me-2"
+              ></img>
+            </Link>
+            <Link to="https://instagram.com">
+              <img
+                alt="instagram-logo"
+                src="src\assets\instagram.png"
+                width="20px"
+                className="me-2"
+              ></img>
+            </Link>
+            <Link to="https://whatsapp.com">
+              <img
+                alt="whatsapp-logo"
+                src="src\assets\whatsapp.webp"
+                width="20px"
+                className="me-2"
+              ></img>
+            </Link>
+            <Link to="https://gmail.com">
+              <img
+                alt="email-logo"
+                src="src\assets\email.webp"
+                width="20px"
+              ></img>
+            </Link>
+          </div>
+          <div className="mt-2">
+            © 2023 | Jose Manuel Sánchez | All rights reserved
+          </div>
         </div>
       </footer>
     </div>
