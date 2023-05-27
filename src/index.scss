@@ -6,6 +6,9 @@ body {
   max-width: 550px;
   margin: auto;
 }
+.padding-cards{
+  width: 1px;
+}
 
 .background-mainpage {
   background-image: url("/src/assets/bg-people-min.webp");
@@ -103,4 +106,7 @@ body {
 }
 .pomodoro-button{
   width: 90px;
+}
+.footer{
+  background-color: #f8f9fa;
 }
