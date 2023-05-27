@@ -1,6 +1,6 @@
-import { Modal, ModalBody, ModalHeader, Tooltip, Progress } from "reactstrap";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import ReactHowler from "react-howler";
+import { Modal, ModalBody, ModalHeader, Progress, Tooltip } from "reactstrap";
 
 export default function Pomodoro() {
   const [lableContent, setLabelContent] = useState("¡A estudiar!");
@@ -79,8 +79,8 @@ export default function Pomodoro() {
                   ? "pomodoro-primary"
                   : "pomodoro-warning"
                 : time == 0
-                ? "pomodoro-danger"
-                : "pomodoro-secondary"
+                  ? "pomodoro-danger"
+                  : "pomodoro-secondary"
             }
           ></span>
           <Tooltip

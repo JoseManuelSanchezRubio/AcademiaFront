@@ -1,7 +1,7 @@
-import { useState, useRef } from "react";
-import NavAdmin from "../NavAdmin";
 import emailjs from "@emailjs/browser";
+import { useRef, useState } from "react";
 import { Tooltip } from "reactstrap";
+import NavAdmin from "../NavAdmin";
 
 export default function NewProfessor() {
   const [popoverOpen, setPopoverOpen] = useState(false);
@@ -108,6 +108,7 @@ export default function NewProfessor() {
       )
       .then(
         (result) => {
+          //alert("Correo electrónico enviado");
           console.log(result.text);
         },
         (error) => {
@@ -118,9 +119,11 @@ export default function NewProfessor() {
 
   function checkLogup(data) {
     if (data.status) {
-      alert("Profesor añadido correctamente");
       sendEmail();
-      window.location.href = "/admin";
+      alert("Profesor añadido correctamente. Serás redirigido a la página de inicio");
+
+      return window.location.href = "/admin";
+
     } else {
       alert(data.message);
     }
@@ -328,6 +331,7 @@ export default function NewProfessor() {
               <input
                 type="password"
                 id="password"
+                name="password"
                 className={
                   errorPassword == ""
                     ? "form-control"

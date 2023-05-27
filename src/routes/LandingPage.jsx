@@ -10,7 +10,6 @@ export default function LandingPage() {
   if (sessionStorage.getItem("token")) isLogged = true;
   if (sessionStorage.getItem("professor")) isProfessor = true;
   if (sessionStorage.getItem("admin")) isAdmin = true;
-  console.log(screen.width);
   return (
     <div>
       {isProfessor && <NavProfessor isLogged={isLogged}></NavProfessor>}

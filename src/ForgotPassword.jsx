@@ -1,6 +1,6 @@
-import { useState, useRef } from "react";
-import { Modal, ModalHeader, ModalBody } from "reactstrap";
 import emailjs from "@emailjs/browser";
+import { useRef, useState } from "react";
+import { Modal, ModalBody, ModalHeader } from "reactstrap";
 
 export default function ForgotPassword() {
   const [modal, setModal] = useState(false);
@@ -37,7 +37,7 @@ export default function ForgotPassword() {
   function generatePass() {
     let pass = "";
     let str =
-      "ABCDEFGHIJKLMNOPQRSTUVWXYZ" + "abcdefghijklmnopqrstuvwxyz0123456789@#$";
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZ" + "abcdefghijklmnopqrstuvwxyz0123456789";
 
     for (let i = 1; i <= 8; i++) {
       let char = Math.floor(Math.random() * str.length + 1);
@@ -60,24 +60,54 @@ export default function ForgotPassword() {
       error = true;
     }
     if (!error && errorDni == "" && errorEmail == "") {
-      console.log(form.current);
-      alert("falta comprobar que coincida el mail con el dni");
-      /* emailjs
-      .sendForm(
-        "service_oju08vw",
-        "template_5ld661l",
-        form.current,
-        "jhDO1MAWQEsaXebL0"
-      )
-      .then(
-        (result) => {
-          alert("Correo electrónico enviado");
-          console.log(result.text);
+
+      const requestOptions = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
         },
-        (error) => {
-          console.log(error.text);
-        }
-      ); */
+        body: JSON.stringify({
+          email: email,
+          dni: dni,
+        })
+      };
+      fetch(`http://127.0.0.1:8000/api/users/forgottenPasswordValidation`, requestOptions)
+        .then(response => response.json())
+        .then(res => {
+          if (res.status === true) {
+
+            const requestOptions = {
+              method: 'PUT',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                password: password,
+              })
+            };
+            fetch(`http://127.0.0.1:8000/api/users/${res.user_id}`, requestOptions).then(res => res.json()).then(data => console.log(data))
+
+            emailjs
+              .sendForm(
+                "service_oju08vw",
+                "template_5ld661l",
+                form.current,
+                "jhDO1MAWQEsaXebL0"
+              )
+              .then(
+                (result) => {
+                  alert("Correo electrónico enviado");
+                  console.log(result.text);
+                },
+                (error) => {
+                  console.log(error.text);
+                }
+              );
+          } else {
+            alert(res.msg);
+          }
+        })
+
     }
   };
 

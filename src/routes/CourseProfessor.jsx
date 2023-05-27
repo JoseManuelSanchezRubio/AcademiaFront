@@ -12,6 +12,8 @@ export default function CourseProfessor() {
     const [unitDescription, setUnitDescription] = useState('');
     const [unitTheory, setUnitTheory] = useState('');
     const [unitExercises, setUnitExercises] = useState('');
+    const [theoryFile, setTheoryFile] = useState('');
+    const [exercisesFile, setExercisesFile] = useState('');
 
     const courseId = JSON.parse(sessionStorage.getItem("courseId"));
     const professorId = JSON.parse(sessionStorage.getItem("professor")).id;
@@ -26,6 +28,29 @@ export default function CourseProfessor() {
 
     }, []);
 
+    function handleFile(event) {
+        let selectedFile = event.target.files;
+        let file = null;
+        let fileName = "";
+        if (selectedFile.length > 0) {
+            let fileToLoad = selectedFile[0];
+            fileName = fileToLoad.name;
+            let fileReader = new FileReader();
+            fileReader.onload = function (fileLoadedEvent) {
+                file = fileLoadedEvent.target.result;
+                //console.log(file);
+                if (event.target.id === 'theory-modal') {
+                    setTheoryFile(file);
+                    setUnitTheory(fileName);
+                } else {
+                    setExercisesFile(file);
+                    setUnitExercises(fileName);
+                }
+            };
+            fileReader.readAsDataURL(fileToLoad);
+        }
+    }
+
     async function createUnit() {
         console.log(unitName, unitTheory, unitExercises, courseId);
         const requestOptions = {
@@ -37,10 +62,13 @@ export default function CourseProfessor() {
                 name: unitName,
                 description: unitDescription,
                 theory: unitTheory,
+                theory_file: theoryFile,
                 exercises: unitExercises,
+                exercises_file: exercisesFile,
                 course_id: courseId
             })
         };
+        console.log(requestOptions.body)
         await fetch('http://127.0.0.1:8000/api/units', requestOptions)
             .then(response => response.json())
             .then(data => console.log(data)
@@ -97,11 +125,11 @@ export default function CourseProfessor() {
                                         </div>
                                         <div className="mb-3">
                                             <label htmlFor="theory-modal" className="form-label">Teoría</label>
-                                            <input type="text" className="form-control" id="theory-modal" onChange={(e) => setUnitTheory(e.target.value)} />
+                                            <input type="file" className="form-control" id="theory-modal" onChange={(e) => handleFile(e)} />
                                         </div>
                                         <div className="mb-3">
                                             <label htmlFor="exercises-modal" className="form-label">Ejercicios</label>
-                                            <input type="text" className="form-control" id="exercises-modal" onChange={(e) => setUnitExercises(e.target.value)} />
+                                            <input type="file" className="form-control" id="exercises-modal" onChange={(e) => handleFile(e)} />
                                         </div>
 
                                     </form>
