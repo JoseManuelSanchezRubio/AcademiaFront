@@ -39,7 +39,6 @@ export default function Users() {
             </div>
         )
     })
-
     let isProfessor = false;
     let isLogged = false;
     if (sessionStorage.getItem("professor")) isProfessor = true;
@@ -92,6 +91,7 @@ export default function Users() {
 
                         </tbody>))}
                 </table>
+                {users.length == 0 && <div className="py-3">Parece que todavía no hay ningún alumno matriculado...</div>}
             </div>
         </div>
     )

@@ -1,6 +1,6 @@
 import { useState } from "react";
-import Nav from "../Nav";
 import { Tooltip } from "reactstrap";
+import Nav from "../Nav";
 
 export default function Logup() {
   const [popoverOpen, setPopoverOpen] = useState(false);
@@ -382,7 +382,7 @@ export default function Logup() {
               <div className="position-relative">
                 <input
                   type={typeInputConfirmPassword}
-                  id="passwordForm"
+                  id="confirmPasswordForm"
                   className={
                     errorPassword == ""
                       ? "form-control"

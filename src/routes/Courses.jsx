@@ -9,7 +9,11 @@ export default function Courses() {
 
     const [courses, setCourses] = useState([])
     const [userCourses, setUserCourses] = useState([])
-    const userId = JSON.parse(sessionStorage.getItem("user")).id;
+    const user = JSON.parse(sessionStorage.getItem("user"));
+    let isLogged = false;
+    if (sessionStorage.getItem('token')) {
+        isLogged = true;
+    }
 
     useEffect(() => {
         fetch("http://127.0.0.1:8000/api/courses")
@@ -17,8 +21,8 @@ export default function Courses() {
             .then(data => {
                 setCourses(data)
             })
-        const userId = JSON.parse(sessionStorage.getItem("user")).id;
-        fetch(`http://127.0.0.1:8000/api/users/${userId}`)
+        //const userId = JSON.parse(sessionStorage.getItem("user")).id;
+        fetch(`http://127.0.0.1:8000/api/users/${user?.id}`)
             .then(response => response.json())
             .then((data) => {
                 setUserCourses(data.courses);
@@ -26,6 +30,8 @@ export default function Courses() {
     }, [])
 
     async function buyCourse(e) {
+
+        if (!isLogged) return window.location.href = '/login';
 
         if (confirm("Está apunto de comprar el curso, ¿seguro que desea continuar?")) {
             for (let i = 0; i < userCourses.length; i++) {
@@ -38,14 +44,14 @@ export default function Courses() {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    user_id: userId,
+                    user_id: user.id,
                     course_id: e.target.id
                 })
             };
             await fetch('http://127.0.0.1:8000/api/users/course', requestOptions)
 
             alert("Compra realizada");
-            window.location.href('profile')
+            window.location.href = '/user';
         }
 
     }
@@ -85,12 +91,9 @@ export default function Courses() {
         )
     })
 
-    let isLogged = false;
-    if (sessionStorage.getItem('token')) {
-        isLogged = true;
-    }
 
-    if (!isLogged) return window.location.href = '/login';
+
+
 
     return (
         <div>

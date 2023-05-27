@@ -89,12 +89,12 @@ export default function Announcements(props) {
     <div>
       <h1 className="text-lg-end">Anuncios</h1>
       {announcements.length == 0 && (
-        <div className="text-secondary mb-2">Todavía no hay ningún anuncio</div>
+        <div className="text-secondary mb-2 text-lg-end">Todavía no hay ningún anuncio</div>
       )}
       <div>{announcementsList}</div>
       <div>
         {props.professorId && (
-          <div>
+          <div className="text-lg-end">
             <button
               type="button"
               className="btn btn-primary"
