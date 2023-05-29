@@ -2,6 +2,17 @@ import { Link } from "react-router-dom";
 import Nav from "../Nav";
 import NavAdmin from "../NavAdmin";
 import NavProfessor from "../NavProfessor";
+//assets imports
+import certificate from "../assets/certificate.webp";
+import opos from "../assets/opos.webp";
+import math from "../assets/math.webp";
+import quotes from "../assets/quotes.png";
+import boy from "../assets/boy.webp";
+import girl from "../assets/girl.webp";
+/* import facebook from "../assets/facebook.png";
+import instagram from "../assets/instagram.png";
+import whatsapp from "../assets/whatsapp.png";
+import email from "../assets/email.png"; */
 
 export default function LandingPage() {
   let isLogged = false;
@@ -10,6 +21,7 @@ export default function LandingPage() {
   if (sessionStorage.getItem("token")) isLogged = true;
   if (sessionStorage.getItem("professor")) isProfessor = true;
   if (sessionStorage.getItem("admin")) isAdmin = true;
+  console.log(screen.width);
   return (
     <div>
       {isProfessor && <NavProfessor isLogged={isLogged}></NavProfessor>}
@@ -31,7 +43,7 @@ export default function LandingPage() {
             <div className="card col-lg-3 my-2">
               <img
                 alt="photo-of-girl-studying"
-                src="src\assets\certificate.webp"
+                src={certificate}
                 className="card-img-top"
               />
               <div className="card-body">
@@ -54,7 +66,7 @@ export default function LandingPage() {
             <div className="card col-lg-3 my-2">
               <img
                 alt="photo-of-girl-studying"
-                src="src\assets\opos.webp"
+                src={opos}
                 className="card-img-top"
               />
               <div className="card-body">
@@ -77,7 +89,7 @@ export default function LandingPage() {
             <div className="card col-lg-3 my-2">
               <img
                 alt="photo-of-worried-girl"
-                src="src\assets\math.webp"
+                src={math}
                 className="card-img-top"
               />
               <div className="card-body">
@@ -109,7 +121,7 @@ export default function LandingPage() {
               <span className="fs-5">
                 <img
                   alt="quotations-symbol"
-                  src="src\assets\quotes.png"
+                  src={quotes}
                   width="40px"
                   className="me-4 mt-4 float-start"
                 />
@@ -121,7 +133,7 @@ export default function LandingPage() {
                 desde que me apunté al curso soy de los mejores de la clase.
                 <img
                   alt="quotations-symbol"
-                  src="src\assets\quotes.png"
+                  src={quotes}
                   width="40px"
                   className="ms-4"
                   style={{ transform: "rotate(180deg)" }}
@@ -137,7 +149,7 @@ export default function LandingPage() {
             <img
               alt="photo-of-boy"
               className="rounded-circle shadow"
-              src="src\assets\boy-min.webp"
+              src={boy}
               width="100%"
             ></img>
           </div>
@@ -148,7 +160,7 @@ export default function LandingPage() {
               <span className="fs-5">
                 <img
                   alt="quotations-symbol"
-                  src="src\assets\quotes.png"
+                  src={quotes}
                   width="40px"
                   className="me-4 mt-4 float-start"
                 />
@@ -161,7 +173,7 @@ export default function LandingPage() {
                 Recomendable al 100%.
                 <img
                   alt="quotations-symbol"
-                  src="src\assets\quotes.png"
+                  src={quotes}
                   width="40px"
                   className="ms-4"
                   style={{ transform: "rotate(180deg)" }}
@@ -176,7 +188,7 @@ export default function LandingPage() {
             <img
               alt="photo-of-girl"
               className="rounded shadow"
-              src="src\assets\girl-min.webp"
+              src={girl}
               width="100%"
             ></img>
           </div>
@@ -316,44 +328,7 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-      {/* <footer className="text-center text-secondary small pt-5 pb-3">
-        <div>
-          <Link to="https://facebook.com">
-            <img
-              alt="facebook-logo"
-              src="src\assets\facebook.png"
-              width="20px"
-              className="me-2"
-            ></img>
-          </Link>
-          <Link to="https://instagram.com">
-            <img
-              alt="instagram-logo"
-              src="src\assets\instagram.png"
-              width="20px"
-              className="me-2"
-            ></img>
-          </Link>
-          <Link to="https://whatsapp.com">
-            <img
-              alt="whatsapp-logo"
-              src="src\assets\whatsapp.webp"
-              width="20px"
-              className="me-2"
-            ></img>
-          </Link>
-          <Link to="https://gmail.com">
-            <img
-              alt="email-logo"
-              src="src\assets\email.webp"
-              width="20px"
-            ></img>
-          </Link>
-        </div>
-        <div className="mt-2">
-          © 2023 | Jose Manuel Sánchez | All rights reserved
-        </div>
-      </footer> */}
+      
       <footer className="footer">
         <div className="d-flex justify-content-between container pt-5">
           <div className="col-lg-6">
@@ -386,11 +361,11 @@ export default function LandingPage() {
           </div>
         </div>
         <div className="text-center text-secondary small pt-5 pb-3">
-          <div>
+          {/* <div>
             <Link to="https://facebook.com">
               <img
                 alt="facebook-logo"
-                src="src\assets\facebook.png"
+                src={facebook}
                 width="20px"
                 className="me-2"
               ></img>
@@ -398,7 +373,7 @@ export default function LandingPage() {
             <Link to="https://instagram.com">
               <img
                 alt="instagram-logo"
-                src="src\assets\instagram.png"
+                src={instagram}
                 width="20px"
                 className="me-2"
               ></img>
@@ -406,7 +381,7 @@ export default function LandingPage() {
             <Link to="https://whatsapp.com">
               <img
                 alt="whatsapp-logo"
-                src="src\assets\whatsapp.webp"
+                src={whatsapp}
                 width="20px"
                 className="me-2"
               ></img>
@@ -414,11 +389,11 @@ export default function LandingPage() {
             <Link to="https://gmail.com">
               <img
                 alt="email-logo"
-                src="src\assets\email.webp"
+                src={email}
                 width="20px"
               ></img>
             </Link>
-          </div>
+          </div> */}
           <div className="mt-2">
             © 2023 | Jose Manuel Sánchez | All rights reserved
           </div>

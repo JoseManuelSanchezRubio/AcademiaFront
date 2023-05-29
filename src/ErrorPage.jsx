@@ -1,5 +1,7 @@
 import { useRouteError } from "react-router-dom";
 import { Link } from "react-router-dom";
+//imports assets
+import notFound from "./assets/404.webp";
 
 export default function ErrorPage() {
     const error = useRouteError();
@@ -14,7 +16,7 @@ export default function ErrorPage() {
                     <div>Parece que ha habido un error...</div>
                     <div className="mb-3">No encontramos la página que estás buscando.</div>
                 </i>
-                <img src="src\assets\404.jpg" width='400vw' className="mb-4"></img>
+                <img src={notFound} width='400vw' className="mb-4"></img>
                 <br></br>
                 <Link to='/' className="btn btn-primary">Volver a la página principal</Link>
             </div>

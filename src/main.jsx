@@ -91,11 +91,6 @@ const router = createBrowserRouter([
     element: <NewProfessor />,
     errorElement: <ErrorPage />,
   },
-  {
-    path: "/email",
-    element: <Email />,
-    errorElement: <ErrorPage />,
-  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
