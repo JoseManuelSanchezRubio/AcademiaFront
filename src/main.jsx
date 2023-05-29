@@ -8,6 +8,7 @@ import Admin from "./routes/Admin";
 import Course from "./routes/Course";
 import CourseProfessor from "./routes/CourseProfessor";
 import Courses from "./routes/Courses";
+import Email from "./routes/Email";
 import Events from "./routes/Events";
 import Forum from "./routes/Forum";
 import LandingPage from "./routes/LandingPage";
@@ -18,7 +19,6 @@ import NewProfessor from "./routes/NewProfessor";
 import Professor from "./routes/Professor";
 import User from "./routes/User";
 import Users from "./routes/Users";
-import Email from "./routes/Email";
 
 const router = createBrowserRouter([
   {
@@ -47,7 +47,7 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
-    path: "/forum/:forum_id",
+    path: "course/forum/:forum_id",
     element: <Forum />,
     errorElement: <ErrorPage />,
   },

@@ -56,7 +56,7 @@ export default function Course() {
   if (sessionStorage.getItem("token")) isLogged = true;
 
   if (!isLogged) return window.location.href = '/login';
-
+  console.log(course)
   return (
     <div>
       <Nav isLogged={isLogged}></Nav>
@@ -78,7 +78,10 @@ export default function Course() {
             {units.map((unit) => (
               <div key={unit.id} className="card mb-4 me-4">
                 <div className="card-body">
-                  <h2 className="card-title text-decoration-underline">{unit.name}</h2>
+                  <div className="d-flex">
+                    <h2 className="card-title text-decoration-underline">{unit.name}</h2>
+                    <h2>&bull;<Link to={`forum/${unit.forum_id}`}>Foro</Link></h2>
+                  </div>
                   <div className="card-subtitle mb-2 text-body-secondary text-secondary">
                     {unit.description}
                   </div>
