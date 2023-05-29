@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import Nav from "../Nav";
 import ForgotPassword from "../ForgotPassword";
+//assets imports
+import showPassword from "../assets/show-password.png";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -153,7 +155,7 @@ export default function Login() {
                 />
                 <div className="position-absolute top-50 end-0 translate-middle-y pe-2">
                   <img
-                    src="src\assets\show-password.png"
+                    src={showPassword}
                     width="20px"
                     style={{ cursor: "pointer" }}
                     onMouseDown={setInputTypeToText}

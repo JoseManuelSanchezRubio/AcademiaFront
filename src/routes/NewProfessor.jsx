@@ -2,6 +2,9 @@ import emailjs from "@emailjs/browser";
 import { useRef, useState } from "react";
 import { Tooltip } from "reactstrap";
 import NavAdmin from "../NavAdmin";
+//imports assets
+import info from "../assets/info.png"
+
 
 export default function NewProfessor() {
   const [popoverOpen, setPopoverOpen] = useState(false);
@@ -348,7 +351,7 @@ export default function NewProfessor() {
                     <span style={{ cursor: "pointer" }} className="ms-2">
                       <img
                         id="info"
-                        src="src\assets\info.png"
+                        src={info}
                         style={{ width: "15px" }}
                       ></img>
 

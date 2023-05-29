@@ -1,5 +1,7 @@
 /* eslint-disable react/prop-types */
 import UpdateUser from "./UpdateUser";
+//imports assets
+import lessThan from "./assets/less-than.png";
 
 export default function Profile(props) {
 
@@ -13,7 +15,7 @@ export default function Profile(props) {
           data-bs-target="#offcanvasScrolling"
           aria-controls="offcanvasScrolling"
         >
-          <img src="src\assets\less-than.png" style={{ width: '30px' }} />
+          <img src={lessThan} style={{ width: '30px' }} />
         </div>
       </div>
 

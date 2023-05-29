@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { Tooltip } from "reactstrap";
 import Nav from "../Nav";
+//assets imports
+import showPassword from "../assets/show-password.png";
+import info from "../assets/info.png";
 
 export default function Logup() {
   const [popoverOpen, setPopoverOpen] = useState(false);
@@ -334,7 +337,7 @@ export default function Logup() {
                 />
                 <div className="position-absolute top-50 end-0 translate-middle-y pe-2">
                   <img
-                    src="src\assets\show-password.png"
+                    src={showPassword}
                     width="20px"
                     style={{ cursor: "pointer" }}
                     id="password"
@@ -353,7 +356,7 @@ export default function Logup() {
                     <span style={{ cursor: "pointer" }} className="ms-2">
                       <img
                         id="info"
-                        src="src\assets\info.png"
+                        src={info}
                         style={{ width: "15px" }}
                       ></img>
 
@@ -392,7 +395,7 @@ export default function Logup() {
                 />
                 <div className="position-absolute top-50 end-0 translate-middle-y pe-2">
                   <img
-                    src="src\assets\show-password.png"
+                    src={showPassword}
                     width="20px"
                     style={{ cursor: "pointer" }}
                     id="confirmPassword"

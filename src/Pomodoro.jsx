@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import ReactHowler from "react-howler";
 import { Modal, ModalBody, ModalHeader, Progress, Tooltip } from "reactstrap";
-
+//imports assets
+import toStudy from "./assets/to_study.mp3";
+import toBreak from "./assets/to_break.mp3";
 export default function Pomodoro() {
   const [lableContent, setLabelContent] = useState("¡A estudiar!");
   const [studying, setStudying] = useState(true);
@@ -10,7 +12,7 @@ export default function Pomodoro() {
   const minutes = Math.floor((time % 360000) / 6000);
   const seconds = Math.floor((time % 6000) / 100);
   const [modal, setModal] = useState(false);
-  const [tune, setTune] = useState("src/assets/to_study.mp3");
+  const [tune, setTune] = useState({toStudy});
   const [playHowler, setPlayHowler] = useState(false);
 
   const toggle = () => setModal(!modal);
@@ -22,14 +24,14 @@ export default function Pomodoro() {
     if (studying && minutes == 25) {
       setStudying(false);
       setTime(0);
-      setTune("src/assets/to_break.mp3");
+      setTune({toBreak});
       setPlayHowler(true);
       setLabelContent("Tómate un descanso");
     }
     if (!studying && minutes == 5) {
       setStudying(true);
       setTime(0);
-      setTune("src/assets/to_study.mp3");
+      setTune({toStudy});
       setPlayHowler(true);
       setLabelContent("¡A estudiar!");
     }
