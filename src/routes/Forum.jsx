@@ -6,8 +6,8 @@ import nothing from "../assets/nothing.png";
 
 
 export default function Forum() {
-  //const [messages, setMessages] = useState([]);
-  const messages = [
+  const [messages, setMessages] = useState([]);
+  /* const messages = [
     {
       id: 1,
       body: "ghostwhite",
@@ -31,7 +31,7 @@ export default function Forum() {
     },
     {
       id: 4,
-      body: "lorem ipsum lorem ipsum lorem ipsum",
+      body: "lorem ipsum lorem ipsum lorem ipsum lorem ipsum",
       user_id: 1,
       created_at: "01/01/2000",
       user: { id: 1, name: "Carlos", surname: "Martínez" },
@@ -78,7 +78,7 @@ export default function Forum() {
       created_at: "01/01/2000",
       user: { id: 2, name: "María", surname: "Sánchez" },
     },
-  ];
+  ]; */
   const [message, setMessage] = useState("");
   const forum_id = window.location.pathname.split("/")[3];
   const userId = JSON.parse(sessionStorage.getItem("user")).id;
@@ -117,7 +117,7 @@ export default function Forum() {
   let isLogged = false;
   if (sessionStorage.getItem("token")) isLogged = true;
 
-  //if (!isLogged) return (window.location.href = "/login");
+  if (!isLogged) return (window.location.href = "/login");
 
   return (
     <div>
@@ -147,13 +147,13 @@ export default function Forum() {
                       : "msg-left m-1 p-2"
                   }
                 >
-                  <div className="d-flex justify-content-between align-items-center">
+                  {message.user_id != userId && (
                     <div className="fw-bold">
                       {message.user.name} {message.user.surname}
                     </div>
-                    <div className="small">{message.created_at}</div>
-                  </div>
+                  )}
                   <div className="float-start">{message.body}</div>
+                  <div className="msg-date mt-3">{message.created_at}</div>
                 </div>
               ))}
             </div>

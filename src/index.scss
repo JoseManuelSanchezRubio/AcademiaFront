@@ -129,6 +129,11 @@ body {
   border-radius: 15px;
   border-top-right-radius: 0px;
 }
+.msg-right .msg-date{
+  color:#e0e0e0;
+  text-align: end;
+  font-size: 12px;
+}
 .msg-left{
   background-color: aliceblue;
   float: left;
@@ -138,8 +143,13 @@ body {
   border-radius: 15px;
   border-top-left-radius: 0px;
 }
+.msg-left .msg-date{
+  color:#8a8a8a;
+  text-align: end;
+  font-size: 12px;
+}
 .forum-background{
-  background-image: url("/src/assets/bg-forum.jpg");
+  background-image: url("/src/assets/bg-forum.webp");
   background-size: cover;
   background-position: center;
   overflow-y: auto;
@@ -178,7 +188,7 @@ body {
 
 
 .forum-background::-webkit-scrollbar {
-  width: 5px;
+  width: 7px;
 }
 
 .forum-background::-webkit-scrollbar-track {
@@ -186,10 +196,10 @@ body {
 }
 
 .forum-background::-webkit-scrollbar-thumb {
-  background: #8f89cc;
+  background: #71a4d3;
   border-radius: 10px;
 }
 
 .forum-background::-webkit-scrollbar-thumb:hover {
-  background: #a09bd1; 
+  background: #8ebfee; 
 }
