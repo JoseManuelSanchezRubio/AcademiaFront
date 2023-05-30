@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import Nav from "../Nav";
+import send from "../assets/send.png";
 
 
 export default function Forum() {
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState("");
-  const forum_id = window.location.pathname.split("/")[2];
+  const forum_id = window.location.pathname.split("/")[3];
   const userId = JSON.parse(sessionStorage.getItem("user")).id;
-
   useEffect(() => {
     const requestOptions = {
       method: "POST",
@@ -40,7 +40,6 @@ export default function Forum() {
     await fetch("http://127.0.0.1:8000/api/messages/", requestOptions);
     window.location.reload();
   }
-
   let isLogged = false;
   if (sessionStorage.getItem("token")) isLogged = true;
 
@@ -64,7 +63,7 @@ export default function Forum() {
               key={message.id}
               className={message.user_id == userId ? "text-end" : ""}
             >
-              {message.body} ({message.user.name})
+              {message.body} ({message.user.name}) ({message.created_at})
             </div>
           ))}
         </div>
@@ -84,7 +83,7 @@ export default function Forum() {
                 disabled
                 onClick={(e) => saveMessage(e)}
               >
-                <img src="../src/assets/send.png" width="18px"></img>
+                <img src={send} width="18px"></img>
               </button>
             ) : (
               <button
@@ -92,7 +91,7 @@ export default function Forum() {
                 className="rounded-circle py-2 btn border border-dark"
                 onClick={(e) => saveMessage(e)}
               >
-                <img src="../src/assets/send.png" width="18px"></img>
+                <img src={send} width="18px"></img>
               </button>
             )}
           </div>
