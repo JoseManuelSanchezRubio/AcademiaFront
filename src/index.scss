@@ -110,3 +110,40 @@ body {
 .footer{
   background-color: #f8f9fa;
 }
+.msg-right{
+  float: right;
+  clear: both;
+  color: #f8f9fa;
+  max-width: 75%;
+  min-width: 30%;
+  background-color: #2c86da;
+  border-radius: 15px;
+  border-top-right-radius: 0px;
+}
+.msg-left{
+  background-color: aliceblue;
+  float: left;
+  clear: both;
+  max-width: 75%;
+  min-width: 30%;
+  border-radius: 15px;
+  border-top-left-radius: 0px;
+}
+.forum-background{
+  background-image: url("/src/assets/bg-forum.jpg");
+  background-size: cover;
+  background-position: center;
+  overflow-y: auto;
+  max-height: 75vh;
+  height: 100vh;
+}
+.no-messages{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color:dimgrey;
+}
+
