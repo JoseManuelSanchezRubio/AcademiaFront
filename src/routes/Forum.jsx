@@ -26,6 +26,26 @@ export default function Forum() {
       .then((data) => setMessages(data));
   }, []);
 
+  const messagesList = messages.map((message) => {
+    const date = new Date(message.created_at).toLocaleDateString();
+    return (<div
+      key={message.id}
+      className={
+        message.user_id == userId
+          ? "msg-right m-1 p-2"
+          : "msg-left m-1 p-2"
+      }
+    >
+      {message.user_id != userId && (
+        <div className="fw-bold">
+          {message.user.name} {message.user.surname}
+        </div>
+      )}
+      <div className="float-start">{message.body}</div>
+      <div className="msg-date mt-3">{date}</div>
+    </div>)
+  })
+
   async function saveMessage(e) {
     if (message == "") return alert("Debes escribir un mensaje");
     e.preventDefault();
@@ -47,7 +67,6 @@ export default function Forum() {
   if (sessionStorage.getItem("token")) isLogged = true;
 
   if (!isLogged) return (window.location.href = "/login");
-
   return (
     <div>
       <Nav isLogged={isLogged}></Nav>
@@ -66,26 +85,7 @@ export default function Forum() {
                 </div>
               )}
             </div>
-            <div>
-              {messages.map((message) => (
-                <div
-                  key={message.id}
-                  className={
-                    message.user_id == userId
-                      ? "msg-right m-1 p-2"
-                      : "msg-left m-1 p-2"
-                  }
-                >
-                  {message.user_id != userId && (
-                    <div className="fw-bold">
-                      {message.user.name} {message.user.surname}
-                    </div>
-                  )}
-                  <div className="float-start">{message.body}</div>
-                  <div className="msg-date mt-3">{message.created_at}</div>
-                </div>
-              ))}
-            </div>
+            {messagesList}
             <div style={{ clear: "both" }}></div>
           </div>
           <form>

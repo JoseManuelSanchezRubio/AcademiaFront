@@ -81,7 +81,7 @@ export default function Course() {
                 <div className="card-body">
                   <div className="d-flex">
                     <h2 className="card-title text-decoration-underline">{unit.name}</h2>
-                    <h2>&bull;<Link to={`forum/${unit.forum_id}`}>Foro</Link></h2>
+                    <h2 className="px-3">&bull;<Link className="px-3" to={`forum/${unit.forum_id}`}>Foro</Link></h2>
                   </div>
                   <div className="card-subtitle mb-2 text-body-secondary text-secondary">
                     {unit.description}
