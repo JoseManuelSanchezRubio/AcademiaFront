@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Nav from "../Nav";
-
+import { URL } from "../url";
 
 
 
@@ -16,13 +16,13 @@ export default function Courses() {
     }
 
     useEffect(() => {
-        fetch("http://127.0.0.1:8000/api/courses")
+        fetch(`${URL}/courses`)
             .then(res => res.json())
             .then(data => {
                 setCourses(data)
             })
         //const userId = JSON.parse(sessionStorage.getItem("user")).id;
-        fetch(`http://127.0.0.1:8000/api/users/${user?.id}`)
+        fetch(`${URL}/users/${user?.id}`)
             .then(response => response.json())
             .then((data) => {
                 setUserCourses(data.courses);
@@ -48,7 +48,7 @@ export default function Courses() {
                     course_id: e.target.id
                 })
             };
-            await fetch('http://127.0.0.1:8000/api/users/course', requestOptions)
+            await fetch(`${URL}/users/course`, requestOptions)
 
             alert("Compra realizada");
             window.location.href = '/user';

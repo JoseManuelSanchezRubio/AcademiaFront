@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import NavAdmin from "../NavAdmin";
+import { URL } from "../url";
 
 
 export default function NewCourse() {
@@ -13,7 +14,7 @@ export default function NewCourse() {
   const [errorProfessorId, setErrorProfessorId] = useState("");
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/professors")
+    fetch(`${URL}/professors`)
       .then((res) => res.json())
       .then((data) => setProfessors(data));
   }, []);
@@ -79,7 +80,7 @@ export default function NewCourse() {
           professor_id: professorId,
         }),
       };
-      fetch("http://127.0.0.1:8000/api/courses", requestOptions)
+      fetch(`${URL}/courses`, requestOptions)
         .then((response) => response.json())
         .then((data) => checkNewCourse(data));
     }

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import NavAdmin from "../NavAdmin";
+import { URL } from "../url";
 
 export default function Admin() {
     const [users, setUsers] = useState([]);
@@ -9,21 +10,21 @@ export default function Admin() {
 
     useEffect(() => {
         const fetchUsers = async () => {
-            const response = await fetch("http://127.0.0.1:8000/api/users");
+            const response = await fetch(`${URL}/users`);
             const data = await response.json();
             setUsers(data);
         };
         fetchUsers();
 
         const fetchProfessors = async () => {
-            const response = await fetch("http://127.0.0.1:8000/api/professors");
+            const response = await fetch(`${URL}/professors`);
             const data = await response.json();
             setProfessors(data);
         };
         fetchProfessors();
 
         const fetchCourses = async () => {
-            const response = await fetch("http://127.0.0.1:8000/api/courses");
+            const response = await fetch(`${URL}/courses`);
             const data = await response.json();
             setCourses(data);
         };
@@ -32,7 +33,7 @@ export default function Admin() {
 
     async function deleteCourse(e) {
         if (confirm('Seguro que quieres eliminar este curso?')) {
-            await fetch(`http://127.0.0.1:8000/api/courses/${e}`, {
+            await fetch(`${URL}/courses/${e}`, {
                 method: 'DELETE'
             });
             window.location.reload();
@@ -40,7 +41,7 @@ export default function Admin() {
     }
     async function deleteUser(e) {
         if (confirm('Seguro que quieres eliminar a este usuario?')) {
-            await fetch(`http://127.0.0.1:8000/api/users/${e}`, {
+            await fetch(`${URL}/users/${e}`, {
                 method: 'DELETE'
             });
             window.location.reload();

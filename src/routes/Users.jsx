@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Nav from "../Nav";
 import NavProfessor from "../NavProfessor";
-
+import { URL, URL_STORAGE } from "../url";
 
 export default function Users() {
 
@@ -13,13 +13,13 @@ export default function Users() {
 
     useEffect(() => {
         const courseId = JSON.parse(sessionStorage.getItem("courseId"));
-        fetch(`http://127.0.0.1:8000/api/courses/${courseId}`)
+        fetch(`${URL}/courses/${courseId}`)
             .then(res => res.json())
             .then((data) => {
                 setUsers(data[0].users)
             });
 
-        fetch('http://127.0.0.1:8000/api/uploadsByUser', {
+        fetch(`${URL}/uploadsByUser`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -35,7 +35,7 @@ export default function Users() {
     uploadsHtml = uploads.map((upload) => {
         return (
             <div key={upload.id}>
-                <Link to={`http://127.0.0.1:8000/storage/${upload.file_name}`}>{upload.file_name}</Link>
+                <Link to={`${URL_STORAGE}/${upload.file_name}`}>{upload.file_name}</Link>
             </div>
         )
     })

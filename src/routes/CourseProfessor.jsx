@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Announcements from "../Announcements";
 import NavProfessor from "../NavProfessor";
+import { URL } from "../url";
 
 
 export default function CourseProfessor() {
@@ -19,7 +20,7 @@ export default function CourseProfessor() {
     const professorId = JSON.parse(sessionStorage.getItem("professor")).id;
     const url = `/users/${courseId}`;
     useEffect(() => {
-        fetch(`http://127.0.0.1:8000/api/courses/${courseId}`)
+        fetch(`${URL}/courses/${courseId}`)
             .then(res => res.json())
             .then((data) => {
                 setCourse(data[0]);
@@ -69,7 +70,7 @@ export default function CourseProfessor() {
             })
         };
         console.log(requestOptions.body)
-        await fetch('http://127.0.0.1:8000/api/units', requestOptions)
+        await fetch(`${URL}/units`, requestOptions)
             .then(response => response.json())
             .then(data => console.log(data)
             );

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import NavProfessor from "../NavProfessor";
 import Profile from "../Profile";
-
+import { URL } from "../url";
 
 
 export default function Professor() {
@@ -13,7 +13,7 @@ export default function Professor() {
 
     useEffect(() => {
         const professorId = JSON.parse(sessionStorage.getItem("professor")).id;
-        fetch(`http://127.0.0.1:8000/api/professors/${professorId}`)
+        fetch(`${URL}/professors/${professorId}`)
             .then(response => response.json())
             .then((data) => {
                 /* setProfessor(data.professor); */

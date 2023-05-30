@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
-
+import { URL } from "./url";
 
 export default function Announcements(props) {
 
@@ -38,7 +38,7 @@ export default function Announcements(props) {
         course_id: props.courseId,
       }),
     };
-    fetch("http://127.0.0.1:8000/api/announcements/course", requestOptions)
+    fetch(`${URL}/announcements/course`, requestOptions)
       .then((res) => res.json())
       .then((data) => setAnnouncements(data));
   }, []);
@@ -67,7 +67,7 @@ export default function Announcements(props) {
           course_id: props.courseId,
         }),
       };
-      await fetch("http://127.0.0.1:8000/api/announcements", requestOptions);
+      await fetch(`${URL}/announcements`, requestOptions);
       window.location.reload();
     }
   }

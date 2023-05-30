@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Announcements from "../Announcements";
 import Nav from "../Nav";
+import { URL } from "../url";
 
 
 export default function Course() {
@@ -13,7 +14,7 @@ export default function Course() {
 
   useEffect(() => {
     const courseId = JSON.parse(sessionStorage.getItem("courseId"));
-    fetch(`http://127.0.0.1:8000/api/courses/${courseId}`)
+    fetch(`${URL}/courses/${courseId}`)
       .then((res) => res.json())
       .then((data) => {
         setCourse(data[0]);
@@ -44,7 +45,7 @@ export default function Course() {
           })
         };
         console.log(requestOptions.body);
-        fetch('http://127.0.0.1:8000/api/postUpload', requestOptions)
+        fetch(`${URL}/postUpload`, requestOptions)
         alert('Archivo subido a la base de datos correctamente')
 
       };

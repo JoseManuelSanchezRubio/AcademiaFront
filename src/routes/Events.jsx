@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Nav from "../Nav";
+import { URL } from "../url";
 /* import UpdateEvent from "../UpdateEvent"; */
 
 
@@ -58,7 +59,7 @@ export default function Events() {
         user_id: user_id,
       }),
     };
-    fetch("http://127.0.0.1:8000/api/events/user", requestOptions)
+    fetch(`${URL}/events/user`, requestOptions)
       .then((response) => response.json())
       .then((data) => setEvents(data));
   }, []);
@@ -98,7 +99,7 @@ export default function Events() {
         },
       };
       await fetch(
-        `http://127.0.0.1:8000/api/events/${event_id}`,
+        `${URL}/events/${event_id}`,
         requestOptions
       );
       window.location.reload();
@@ -139,7 +140,7 @@ export default function Events() {
           user_id: user_id,
         }),
       };
-      await fetch("http://127.0.0.1:8000/api/events/", requestOptions);
+      await fetch(`${URL}/events/`, requestOptions);
 
       window.location.reload();
     }

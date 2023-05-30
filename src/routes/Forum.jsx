@@ -1,84 +1,13 @@
 import { useEffect, useState } from "react";
 import Nav from "../Nav";
 //import assets
-import send from "../assets/send.png";
 import nothing from "../assets/nothing.png";
+import send from "../assets/send.png";
+import { URL } from "../url";
 
 
 export default function Forum() {
   const [messages, setMessages] = useState([]);
-  /* const messages = [
-    {
-      id: 1,
-      body: "ghostwhite",
-      user_id: 1,
-      created_at: "01/01/2000",
-      user: { id: 1, name: "Carlos", surname: "Martínez" },
-    },
-    {
-      id: 2,
-      body: "lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum",
-      user_id: 3,
-      created_at: "01/01/2000",
-      user: { id: 3, name: "Pedro", surname: "López" },
-    },
-    {
-      id: 3,
-      body: "lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum",
-      user_id: 2,
-      created_at: "01/01/2000",
-      user: { id: 2, name: "María", surname: "Sánchez" },
-    },
-    {
-      id: 4,
-      body: "lorem ipsum lorem ipsum lorem ipsum lorem ipsum",
-      user_id: 1,
-      created_at: "01/01/2000",
-      user: { id: 1, name: "Carlos", surname: "Martínez" },
-    },
-    {
-      id: 5,
-      body: "aliceblue",
-      user_id: 1,
-      created_at: "01/01/2000",
-      user: { id: 1, name: "Carlos", surname: "Martínez" },
-    },
-    {
-      id: 6,
-      body: "lorem ipsum lorem ipsum lorem ipsum",
-      user_id: 2,
-      created_at: "01/01/2000",
-      user: { id: 2, name: "María", surname: "Sánchez" },
-    },
-    {
-      id: 7,
-      body: "lorem ipsum",
-      user_id: 4,
-      created_at: "01/01/2000",
-      user: { id: 4, name: "Ana", surname: "Rodríguez" },
-    },
-    {
-      id: 8,
-      body: "lorem ipsum lorem ipsum lorem ipsum",
-      user_id: 1,
-      created_at: "01/01/2000",
-      user: { id: 1, name: "Carlos", surname: "Martínez" },
-    },
-    {
-      id: 9,
-      body: "lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum",
-      user_id: 1,
-      created_at: "01/01/2000",
-      user: { id: 1, name: "Carlos", surname: "Martínez" },
-    },
-    {
-      id: 10,
-      body: "lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum",
-      user_id: 2,
-      created_at: "01/01/2000",
-      user: { id: 2, name: "María", surname: "Sánchez" },
-    },
-  ]; */
   const [message, setMessage] = useState("");
   const forum_id = window.location.pathname.split("/")[3];
   const userId = JSON.parse(sessionStorage.getItem("user")).id;
@@ -92,7 +21,7 @@ export default function Forum() {
         forum_id: forum_id,
       }),
     };
-    fetch("http://127.0.0.1:8000/api/messages/forum", requestOptions)
+    fetch(`${URL}/messages/forum`, requestOptions)
       .then((response) => response.json())
       .then((data) => setMessages(data));
   }, []);
@@ -111,7 +40,7 @@ export default function Forum() {
         user_id: userId,
       }),
     };
-    await fetch("http://127.0.0.1:8000/api/messages/", requestOptions);
+    await fetch(`${URL}/messages/`, requestOptions);
     window.location.reload();
   }
   let isLogged = false;

@@ -1,6 +1,7 @@
 import emailjs from "@emailjs/browser";
 import { useRef, useState } from "react";
 import { Modal, ModalBody, ModalHeader } from "reactstrap";
+import { URL } from "./url";
 
 export default function ForgotPassword() {
   const [modal, setModal] = useState(false);
@@ -71,7 +72,7 @@ export default function ForgotPassword() {
           dni: dni,
         })
       };
-      fetch(`http://127.0.0.1:8000/api/users/forgottenPasswordValidation`, requestOptions)
+      fetch(`${URL}/users/forgottenPasswordValidation`, requestOptions)
         .then(response => response.json())
         .then(res => {
           if (res.status === true) {
@@ -85,7 +86,7 @@ export default function ForgotPassword() {
                 password: password,
               })
             };
-            fetch(`http://127.0.0.1:8000/api/users/${res.user_id}`, requestOptions).then(res => res.json()).then(data => console.log(data))
+            fetch(`${URL}/users/${res.user_id}`, requestOptions).then(res => res.json()).then(data => console.log(data))
 
             emailjs
               .sendForm(

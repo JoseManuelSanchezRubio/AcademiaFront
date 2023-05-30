@@ -3,17 +3,18 @@ import Nav from "../Nav";
 import NavAdmin from "../NavAdmin";
 import NavProfessor from "../NavProfessor";
 //assets imports
-import certificate from "../assets/certificate.webp";
-import opos from "../assets/opos.webp";
-import math from "../assets/math.webp";
-import quotes from "../assets/quotes.png";
 import boy from "../assets/boy.webp";
-import girl from "../assets/girl.webp";
+import certificate from "../assets/certificate.webp";
 import facebook from "../assets/facebook.png";
+import girl from "../assets/girl.webp";
 import instagram from "../assets/instagram.png";
-import twitter from "../assets/twitter.png";
-import telegram from "../assets/telegram.png";
 import maps from "../assets/maps.png";
+import math from "../assets/math.webp";
+import opos from "../assets/opos.webp";
+import quotes from "../assets/quotes.png";
+import telegram from "../assets/telegram.png";
+import twitter from "../assets/twitter.png";
+//import { URL } from "../url";
 
 export default function LandingPage() {
   const courses = [

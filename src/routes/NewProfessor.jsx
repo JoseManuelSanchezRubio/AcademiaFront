@@ -2,8 +2,9 @@ import emailjs from "@emailjs/browser";
 import { useRef, useState } from "react";
 import { Tooltip } from "reactstrap";
 import NavAdmin from "../NavAdmin";
+import { URL } from "../url";
 //imports assets
-import info from "../assets/info.png"
+import info from "../assets/info.png";
 
 
 export default function NewProfessor() {
@@ -196,7 +197,7 @@ export default function NewProfessor() {
           password: password,
         }),
       };
-      fetch("http://127.0.0.1:8000/api/professors", requestOptions)
+      fetch(`${URL}/professors`, requestOptions)
         .then((response) => response.json())
         .then((data) => checkLogup(data));
     }

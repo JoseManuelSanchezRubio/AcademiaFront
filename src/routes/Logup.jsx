@@ -2,8 +2,9 @@ import { useState } from "react";
 import { Tooltip } from "reactstrap";
 import Nav from "../Nav";
 //assets imports
-import showPassword from "../assets/show-password.png";
 import info from "../assets/info.png";
+import showPassword from "../assets/show-password.png";
+import { URL } from "../url";
 
 export default function Logup() {
   const [popoverOpen, setPopoverOpen] = useState(false);
@@ -193,7 +194,7 @@ export default function Logup() {
           password: password,
         }),
       };
-      fetch("http://127.0.0.1:8000/api/users", requestOptions)
+      fetch(`${URL}/api/users`, requestOptions)
         .then((response) => response.json())
         .then((data) => checkLogup(data));
     }

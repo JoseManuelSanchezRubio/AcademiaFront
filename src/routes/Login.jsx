@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import Nav from "../Nav";
 import ForgotPassword from "../ForgotPassword";
+import Nav from "../Nav";
 //assets imports
 import showPassword from "../assets/show-password.png";
+import { URL } from "../url";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -91,7 +92,7 @@ export default function Login() {
             password: password,
           }),
         };
-        fetch("http://127.0.0.1:8000/api/professors/login", requestOptions)
+        fetch(`${URL}/professors/login`, requestOptions)
           .then((response) => response.json())
           .then((data) => checkLogin(data));
       } else {
@@ -105,7 +106,7 @@ export default function Login() {
             password: password,
           }),
         };
-        fetch("http://127.0.0.1:8000/api/users/login", requestOptions)
+        fetch(`${URL}/users/login`, requestOptions)
           .then((response) => response.json())
           .then((data) => checkLogin(data));
       }

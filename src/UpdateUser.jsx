@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { URL } from "./url";
 
 export default function UpdateUser() {
   const [name, setName] = useState("");
@@ -45,14 +46,14 @@ export default function UpdateUser() {
       })
     };
     if (professor) {
-      await fetch(`http://127.0.0.1:8000/api/professors/${professorId}`, requestOptions).then(res => res.json()).then(data => console.log(data))
+      await fetch(`${URL}/professors/${professorId}`, requestOptions).then(res => res.json()).then(data => console.log(data))
       professor.name = name;
       professor.surname = surname;
       professor.address = address;
       professor.phone = phone;
       sessionStorage.setItem('professor', JSON.stringify(professor))
     } else {
-      await fetch(`http://127.0.0.1:8000/api/users/${userId}`, requestOptions).then(res => res.json()).then(data => console.log(data))
+      await fetch(`${URL}/users/${userId}`, requestOptions).then(res => res.json()).then(data => console.log(data))
       user.name = name;
       user.surname = surname;
       user.address = address;

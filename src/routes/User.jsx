@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Nav from "../Nav";
 import Profile from "../Profile";
+import { URL } from "../url";
 
 export default function User() {
 
@@ -12,7 +13,7 @@ export default function User() {
 
     useEffect(() => {
         const userId = JSON.parse(sessionStorage.getItem("user")).id;
-        fetch(`http://127.0.0.1:8000/api/users/${userId}`)
+        fetch(`${URL}/users/${userId}`)
             .then(response => response.json())
             .then((data) => {
                 /* setUser(data.user); */
