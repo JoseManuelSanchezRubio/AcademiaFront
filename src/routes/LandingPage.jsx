@@ -16,6 +16,36 @@ import telegram from "../assets/telegram.png";
 import maps from "../assets/maps.png";
 
 export default function LandingPage() {
+  const courses = [
+    /* {
+      id: 1,
+      name: "Matemáticas",
+    },
+    {
+      id: 2,
+      name: "Lengua",
+    },
+    {
+      id: 3,
+      name: "Música",
+    },
+    {
+      id: 4,
+      name: "Contabilidad",
+    },
+    {
+      id: 5,
+      name: "Marketing",
+    },
+    {
+      id: 6,
+      name: "Biología",
+    },
+    {
+      id: 6,
+      name: "Física",
+    }, */
+  ];
   let isLogged = false;
   let isProfessor = false;
   let isAdmin = false;
@@ -38,10 +68,10 @@ export default function LandingPage() {
         </div>
       </div>
       <div className="container-fluid py-5">
-        <section>
+        <section className="container">
           <h1 className="text-center py-5">Te ayudamos a aprender</h1>
           <div className="row justify-content-center text-center">
-            <div className="card col-lg-3 my-2">
+            <div className="card col-lg-4 my-2">
               <img
                 alt="photo-of-girl-studying"
                 src={certificate}
@@ -49,7 +79,7 @@ export default function LandingPage() {
               />
               <div className="card-body">
                 <div className="card-title fs-5 fw-bold">
-                  ¿Quieres un título de inglés Cambridge?
+                  ¿Quieres un título oficial de inglés Cambridge?
                 </div>
                 <p className="card-text">
                   Con nuestros cursos de inglés aprenderás inglés de una forma
@@ -63,8 +93,7 @@ export default function LandingPage() {
                 </Link>
               </div>
             </div>
-            <div className="padding-cards"></div>
-            <div className="card col-lg-3 my-2">
+            <div className="card col-lg-4 my-2">
               <img
                 alt="photo-of-girl-studying"
                 src={opos}
@@ -86,8 +115,7 @@ export default function LandingPage() {
                 </Link>
               </div>
             </div>
-            <div className="padding-cards"></div>
-            <div className="card col-lg-3 my-2">
+            <div className="card col-lg-4 my-2">
               <img
                 alt="photo-of-worried-girl"
                 src={math}
@@ -334,7 +362,7 @@ export default function LandingPage() {
         <div className="container">
           <div className="row pt-5">
             <div className="col-lg-6">
-              <h5 className="mb-3">Learning Enjoying</h5>
+              <h5>Learning Enjoying</h5>
               <p>
                 Nuestra academia busca provocar experiencias de aprendizaje
                 auténticas, completas, continuas, creativas y desafiantes para
@@ -348,17 +376,36 @@ export default function LandingPage() {
               <div className="d-flex text-lg-center">
                 <div className="col">
                   <div>
-                    <div className="fw-bold mb-3">Cursos</div>
-                    <div>aaaaaa</div>
-                    <div>bbbbbb</div>
-                    <div>cccccc</div>
+                    <div className="fw-bold mb-1">Nuestros cursos</div>
+                    <div>
+                      {courses.length ? (
+                        <div>
+                          <div>{courses[0].name}</div>
+                          <div>{courses[1].name}</div>
+                          <div>{courses[2].name}</div>
+                          <div>{courses[3].name}</div>
+
+                          <div>Y muchos más</div>
+                        </div>
+                      ) : (
+                        ""
+                      )}
+                    </div>
+                    <div>
+                      {courses.length < 5 &&
+                        courses.map((course) => (
+                          <div key={course.id}>
+                            <div>{course.name}</div>
+                          </div>
+                        ))}
+                    </div>
                   </div>
                 </div>
                 <div className="col">
                   <div>
-                    <div className="fw-bold mb-3">Contacto</div>
+                    <div className="fw-bold mb-1">Contacto</div>
                     <div>+34 947 813 746</div>
-                    <div>learningenjoying-daw@gmail.com</div>
+                    <div>learningenjoying@gmail.com</div>
                   </div>
                 </div>
               </div>

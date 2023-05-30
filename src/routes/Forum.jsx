@@ -6,8 +6,8 @@ import nothing from "../assets/nothing.png";
 
 
 export default function Forum() {
-  const [messages, setMessages] = useState([]);
-  /* const messages = [
+  //const [messages, setMessages] = useState([]);
+  const messages = [
     {
       id: 1,
       body: "ghostwhite",
@@ -78,7 +78,7 @@ export default function Forum() {
       created_at: "01/01/2000",
       user: { id: 2, name: "María", surname: "Sánchez" },
     },
-  ]; */
+  ];
   const [message, setMessage] = useState("");
   const forum_id = window.location.pathname.split("/")[3];
   const userId = JSON.parse(sessionStorage.getItem("user")).id;
@@ -117,7 +117,7 @@ export default function Forum() {
   let isLogged = false;
   if (sessionStorage.getItem("token")) isLogged = true;
 
-  if (!isLogged) return (window.location.href = "/login");
+  //if (!isLogged) return (window.location.href = "/login");
 
   return (
     <div>
@@ -129,9 +129,11 @@ export default function Forum() {
             <div>
               {messages.length == 0 && (
                 <div className="no-messages">
-                  <img src={nothing} width="200px"/>
+                  <img src={nothing} width="200px" />
                   <br></br>
-                  <label className="py-4">Vaya... parece que todavía no hay ningún mensaje...</label>
+                  <label className="py-4">
+                    Vaya... parece que todavía no hay ningún mensaje...
+                  </label>
                 </div>
               )}
             </div>
@@ -169,19 +171,19 @@ export default function Forum() {
               {message == "" ? (
                 <button
                   type="submit"
-                  className="rounded-circle btn py-2 btn border"
+                  className="rounded-circle btn border border-white"
                   disabled
                   onClick={(e) => saveMessage(e)}
                 >
-                  <img src={send} width="18px"></img>
+                  <img src={send} width="25px"></img>
                 </button>
               ) : (
                 <button
                   type="submit"
-                  className="rounded-circle py-2 btn border border-dark"
+                  className="rounded-circle btn"
                   onClick={(e) => saveMessage(e)}
                 >
-                  <img src={send} width="18px"></img>
+                  <img src={send} width="25px"></img>
                 </button>
               )}
             </div>
