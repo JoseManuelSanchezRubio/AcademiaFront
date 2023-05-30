@@ -8,7 +8,6 @@ import Admin from "./routes/Admin";
 import Course from "./routes/Course";
 import CourseProfessor from "./routes/CourseProfessor";
 import Courses from "./routes/Courses";
-import Email from "./routes/Email";
 import Events from "./routes/Events";
 import Forum from "./routes/Forum";
 import LandingPage from "./routes/LandingPage";
