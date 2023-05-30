@@ -9,10 +9,11 @@ import math from "../assets/math.webp";
 import quotes from "../assets/quotes.png";
 import boy from "../assets/boy.webp";
 import girl from "../assets/girl.webp";
-/* import facebook from "../assets/facebook.png";
+import facebook from "../assets/facebook.png";
 import instagram from "../assets/instagram.png";
-import whatsapp from "../assets/whatsapp.png";
-import email from "../assets/email.png"; */
+import twitter from "../assets/twitter.png";
+import telegram from "../assets/telegram.png";
+import maps from "../assets/maps.png";
 
 export default function LandingPage() {
   let isLogged = false;
@@ -286,7 +287,7 @@ export default function LandingPage() {
                 aria-expanded="false"
                 aria-controls="collapseFour"
               >
-                ¿Qué necesito traer?
+                ¿Qué necesito traer a la academia?
               </button>
             </h2>
             <div
@@ -328,74 +329,62 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-      
+
       <footer className="footer">
-        <div className="d-flex justify-content-between container pt-5">
-          <div className="col-lg-6">
-            <h5 className="mb-3">Learning Enjoying</h5>
-            <p>
-              Nuestra academia busca provocar experiencias de aprendizaje
-              auténticas, completas, continuas, creativas y desafiantes para
-              ayudarte a ser mejor en lo que te propongas.
-            </p>
-            <p className="fst-italic">Learning Enjoying. Aprende y disfruta.</p>
-          </div>
-          <div className="col-lg-6">
-            <div className="d-flex text-lg-center">
-              <div className="col">
-                <div>
-                  <div className="fw-bold mb-3">Cursos</div>
-                  <div>aaaaaa</div>
-                  <div>bbbbbb</div>
-                  <div>cccccc</div>
+        <div className="container">
+          <div className="row pt-5">
+            <div className="col-lg-6">
+              <h5 className="mb-3">Learning Enjoying</h5>
+              <p>
+                Nuestra academia busca provocar experiencias de aprendizaje
+                auténticas, completas, continuas, creativas y desafiantes para
+                ayudarte a ser mejor en lo que te propongas.
+              </p>
+              <p className="fst-italic">
+                Learning Enjoying. Aprende y disfruta.
+              </p>
+            </div>
+            <div className="col-lg-6">
+              <div className="d-flex text-lg-center">
+                <div className="col">
+                  <div>
+                    <div className="fw-bold mb-3">Cursos</div>
+                    <div>aaaaaa</div>
+                    <div>bbbbbb</div>
+                    <div>cccccc</div>
+                  </div>
                 </div>
-              </div>
-              <div className="col">
-                <div>
-                  <div className="fw-bold mb-3">Contacto</div>
-                  <div>+34 947 813 746</div>
-                  <div>learningenjoying-daw@gmail.com</div>
+                <div className="col">
+                  <div>
+                    <div className="fw-bold mb-3">Contacto</div>
+                    <div>+34 947 813 746</div>
+                    <div>learningenjoying-daw@gmail.com</div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <div className="text-center text-secondary small pt-5 pb-3">
-          {/* <div>
-            <Link to="https://facebook.com">
-              <img
-                alt="facebook-logo"
-                src={facebook}
-                width="20px"
-                className="me-2"
-              ></img>
-            </Link>
-            <Link to="https://instagram.com">
-              <img
-                alt="instagram-logo"
-                src={instagram}
-                width="20px"
-                className="me-2"
-              ></img>
-            </Link>
-            <Link to="https://whatsapp.com">
-              <img
-                alt="whatsapp-logo"
-                src={whatsapp}
-                width="20px"
-                className="me-2"
-              ></img>
-            </Link>
-            <Link to="https://gmail.com">
-              <img
-                alt="email-logo"
-                src={email}
-                width="20px"
-              ></img>
-            </Link>
-          </div> */}
-          <div className="mt-2">
-            © 2023 | Jose Manuel Sánchez | All rights reserved
+          <div className="text-center small pt-5 pb-3">
+            <div className="d-flex justify-content-center gap-2">
+              <Link to="https://facebook.com">
+                <img alt="facebook-logo" src={facebook} width="20px"></img>
+              </Link>
+              <Link to="https://instagram.com">
+                <img alt="instagram-logo" src={instagram} width="20px"></img>
+              </Link>
+              <Link to="https://web.telegram.org/k/">
+                <img alt="telegram-logo" src={telegram} width="20px"></img>
+              </Link>
+              <Link to="https://www.google.es/maps/preview">
+                <img alt="maps-logo" src={maps} width="20px"></img>
+              </Link>
+              <Link to="https://twitter.com/">
+                <img alt="twitter-logo" src={twitter} width="20px"></img>
+              </Link>
+            </div>
+            <div className="mt-2 text-secondary">
+              © 2023 | Jose Manuel Sánchez | All rights reserved
+            </div>
           </div>
         </div>
       </footer>
