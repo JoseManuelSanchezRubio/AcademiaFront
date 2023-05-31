@@ -56,14 +56,14 @@ export default function LandingPage() {
             </Link>
           </div>
         </div>
-        <div className="container-fluid py-5">
+        <div className="container-fluid cards-section">
           <section className="container">
             <h1 className="text-center py-5 fw-bold title">
               Te ayudamos a aprender
             </h1>
             <div className="row justify-content-center text-center">
-              <div className="card col-lg-4 my-2 border-0">
-                <div className="border rounded">
+              <article className="card col-lg-4 my-2 border-0">
+                <div className="border rounded bg-white">
                   <img
                     alt="photo-of-girl-studying"
                     src={certificate}
@@ -85,9 +85,9 @@ export default function LandingPage() {
                     </Link>
                   </div>
                 </div>
-              </div>
-              <div className="card col-lg-4 my-2 border-0">
-                <div className="border rounded">
+              </article>
+              <article className="card col-lg-4 my-2 border-0">
+                <div className="border rounded bg-white">
                   <img
                     alt="photo-of-girl-studying"
                     src={opos}
@@ -109,9 +109,9 @@ export default function LandingPage() {
                     </Link>
                   </div>
                 </div>
-              </div>
-              <div className="card col-lg-4 my-2 border-0">
-                <div className="border rounded">
+              </article>
+              <article className="card col-lg-4 my-2 border-0">
+                <div className="border rounded bg-white">
                   <img
                     alt="photo-of-worried-girl"
                     src={math}
@@ -133,7 +133,7 @@ export default function LandingPage() {
                     </Link>
                   </div>
                 </div>
-              </div>
+              </article>
             </div>
           </section>
         </div>
