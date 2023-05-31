@@ -7,7 +7,15 @@ body {
   font-size: 4rem;
 }
 .access-btn{
-  font-size: 1.2rem;
+  font-size: 1.3rem;
+  border: 2px solid black;
+  //color: white;
+}
+.access-btn:hover{
+  font-size: 1.3rem;
+  //border: 2px solid white;
+  color: white;
+  background-color: black;
 }
 .login{
   max-width: 550px;
@@ -18,13 +26,14 @@ body {
 }
 
 .background-mainpage {
-  background-image: url("/src/assets/bg-people.webp");
+  background-image: url("/src/assets/students.webp");
   padding-top: 35vh;
   padding-bottom: 35vh;
   background-size: cover;
   background-position: center;
   width: 100%;
   height: 100%;
+  box-shadow: 5px 5px 30px gray;
 }
 
 .profile-picture {
@@ -242,10 +251,9 @@ body {
   font-size: 24px;
   font-weight: bold;
   border-radius: 10px;
-  //border: 1px solid #ebdb00;
   margin-right: -100px;
   margin-top: 5px;
-  margin-left: 35px;
+  margin-left: 40px;
   box-shadow: -10px 20px 15px -10px rgba(0, 0, 0, 0.4);
   transform: rotate(4deg);
 }
@@ -265,16 +273,11 @@ body {
   position: absolute;
 	display: flex;
 	list-style-type: none;
-	//padding: var(--size-2);
-	//border-radius: var(--radius-3);
 	gap: var(--size-4);
-	//background: hsl(0 0% 100% / 0.5);
 	align-items: center;
 	justify-content: center;
 	align-content: center;
-	//backdrop-filter: blur(10px);
   width: 150px;
-  //margin-left: 45%;
   left: 50%;
   -ms-transform: translate(-50%);
   transform: translate(-50%);
@@ -297,11 +300,9 @@ body {
 	content: '';
 	width: 5%;
 	aspect-ratio: 1;
-	//background: var(--text-1);
 	position: absolute;
 	bottom: 10%;
 	left: 50%;
-	//border-radius: var(--radius-3);
 	transform: translate(-50%, -50%);
 	z-index: -1;
 }
@@ -352,10 +353,6 @@ body {
 	left: 50%;
 	transform: translate(-50%, -50%);
 	aspect-ratio: 1;
-	//border-left: var(--size-2) solid white;
-	//border-top: var(--size-2) solid white;
-	//border-radius: var(--radius-3);
-	//mask: linear-gradient(135deg, black, transparent 50%);
 }
 
 

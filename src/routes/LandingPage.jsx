@@ -48,13 +48,11 @@ export default function LandingPage() {
         {!isProfessor && !isAdmin && <Nav isLogged={isLogged}></Nav>}
         {!isProfessor && isAdmin && <NavAdmin isLogged={isLogged}></NavAdmin>}
         <div className="background-mainpage">
-          <div className="text-center text-light">
+          <div className="text-center">
             <h1 className="fw-bold title">Learning Enjoying</h1>
             <p className="fs-4">La mejor academia para aprender</p>
             <Link to="/login">
-              <button className="btn btn-primary my-5 access-btn">
-                Acceder
-              </button>
+              <div className="btn my-5 access-btn">Acceder</div>
             </Link>
           </div>
         </div>

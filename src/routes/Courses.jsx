@@ -60,49 +60,47 @@ export default function Courses() {
     }
 
     let coursesList = courses.map((item) => {
-      let random = Math.floor(Math.random() * 10);
+      let random = Math.floor(Math.random() * 9);
       let color = "";
       if (random === 1) {
-        color = "#F0A990";
+        color = "#F0A990"; //rojo
       } else if (random === 2) {
-        color = "#FBF18A";
+        color = "#fbd28a"; //amarillo
       } else if (random === 3) {
-        color = "#C6FB8A";
+        color = "#A5FCE5"; //cian
       } else if (random === 4) {
-        color = "#A5FCE5";
+        color = "#A5E2FC"; //azul
       } else if (random === 5) {
-        color = "#A5E2FC";
+        color = "#CDBFFE"; //morado
       } else if (random === 6) {
-        color = "#CDBFFE";
+        color = "#FFD1F9"; //rosa
       } else if (random === 7) {
-        color = "#FFD1F9";
+        color = "#FF8C8C"; //rojo
       } else if (random === 8) {
-        color = "#FF8C8C";
-      } else if (random === 9) {
-        color = "#8CA8FF";
+        color = "#8CA8FF"; //azul oscuro
       } else {
-        color = "#9EFE9E";
+        color = "#9EFE9E"; //verde
       }
       return (
         <div
           key={item.id}
           className="card course"
-          style={{ width: "270px", minHeight: "200px", backgroundColor: color}}
+          style={{ width: "280px", minHeight: "200px", backgroundColor: color }}
         >
           <div className="card-body d-flex flex-column justify-content-between">
             <div>
-            <h5 className="card-title fw-bold">{item.name}</h5>
-            <p className="card-text">{item.description}</p>
+              <h4 className="card-title fw-bold">{item.name}</h4>
+              <p className="card-text">{item.description}</p>
             </div>
             <div>
-            <button
-              className="btn btn-primary mt-3"
-              id={item.id}
-              onClick={(e) => buyCourse(e)}
-            >
-              Comprar
-            </button>
-            <div className="price">{item.price} €</div>
+              <button
+                className="btn btn-primary mt-3"
+                id={item.id}
+                onClick={(e) => buyCourse(e)}
+              >
+                Comprar
+              </button>
+              <div className="price">{item.price} €</div>
             </div>
           </div>
         </div>
