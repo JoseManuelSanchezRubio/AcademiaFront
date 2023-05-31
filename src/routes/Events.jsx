@@ -72,22 +72,43 @@ export default function Events() {
       <div className="accordion" id={`idd${event.id}`} key={event.id}>
         <div className="accordion-item mb-3">
           <h2 className="accordion-header">
-            <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target={`#id${event.id}`} aria-expanded="false" aria-controls={`id${event.id}`}>
+            <button
+              className="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target={`#id${event.id}`}
+              aria-expanded="false"
+              aria-controls={`id${event.id}`}
+            >
               <h5>{event.title}</h5>
             </button>
           </h2>
-          <div id={`id${event.id}`} className="accordion-collapse collapse" data-bs-parent={`#idd${event.id}`}>
+          <div
+            id={`id${event.id}`}
+            className="accordion-collapse collapse"
+            data-bs-parent={`#idd${event.id}`}
+          >
             <div className="accordion-body">
-              <p className="card-text text-secondary">{event.description ? event.description : 'Este evento no tiene descripción'}</p>
+              <p className="card-text text-secondary">
+                {event.description
+                  ? event.description
+                  : "Este evento no tiene descripción"}
+              </p>
               <div className="card-text">Desde {start_date}</div>
               <div className="card-text mb-3">Hasta {end_date}</div>
               {/* <UpdateEvent event={event} /> */}
-              <div className="btn btn-danger" id={event.id} onClick={(e) => deleteEvent(e.target.id)}>Eliminar</div>
+              <div
+                className="btn btn-danger"
+                id={event.id}
+                onClick={(e) => deleteEvent(e.target.id)}
+              >
+                Eliminar
+              </div>
             </div>
           </div>
         </div>
       </div>
-    )
+    );
   });
 
   async function deleteEvent(event_id) {
@@ -98,10 +119,7 @@ export default function Events() {
           "Content-Type": "application/json",
         },
       };
-      await fetch(
-        `${URL}/events/${event_id}`,
-        requestOptions
-      );
+      await fetch(`${URL}/events/${event_id}`, requestOptions);
       window.location.reload();
     }
   }
@@ -181,7 +199,7 @@ export default function Events() {
                 className="form-control"
                 id="description"
                 cols="30"
-                rows="3"
+                rows="5"
                 onChange={(e) => setDescription(e.target.value)}
               ></textarea>
             </div>
@@ -235,7 +253,7 @@ export default function Events() {
         </div>
         <aside className="col-lg-4">
           <h1 className="text-lg-end mb-4 fw-bold">Tus eventos</h1>
-          <div className="text-secondary text-end">
+          <div className="text-secondary text-lg-end">
             {eventsList.length == 0 && (
               <div>
                 Vaya... parece que todavía no tienes eventos. ¡Añade uno!

@@ -48,14 +48,21 @@ export default function User() {
     return (
       <div
         key={item.id}
-        className={"card"}
-        style={{ width: "250px", backgroundColor: color }}
+        className="card course"
+        style={{ width: "270px", minHeight: "200px", backgroundColor: color }}
       >
-        <div className="card-body">
-          <h5 className="card-title">{item.name}</h5>
-          <p className="card-text">{item.description}</p>
-          <Link to={`/course`} id={item.id} onClick={(e) => handleCourse(e)}>
-            Entrar
+        <div className="card-body d-flex flex-column justify-content-between">
+          <div>
+            <h5 className="card-title fw-bold">{item.name}</h5>
+            <p className="card-text">{item.description}</p>
+          </div>
+          <Link
+            className="mt-3 text-end"
+            to={`/course`}
+            id={item.id}
+            onClick={(e) => handleCourse(e)}
+          >
+            <button className="btn btn-primary custom-shadow">Entrar</button>
           </Link>
         </div>
       </div>
@@ -71,7 +78,7 @@ export default function User() {
     isLogged = true;
   }
 
-  if (!isLogged) return window.location.href = '/login';
+  if (!isLogged) return (window.location.href = "/login");
 
   return (
     <div>
@@ -81,14 +88,17 @@ export default function User() {
           <h1 className="mt-5 fw-bold">Bienvenido, estos son tus cursos:</h1>
           <div className="text-secondary">
             {coursesList.length == 0 && (
-                <div className="empty">
-            <img src={nothing} width="200px" />
-            <br></br>
-            <div className="pt-4">
-              Vaya... Parece que todavía no estás matriculado en ningún curso.
-            </div>
-            <Link to={'/courses'}>¡Échale un vistazo a los que tenemos!</Link>
-          </div>
+              <div className="empty">
+                <img src={nothing} width="200px" />
+                <br></br>
+                <div className="pt-4">
+                  Vaya... Parece que todavía no estás matriculado en ningún
+                  curso.
+                </div>
+                <Link to={"/courses"}>
+                  ¡Échale un vistazo a los que tenemos!
+                </Link>
+              </div>
             )}
           </div>
           <div className="d-flex flex-wrap gap-5 mt-5">{coursesList}</div>

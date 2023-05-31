@@ -1,16 +1,14 @@
-@font-face {
-  font-family: Poppins;
-  src: url("./assets/Fonts/Poppins-Regular.ttf") format("opentype"),
-  //url("./assets/Fonts/Poppins-Medium.ttf") format("opentype"),
-  //url("./assets/Fonts/Poppins-SemiBold.ttf") format("opentype"),
-  //url("./assets/Fonts/Poppins-Bold.ttf") format("opentype"),
-  //url("./assets/Fonts/Poppins-Italic.ttf") format("opentype"),
-}
+
 
 body {
   font-family: "Poppins", sans-serif;
 }
-
+.title{
+  font-size: 4rem;
+}
+.access-btn{
+  font-size: 1.2rem;
+}
 .login{
   max-width: 550px;
   margin: auto;
@@ -203,3 +201,187 @@ body {
 .forum-background::-webkit-scrollbar-thumb:hover {
   background: #8ebfee; 
 }
+
+.course{
+  transition: transform 0.1s;
+  transform: scale(1, 1);
+}
+.course:hover{
+  transition: transform 0.1s;
+  transform: scale(1.1 ,1.1);
+}
+
+.accordion-card{
+  transition: transform 0.1s;
+  transform: translateX(0em);
+  padding: 10px;
+  width: 100%;
+}
+.accordion-card:hover{
+  transition: transform 0.1s;
+  transform: translateX(2em);
+}
+.accordion-box{
+  background-color:white !important;
+  color: black !important;
+  
+}
+.accordion-box:hover{
+  background-color: whitesmoke !important;
+  color: black !important;
+  font-weight: bold;
+}
+
+
+.price {
+  position: absolute;
+  background: #ffee00;
+  padding: 10px 20px;
+  text-align: center;
+  display: inline-block;
+  font-size: 24px;
+  font-weight: bold;
+  border-radius: 10px;
+  //border: 1px solid #ebdb00;
+  margin-right: -100px;
+  margin-top: 5px;
+  margin-left: 35px;
+  box-shadow: -10px 20px 15px -10px rgba(0, 0, 0, 0.4);
+  transform: rotate(4deg);
+}
+.custom-shadow{
+  box-shadow: -10px 10px 10px -5px rgba(0, 0, 0, 0.3);
+}
+
+:root {
+	--lerp-0: 1;
+  --lerp-1: 0.5625;
+  --lerp-2: 0.25;
+  --lerp-3: 0.0625;
+  --lerp-4: 0;
+}
+
+.blocks {
+  position: absolute;
+	display: flex;
+	list-style-type: none;
+	//padding: var(--size-2);
+	//border-radius: var(--radius-3);
+	gap: var(--size-4);
+	//background: hsl(0 0% 100% / 0.5);
+	align-items: center;
+	justify-content: center;
+	align-content: center;
+	//backdrop-filter: blur(10px);
+  width: 150px;
+  //margin-left: 45%;
+  left: 50%;
+  -ms-transform: translate(-50%);
+  transform: translate(-50%);
+}
+
+.blocks:hover {
+	--show: 1;
+}
+
+.block {
+	display: grid;
+	place-items: center;
+	align-content: center;
+	transition: flex 0.2s;
+	flex: calc(0.2 + (var(--lerp, 0) * 1.5));
+	position: relative;
+}
+
+.block:after {
+	content: '';
+	width: 5%;
+	aspect-ratio: 1;
+	//background: var(--text-1);
+	position: absolute;
+	bottom: 10%;
+	left: 50%;
+	//border-radius: var(--radius-3);
+	transform: translate(-50%, -50%);
+	z-index: -1;
+}
+
+.block:before {
+	content: '';
+	position: absolute;
+	width: calc(100% + var(--size-4));
+	bottom: 0;
+	aspect-ratio: 1 / 2;
+	left: 50%;
+	transition: transform 0.2s;
+	transform-origin: 50% 100%;
+	transform: translateX(-50%) scaleY(var(--show, 0));
+	z-index: -1;
+}
+
+.block .block__item {
+  transition: outline 0.2s;
+  outline: transparent var(--size-1) solid;
+}
+
+:is(.block:hover, .block:focus-visible) .block__item {
+	outline: var(--surface-1) var(--size-1) solid;
+}
+
+.block {
+	outline: none;
+}
+
+.block__item {
+	width: 100%;
+	aspect-ratio: 1;
+	border-radius: var(--radius-3);
+	background: var(--bg), var(--surface-1);
+	display: inline-block;
+	transition: transform 0.2s;
+	transform-origin: 50% 100%;
+	position: relative;
+	transform: translateY(calc(var(--lerp) * -75%));
+}
+
+.block__item:after {
+	content: '';
+	position: absolute;
+	height: 100%;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	aspect-ratio: 1;
+	//border-left: var(--size-2) solid white;
+	//border-top: var(--size-2) solid white;
+	//border-radius: var(--radius-3);
+	//mask: linear-gradient(135deg, black, transparent 50%);
+}
+
+
+:is(.block:hover, .block:focus-visible) {
+  --lerp: var(--lerp-0);
+  z-index: 5;
+}
+.block:has( + :is(.block:hover, .block:focus-visible)),
+:is(.block:hover, .block:focus-visible) + .block {
+  --lerp: var(--lerp-1);
+  z-index: 4;
+}
+.block:has( + .block + :is(.block:hover, .block:focus-visible)),
+:is(.block:hover, .block:focus-visible) + .block + .block {
+  --lerp: var(--lerp-2);
+  z-index: 3;
+}
+.block:has( + .block + .block + :is(.block:hover, .block:focus-visible)),
+:is(.block:hover, .block:focus-visible) + .block + .block + .block {
+  --lerp: var(--lerp-3);
+  z-index: 2;
+}
+.block:has( + .block + .block + .block + :is(.block:hover, .block:focus-visible)),
+:is(.block:hover, .block:focus-visible) + .block + .block + .block + .block {
+  --lerp: var(--lerp-4);
+  z-index: 1;
+}
+
+

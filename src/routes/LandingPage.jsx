@@ -49,88 +49,98 @@ export default function LandingPage() {
         {!isProfessor && isAdmin && <NavAdmin isLogged={isLogged}></NavAdmin>}
         <div className="background-mainpage">
           <div className="text-center text-light">
-            <h1 className="p-3 fw-bold">Learning Enjoying</h1>
+            <h1 className="fw-bold title">Learning Enjoying</h1>
             <p className="fs-4">La mejor academia para aprender</p>
-            <Link to="/courses">
-              <button className="btn btn-primary m-5">Nuestros cursos</button>
+            <Link to="/login">
+              <button className="btn btn-primary my-5 access-btn">
+                Acceder
+              </button>
             </Link>
           </div>
         </div>
         <div className="container-fluid py-5">
           <section className="container">
-            <h1 className="text-center py-5 fw-bold">Te ayudamos a aprender</h1>
+            <h1 className="text-center py-5 fw-bold title">
+              Te ayudamos a aprender
+            </h1>
             <div className="row justify-content-center text-center">
-              <div className="card col-lg-4 my-2 border">
-                <img
-                  alt="photo-of-girl-studying"
-                  src={certificate}
-                  className="card-img-top"
-                />
-                <div className="card-body">
-                  <div className="card-title fs-5 fw-bold">
-                    ¿Quieres un título oficial de inglés Cambridge?
+              <div className="card col-lg-4 my-2 border-0">
+                <div className="border rounded">
+                  <img
+                    alt="photo-of-girl-studying"
+                    src={certificate}
+                    className="card-img-top"
+                  />
+                  <div className="card-body">
+                    <div className="card-title fs-5 fw-bold">
+                      ¿Quieres un título oficial de inglés Cambridge?
+                    </div>
+                    <p className="card-text">
+                      Con nuestros cursos de inglés aprenderás inglés de una
+                      forma amena y divertida, mientras te preparas para
+                      afrontar los exámenes de Cambridge.
+                    </p>
+                    <Link to="/courses">
+                      <button className="btn btn-primary my-3">
+                        Nuestros cursos
+                      </button>
+                    </Link>
                   </div>
-                  <p className="card-text">
-                    Con nuestros cursos de inglés aprenderás inglés de una forma
-                    amena y divertida, mientras te preparas para afrontar los
-                    exámenes de Cambridge.
-                  </p>
-                  <Link to="/courses">
-                    <button className="btn btn-primary my-3">
-                      Nuestros cursos
-                    </button>
-                  </Link>
                 </div>
               </div>
-              <div className="card col-lg-4 my-2">
-                <img
-                  alt="photo-of-girl-studying"
-                  src={opos}
-                  className="card-img-top"
-                />
-                <div className="card-body">
-                  <div className="card-title fs-5 fw-bold">
-                    ¿Estás pensando en sacarte una oposición?
+              <div className="card col-lg-4 my-2 border-0">
+                <div className="border rounded">
+                  <img
+                    alt="photo-of-girl-studying"
+                    src={opos}
+                    className="card-img-top"
+                  />
+                  <div className="card-body">
+                    <div className="card-title fs-5 fw-bold">
+                      ¿Estás pensando en sacarte una oposición?
+                    </div>
+                    <p className="card-text">
+                      Si estás pensando en ser funcionario, te ayudamos a
+                      conseguir tu plaza. Oposiciones de secundaria, primaria,
+                      estatales, provinciales y locales.
+                    </p>
+                    <Link to="/courses">
+                      <button className="btn btn-primary my-3">
+                        Nuestros cursos
+                      </button>
+                    </Link>
                   </div>
-                  <p className="card-text">
-                    Si estás pensando en ser funcionario, te ayudamos a
-                    conseguir tu plaza. Oposiciones de secundaria, primaria,
-                    estatales, provinciales y locales.
-                  </p>
-                  <Link to="/courses">
-                    <button className="btn btn-primary my-3">
-                      Nuestros cursos
-                    </button>
-                  </Link>
                 </div>
               </div>
-              <div className="card col-lg-4 my-2 border">
-                <img
-                  alt="photo-of-worried-girl"
-                  src={math}
-                  className="card-img-top"
-                />
-                <div className="card-body">
-                  <div className="card-title fs-5 fw-bold">
-                    ¿Siempre se te han dado mal las matemáticas?
+              <div className="card col-lg-4 my-2 border-0">
+                <div className="border rounded">
+                  <img
+                    alt="photo-of-worried-girl"
+                    src={math}
+                    className="card-img-top"
+                  />
+                  <div className="card-body">
+                    <div className="card-title fs-5 fw-bold">
+                      ¿Siempre se te han dado mal las matemáticas?
+                    </div>
+                    <p className="card-text">
+                      Con nuestro curso de matemáticas ya no volverás a tener
+                      esos dolores de cabeza que a todos nos han dado las
+                      mátematicas. !Apúntate!
+                    </p>
+                    <Link to="/courses">
+                      <button className="btn btn-primary my-3">
+                        Nuestros cursos
+                      </button>
+                    </Link>
                   </div>
-                  <p className="card-text">
-                    Con nuestro curso de matemáticas ya no volverás a tener esos
-                    dolores de cabeza que a todos nos han dado las mátematicas.
-                    !Apúntate!
-                  </p>
-                  <Link to="/courses">
-                    <button className="btn btn-primary my-3">
-                      Nuestros cursos
-                    </button>
-                  </Link>
                 </div>
               </div>
             </div>
           </section>
         </div>
         <section className="container mb-5">
-          <h1 className="text-center pt-5 mb-5 fw-bold">
+          <h1 className="text-center pt-5 mb-5 fw-bold title">
             ¿Y qué dicen nuestros alumnos?
           </h1>
           <div className="row mb-5 pb-5">
@@ -166,7 +176,7 @@ export default function LandingPage() {
             <div className="col-lg-6">
               <img
                 alt="photo-of-boy"
-                className="rounded-circle shadow"
+                className="rounded-circle custom-shadow"
                 src={boy}
                 width="100%"
               ></img>
@@ -205,7 +215,7 @@ export default function LandingPage() {
             <div className="col-lg-6 d-flex align-items-center">
               <img
                 alt="photo-of-girl"
-                className="rounded shadow"
+                className="rounded custom-shadow"
                 src={girl}
                 width="100%"
               ></img>
@@ -213,19 +223,23 @@ export default function LandingPage() {
           </div>
         </section>
         <section className="container my-5">
-          <h1 className="text-center my-5 fw-bold">Preguntas frecuentes</h1>
+          <h1 className="text-center my-5 fw-bold title">
+            Preguntas frecuentes
+          </h1>
           <div className="accordion" id="accordionQA">
             <div className="accordion-item">
               <h2 className="accordion-header fw-bold">
                 <button
-                  className="accordion-button collapsed"
+                  className="accordion-button collapsed accordion-box"
                   type="button"
                   data-bs-toggle="collapse"
                   data-bs-target="#collapseOne"
                   aria-expanded="false"
                   aria-controls="collapseOne"
                 >
-                  ¿Cuál es la duración de los cursos?
+                  <div className="accordion-card">
+                    ¿Cuál es la duración de los cursos?
+                  </div>
                 </button>
               </h2>
               <div
@@ -246,14 +260,16 @@ export default function LandingPage() {
             <div className="accordion-item">
               <h2 className="accordion-header fw-bold">
                 <button
-                  className="accordion-button collapsed"
+                  className="accordion-button collapsed accordion-box"
                   type="button"
                   data-bs-toggle="collapse"
                   data-bs-target="#collapseTwo"
                   aria-expanded="false"
                   aria-controls="collapseTwo"
                 >
-                  ¿Se obtiene alguna titulación en la Academia?
+                  <div className="accordion-card">
+                    ¿Se obtiene alguna titulación en la Academia?
+                  </div>
                 </button>
               </h2>
               <div
@@ -272,14 +288,16 @@ export default function LandingPage() {
             <div className="accordion-item">
               <h2 className="accordion-header fw-bold">
                 <button
-                  className="accordion-button collapsed"
+                  className="accordion-button collapsed accordion-box"
                   type="button"
                   data-bs-toggle="collapse"
                   data-bs-target="#collapseThree"
                   aria-expanded="false"
                   aria-controls="collapseThree"
                 >
-                  ¿Cuántos estudiantes hay por grupo?
+                  <div className="accordion-card">
+                    ¿Cuántos estudiantes hay por grupo?
+                  </div>
                 </button>
               </h2>
               <div
@@ -297,14 +315,16 @@ export default function LandingPage() {
             <div className="accordion-item">
               <h2 className="accordion-header fw-bold">
                 <button
-                  className="accordion-button collapsed"
+                  className="accordion-button collapsed accordion-box"
                   type="button"
                   data-bs-toggle="collapse"
                   data-bs-target="#collapseFour"
                   aria-expanded="false"
                   aria-controls="collapseFour"
                 >
-                  ¿Qué necesito traer a la academia?
+                  <div className="accordion-card">
+                    ¿Qué necesito traer a la academia?
+                  </div>
                 </button>
               </h2>
               <div
@@ -324,14 +344,14 @@ export default function LandingPage() {
             <div className="accordion-item">
               <h2 className="accordion-header fw-bold">
                 <button
-                  className="accordion-button collapsed"
+                  className="accordion-button collapsed accordion-box"
                   type="button"
                   data-bs-toggle="collapse"
                   data-bs-target="#collapseFive"
                   aria-expanded="false"
                   aria-controls="collapseFive"
                 >
-                  ¿Ofrecéis descuentos?
+                  <div className="accordion-card">¿Ofrecéis descuentos?</div>
                 </button>
               </h2>
               <div
@@ -381,24 +401,49 @@ export default function LandingPage() {
               </div>
             </div>
             <div className="text-center small pt-5 pb-3">
-              <div className="d-flex justify-content-center gap-2">
-                <Link to="https://facebook.com">
-                  <img alt="facebook-logo" src={facebook} width="20px"></img>
+              <div className="d-flex justify-content-center gap-2 blocks">
+                <Link className="block" to="https://facebook.com">
+                  <img
+                    className="block__item"
+                    alt="facebook-logo"
+                    src={facebook}
+                    width="20px"
+                  ></img>
                 </Link>
-                <Link to="https://instagram.com">
-                  <img alt="instagram-logo" src={instagram} width="20px"></img>
+                <Link className="block" to="https://instagram.com">
+                  <img
+                    className="block__item"
+                    alt="instagram-logo"
+                    src={instagram}
+                    width="20px"
+                  ></img>
                 </Link>
-                <Link to="https://web.telegram.org/k/">
-                  <img alt="telegram-logo" src={telegram} width="20px"></img>
+                <Link className="block" to="https://web.telegram.org/k/">
+                  <img
+                    className="block__item"
+                    alt="telegram-logo"
+                    src={telegram}
+                    width="20px"
+                  ></img>
                 </Link>
-                <Link to="https://www.google.es/maps/preview">
-                  <img alt="maps-logo" src={maps} width="20px"></img>
+                <Link className="block" to="https://www.google.es/maps/preview">
+                  <img
+                    className="block__item"
+                    alt="maps-logo"
+                    src={maps}
+                    width="20px"
+                  ></img>
                 </Link>
-                <Link to="https://twitter.com/">
-                  <img alt="twitter-logo" src={twitter} width="20px"></img>
+                <Link className="block" to="https://twitter.com/">
+                  <img
+                    className="block__item"
+                    alt="twitter-logo"
+                    src={twitter}
+                    width="20px"
+                  ></img>
                 </Link>
               </div>
-              <div className="mt-2 text-secondary">
+              <div className="mt-4 text-secondary">
                 © 2023 | Jose Manuel Sánchez | All rights reserved
               </div>
             </div>
