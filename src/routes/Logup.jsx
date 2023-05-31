@@ -209,7 +209,7 @@ export default function Logup() {
       <br></br>
       <section className="d-flex justify-content-center p-5">
         <div>
-          <h1 className="mb-4">Crear cuenta</h1>
+          <h1 className="mb-4 fw-bold">Crear cuenta</h1>
           <form>
             <div className="row">
               <div className="form-outline mb-4 col">
@@ -355,11 +355,7 @@ export default function Logup() {
                   <div>
                     {errorPassword}
                     <span style={{ cursor: "pointer" }} className="ms-2">
-                      <img
-                        id="info"
-                        src={info}
-                        style={{ width: "15px" }}
-                      ></img>
+                      <img id="info" src={info} style={{ width: "15px" }}></img>
 
                       <Tooltip
                         placement="bottom"

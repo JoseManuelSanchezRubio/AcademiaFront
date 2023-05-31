@@ -120,7 +120,9 @@ export default function ForgotPassword() {
         </span>
       </div>
       <Modal isOpen={modal} toggle={toggle}>
-        <ModalHeader toggle={toggle}>Recuperación de contraseña</ModalHeader>
+        <ModalHeader toggle={toggle}>
+          <div className="fw-bold">Recuperación de contraseña</div>
+        </ModalHeader>
         <ModalBody>
           <div className="mb-3">
             Si has olvidado tu contraseña te enviaremos un correo electrónico

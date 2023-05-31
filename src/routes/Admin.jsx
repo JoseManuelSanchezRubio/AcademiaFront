@@ -109,76 +109,76 @@ export default function Admin() {
     if (!isLogged) return (window.location.href = "/login");
 
     return (
-        <div>
-            <NavAdmin isLogged={isLogged} />
-            <section className="p-5">
-                <h3>Cursos</h3>
-                <div className="d-flex flex-wrap gap-3">{coursesList}</div>
-            </section>
-            <section className="px-5">
-                <h3>Usuarios</h3>
-                <span>Filtrar por: </span>
-                <div className="d-flex gap-4">
-                    <div className="form-check">
-                        <input
-                            className="form-check-input"
-                            type="radio"
-                            name="flexRadioDefault"
-                            id="flexRadioDefault1"
-                            defaultChecked
-                            onChange={() => setShowUsers(true)}
-                        />
-                        <label className="form-check-label" htmlFor="flexRadioDefault1">
-                            Alumnos
-                        </label>
+      <div>
+        <NavAdmin isLogged={isLogged} />
+        <section className="p-5">
+          <h3 className="fw-bold">Cursos</h3>
+          <div className="d-flex flex-wrap gap-3">{coursesList}</div>
+        </section>
+        <section className="px-5">
+          <h3 className="fw-bold">Usuarios</h3>
+          <span>Filtrar por: </span>
+          <div className="d-flex gap-4">
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="radio"
+                name="flexRadioDefault"
+                id="flexRadioDefault1"
+                defaultChecked
+                onChange={() => setShowUsers(true)}
+              />
+              <label className="form-check-label" htmlFor="flexRadioDefault1">
+                Alumnos
+              </label>
+            </div>
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="radio"
+                name="flexRadioDefault"
+                id="flexRadioDefault2"
+                onChange={() => setShowUsers(false)}
+              />
+              <label className="form-check-label" htmlFor="flexRadioDefault2">
+                Profesores
+              </label>
+            </div>
+          </div>
+          <div className="table-responsive">
+            <table className="table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Apellidos</th>
+                  <th scope="col">DNI</th>
+                  <th scope="col">Dirección</th>
+                  <th scope="col">Teléfono</th>
+                  <th scope="col">Correo electrónico</th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+                {showUsers ? (
+                  usersList.length == 0 ? (
+                    <div className="text-secondary mt-3">
+                      Todavía no hay usuarios
                     </div>
-                    <div className="form-check">
-                        <input
-                            className="form-check-input"
-                            type="radio"
-                            name="flexRadioDefault"
-                            id="flexRadioDefault2"
-                            onChange={() => setShowUsers(false)}
-                        />
-                        <label className="form-check-label" htmlFor="flexRadioDefault2">
-                            Profesores
-                        </label>
-                    </div>
-                </div>
-                <div className="table-responsive">
-                    <table className="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Apellidos</th>
-                                <th scope="col">DNI</th>
-                                <th scope="col">Dirección</th>
-                                <th scope="col">Teléfono</th>
-                                <th scope="col">Correo electrónico</th>
-                                <th scope="col"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {showUsers ? (
-                                usersList.length == 0 ? (
-                                    <div className="text-secondary mt-3">
-                                        Todavía no hay usuarios
-                                    </div>
-                                ) : (
-                                    usersList
-                                )
-                            ) : professorsList.length == 0 ? (
-                                <div className="text-secondary mt-3">
-                                    Todavía no hay profesores
-                                </div>
-                            ) : (
-                                professorsList
-                            )}
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-        </div>
+                  ) : (
+                    usersList
+                  )
+                ) : professorsList.length == 0 ? (
+                  <div className="text-secondary mt-3">
+                    Todavía no hay profesores
+                  </div>
+                ) : (
+                  professorsList
+                )}
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
     );
 }

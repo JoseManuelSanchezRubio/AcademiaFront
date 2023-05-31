@@ -86,7 +86,7 @@ export default function UpdateUser() {
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
-              <h1 className="modal-title fs-5" id="exampleModalLabel">
+              <h1 className="modal-title fs-5 fw-bold" id="exampleModalLabel">
                 Edita tus datos personales
               </h1>
               <button

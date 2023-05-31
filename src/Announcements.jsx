@@ -76,7 +76,7 @@ export default function Announcements(props) {
     return (
       <div key={announcement.id}>
         <div className="card mb-4">
-          <h5 className="card-header">{announcement.title}</h5>
+          <h5 className="card-header fw-bold">{announcement.title}</h5>
           <div className="card-body">
             <p className="card-text">{announcement.body}</p>
           </div>
@@ -87,9 +87,11 @@ export default function Announcements(props) {
 
   return (
     <div>
-      <h1 className="text-lg-end">Anuncios</h1>
+      <h1 className="text-lg-end fw-bold">Anuncios</h1>
       {announcements.length == 0 && (
-        <div className="text-secondary mb-2 text-lg-end">Todavía no hay ningún anuncio</div>
+        <div className="text-secondary mb-2 text-lg-end">
+          Todavía no hay ningún anuncio
+        </div>
       )}
       <div>{announcementsList}</div>
       <div>
@@ -114,7 +116,7 @@ export default function Announcements(props) {
               <div className="modal-dialog">
                 <div className="modal-content">
                   <div className="modal-header">
-                    <h1 className="modal-title fs-5" id="modal">
+                    <h1 className="modal-title fs-5 fw-bold" id="modal">
                       Nuevo anuncio
                     </h1>
                     <button

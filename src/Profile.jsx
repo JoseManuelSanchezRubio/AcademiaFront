@@ -15,7 +15,7 @@ export default function Profile(props) {
           data-bs-target="#offcanvasScrolling"
           aria-controls="offcanvasScrolling"
         >
-          <img src={lessThan} style={{ width: '30px' }} />
+          <img src={lessThan} style={{ width: "30px" }} />
         </div>
       </div>
 
@@ -39,13 +39,13 @@ export default function Profile(props) {
           <div className="col">
             <div className="bg-blue rounded-4 px-4 py-5 m-auto">
               <div className="profile-picture rounded-circle">
-                <h1>
+                <h1 className="fw-bold">
                   {props.user.name[0]}
                   {props.user.surname[0]}
                 </h1>
               </div>
               <br></br>
-              <h3 className="text-center">
+              <h3 className="text-center fw-bold">
                 {props.user.name} {props.user.surname}
               </h3>
               <br></br>
@@ -73,5 +73,5 @@ export default function Profile(props) {
         </div>
       </div>
     </div>
-  )
+  );
 }

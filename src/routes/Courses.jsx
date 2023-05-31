@@ -57,53 +57,57 @@ export default function Courses() {
     }
 
     let coursesList = courses.map((item) => {
-        let random = Math.floor(Math.random() * 10);
-        let color = '';
-        if (random === 1) {
-            color = '#F0A990'
-        } else if (random === 2) {
-            color = '#FBF18A'
-        } else if (random === 3) {
-            color = '#C6FB8A'
-        } else if (random === 4) {
-            color = '#A5FCE5'
-        } else if (random === 5) {
-            color = '#A5E2FC'
-        } else if (random === 6) {
-            color = '#CDBFFE'
-        } else if (random === 7) {
-            color = '#FFD1F9'
-        } else if (random === 8) {
-            color = '#FF8C8C'
-        } else if (random === 9) {
-            color = '#8CA8FF'
-        } else {
-            color = '#9EFE9E'
-        }
-        return (
-            <div key={item.id} className={"card"} style={{ width: '250px', backgroundColor: color }}>
-                <div className="card-body">
-                    <h5 className="card-title">{item.name}</h5>
-                    <p className="card-text">{item.description}</p>
-                    <button className="btn btn-primary" id={item.id} onClick={(e) => buyCourse(e)}>Comprar</button>
-                </div>
-            </div>
-        )
-    })
-
-
-
-
+      let random = Math.floor(Math.random() * 10);
+      let color = "";
+      if (random === 1) {
+        color = "#F0A990";
+      } else if (random === 2) {
+        color = "#FBF18A";
+      } else if (random === 3) {
+        color = "#C6FB8A";
+      } else if (random === 4) {
+        color = "#A5FCE5";
+      } else if (random === 5) {
+        color = "#A5E2FC";
+      } else if (random === 6) {
+        color = "#CDBFFE";
+      } else if (random === 7) {
+        color = "#FFD1F9";
+      } else if (random === 8) {
+        color = "#FF8C8C";
+      } else if (random === 9) {
+        color = "#8CA8FF";
+      } else {
+        color = "#9EFE9E";
+      }
+      return (
+        <div
+          key={item.id}
+          className={"card"}
+          style={{ width: "250px", backgroundColor: color }}
+        >
+          <div className="card-body">
+            <h5 className="card-title fw-bold">{item.name}</h5>
+            <p className="card-text">{item.description}</p>
+            <button
+              className="btn btn-primary"
+              id={item.id}
+              onClick={(e) => buyCourse(e)}
+            >
+              Comprar
+            </button>
+          </div>
+        </div>
+      );
+    });
 
     return (
-        <div>
-            <Nav isLogged={isLogged} />
-            <div className="container">
-                <h1 className="my-5">Estos son nuestros cursos:</h1>
-                <div className="d-flex flex-wrap gap-5">
-                    {coursesList}
-                </div>
-            </div>
+      <div>
+        <Nav isLogged={isLogged} />
+        <div className="container">
+          <h1 className="my-5 fw-bold">Estos son nuestros cursos:</h1>
+          <div className="d-flex flex-wrap gap-5">{coursesList}</div>
         </div>
-    )
+      </div>
+    );
 }

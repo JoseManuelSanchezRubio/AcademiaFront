@@ -65,17 +65,15 @@ export default function Professor() {
 
     if (!isLogged) return window.location.href = '/login';
     return (
+      <div>
+        <NavProfessor isLogged={isLogged} />
         <div>
-            <NavProfessor isLogged={isLogged} />
-            <div>
-                <div className="container">
-                    <h1 className="my-5">Bienvenido, estos son tus cursos:</h1>
-                    <div className="d-flex flex-wrap gap-5">
-                        {coursesList}
-                    </div>
-                </div>
-                <Profile user={professor} />
-            </div>
+          <div className="container">
+            <h1 className="my-5 fw-bold">Bienvenido, estos son tus cursos:</h1>
+            <div className="d-flex flex-wrap gap-5">{coursesList}</div>
+          </div>
+          <Profile user={professor} />
         </div>
-    )
+      </div>
+    );
 }

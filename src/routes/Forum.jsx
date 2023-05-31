@@ -72,11 +72,11 @@ export default function Forum() {
       <Nav isLogged={isLogged}></Nav>
       <div className="container">
         <div className="py-3">
-          <h1 className="mb-4">Mensajes del foro</h1>
+          <h1 className="mb-4 fw-bold">Mensajes del foro</h1>
           <div className="forum-background rounded p-3">
             <div>
               {messages.length == 0 && (
-                <div className="no-messages">
+                <div className="empty">
                   <img src={nothing} width="200px" />
                   <br></br>
                   <label className="py-4">

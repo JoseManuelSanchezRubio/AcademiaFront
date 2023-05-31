@@ -155,7 +155,7 @@ export default function Events() {
       <Nav isLogged={isLogged}></Nav>
       <div className="row mx-5 my-4">
         <div className="col-lg-8">
-          <h1>Añadir evento</h1>
+          <h1 className="fw-bold">Añadir evento</h1>
           <form>
             <div className="mb-3">
               <label htmlFor="title" className="form-label">
@@ -234,8 +234,14 @@ export default function Events() {
           </form>
         </div>
         <aside className="col-lg-4">
-          <h1 className="text-lg-end mb-4">Tus eventos</h1>
-          <div className="text-secondary text-end">{eventsList.length == 0 && <div>Vaya... parece que todavía no tienes eventos. ¡Añade uno!</div>}</div>
+          <h1 className="text-lg-end mb-4 fw-bold">Tus eventos</h1>
+          <div className="text-secondary text-end">
+            {eventsList.length == 0 && (
+              <div>
+                Vaya... parece que todavía no tienes eventos. ¡Añade uno!
+              </div>
+            )}
+          </div>
           <div className="pt-3">{eventsList}</div>
         </aside>
       </div>

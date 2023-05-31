@@ -96,7 +96,7 @@ export default function NewCourse() {
     <div>
       <NavAdmin isLogged={isLogged} />
       <div className="container">
-        <h1 className="mb-4 pt-5">Nuevo curso</h1>
+        <h1 className="mb-4 pt-5 fw-bold">Nuevo curso</h1>
         <form>
           <div className="row">
             <div className="form-outline mb-4 col">

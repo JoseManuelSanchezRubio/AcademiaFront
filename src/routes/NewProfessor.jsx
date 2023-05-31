@@ -214,7 +214,7 @@ export default function NewProfessor() {
       <NavAdmin isLogged={isLogged} />
       <section className="d-flex justify-content-center p-5">
         <div>
-          <h1 className="mb-4">Añadir profesor</h1>
+          <h1 className="mb-4 fw-bold">Añadir profesor</h1>
           <form ref={form}>
             <div className="row">
               <div className="form-outline mb-4 col">
@@ -350,11 +350,7 @@ export default function NewProfessor() {
                   <div>
                     {errorPassword}
                     <span style={{ cursor: "pointer" }} className="ms-2">
-                      <img
-                        id="info"
-                        src={info}
-                        style={{ width: "15px" }}
-                      ></img>
+                      <img id="info" src={info} style={{ width: "15px" }}></img>
 
                       <Tooltip
                         placement="bottom"
@@ -366,7 +362,7 @@ export default function NewProfessor() {
                       >
                         La contraseña debe tener al menos cuatro carácteres. Los
                         carácteres especiales permitidos son: punto ( . ), guion
-                        ( - ) y guión bajo ( _ )
+                        ( - ) y guion bajo ( _ )
                       </Tooltip>
                     </span>
                   </div>

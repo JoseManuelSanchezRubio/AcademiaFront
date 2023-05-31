@@ -120,7 +120,7 @@ export default function Login() {
       <Nav isLogged={isLogged} />
       <section className="login container py-md-5 p-4">
         <div>
-          <h1 className="mb-4">Iniciar sesión</h1>
+          <h1 className="mb-4 fw-bold">Iniciar sesión</h1>
           <form>
             <div className="form-outline mb-4">
               <label className="form-label" htmlFor="emailForm">

@@ -49,7 +49,7 @@ export default function LandingPage() {
         {!isProfessor && isAdmin && <NavAdmin isLogged={isLogged}></NavAdmin>}
         <div className="background-mainpage">
           <div className="text-center text-light">
-            <h1 className="p-3">Learning Enjoying</h1>
+            <h1 className="p-3 fw-bold">Learning Enjoying</h1>
             <p className="fs-4">La mejor academia para aprender</p>
             <Link to="/courses">
               <button className="btn btn-primary m-5">Nuestros cursos</button>
@@ -58,9 +58,9 @@ export default function LandingPage() {
         </div>
         <div className="container-fluid py-5">
           <section className="container">
-            <h1 className="text-center py-5">Te ayudamos a aprender</h1>
+            <h1 className="text-center py-5 fw-bold">Te ayudamos a aprender</h1>
             <div className="row justify-content-center text-center">
-              <div className="card col-lg-4 my-2">
+              <div className="card col-lg-4 my-2 border">
                 <img
                   alt="photo-of-girl-studying"
                   src={certificate}
@@ -93,9 +93,9 @@ export default function LandingPage() {
                     ¿Estás pensando en sacarte una oposición?
                   </div>
                   <p className="card-text">
-                    Si estás pensando en ser funcionario, te ayudamos a conseguir
-                    tu plaza. Oposiciones de secundaria, primaria, estatales,
-                    provinciales y locales.
+                    Si estás pensando en ser funcionario, te ayudamos a
+                    conseguir tu plaza. Oposiciones de secundaria, primaria,
+                    estatales, provinciales y locales.
                   </p>
                   <Link to="/courses">
                     <button className="btn btn-primary my-3">
@@ -104,7 +104,7 @@ export default function LandingPage() {
                   </Link>
                 </div>
               </div>
-              <div className="card col-lg-4 my-2">
+              <div className="card col-lg-4 my-2 border">
                 <img
                   alt="photo-of-worried-girl"
                   src={math}
@@ -130,7 +130,7 @@ export default function LandingPage() {
           </section>
         </div>
         <section className="container mb-5">
-          <h1 className="text-center pt-5 mb-5">
+          <h1 className="text-center pt-5 mb-5 fw-bold">
             ¿Y qué dicen nuestros alumnos?
           </h1>
           <div className="row mb-5 pb-5">
@@ -146,9 +146,9 @@ export default function LandingPage() {
                   <br></br>
                   Learning enjoying es la mejor academia en la que he estado. Yo
                   he cursado el curso de matemáticas y la verdad es que me ha
-                  encantado. El profesor explica muy bien y hace unos apuntes muy
-                  buenos. A mi siempre me han costado mucho las matemáticas y
-                  desde que me apunté al curso soy de los mejores de la clase.
+                  encantado. El profesor explica muy bien y hace unos apuntes
+                  muy buenos. A mi siempre me han costado mucho las matemáticas
+                  y desde que me apunté al curso soy de los mejores de la clase.
                   <img
                     alt="quotations-symbol"
                     src={quotes}
@@ -213,10 +213,10 @@ export default function LandingPage() {
           </div>
         </section>
         <section className="container my-5">
-          <h1 className="text-center my-5 ">Preguntas frecuentes</h1>
+          <h1 className="text-center my-5 fw-bold">Preguntas frecuentes</h1>
           <div className="accordion" id="accordionQA">
             <div className="accordion-item">
-              <h2 className="accordion-header">
+              <h2 className="accordion-header fw-bold">
                 <button
                   className="accordion-button collapsed"
                   type="button"
@@ -244,7 +244,7 @@ export default function LandingPage() {
               </div>
             </div>
             <div className="accordion-item">
-              <h2 className="accordion-header">
+              <h2 className="accordion-header fw-bold">
                 <button
                   className="accordion-button collapsed"
                   type="button"
@@ -270,7 +270,7 @@ export default function LandingPage() {
               </div>
             </div>
             <div className="accordion-item">
-              <h2 className="accordion-header">
+              <h2 className="accordion-header fw-bold">
                 <button
                   className="accordion-button collapsed"
                   type="button"
@@ -289,13 +289,13 @@ export default function LandingPage() {
               >
                 <div className="accordion-body">
                   El tamaño de los grupos depende de la demanda que tenga.
-                  Normalmente suelen asistir entre 10 y 15 alumnos, pero el máximo
-                  es de 20 para poder un servicio de máxima calidad.
+                  Normalmente suelen asistir entre 10 y 15 alumnos, pero el
+                  máximo es de 20 para poder un servicio de máxima calidad.
                 </div>
               </div>
             </div>
             <div className="accordion-item">
-              <h2 className="accordion-header">
+              <h2 className="accordion-header fw-bold">
                 <button
                   className="accordion-button collapsed"
                   type="button"
@@ -313,15 +313,16 @@ export default function LandingPage() {
                 data-bs-parent="#accordionQA"
               >
                 <div className="accordion-body">
-                  En Learning Enjoying te proporcionamos los apuntes de la manera
-                  en la que tú quieras, tanto en papel como en formato PDF. Por
-                  tanto, al aula solo es necesario que traigas papel y boli para
-                  tomar apuntes, aunque eres libre de traer lo que quieras.
+                  En Learning Enjoying te proporcionamos los apuntes de la
+                  manera en la que tú quieras, tanto en papel como en formato
+                  PDF. Por tanto, al aula solo es necesario que traigas papel y
+                  boli para tomar apuntes, aunque eres libre de traer lo que
+                  quieras.
                 </div>
               </div>
             </div>
             <div className="accordion-item">
-              <h2 className="accordion-header">
+              <h2 className="accordion-header fw-bold">
                 <button
                   className="accordion-button collapsed"
                   type="button"
@@ -351,7 +352,7 @@ export default function LandingPage() {
           <div className="container">
             <div className="row pt-5">
               <div className="col-lg-6">
-                <h5>Learning Enjoying</h5>
+                <h5 className="fw-bold">Learning Enjoying</h5>
                 <p>
                   Nuestra academia busca provocar experiencias de aprendizaje
                   auténticas, completas, continuas, creativas y desafiantes para
