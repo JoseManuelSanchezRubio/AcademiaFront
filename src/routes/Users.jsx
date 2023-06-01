@@ -57,7 +57,7 @@ export default function Users() {
       {isProfessor && <NavProfessor isLogged={isLogged}></NavProfessor>}
       {!isProfessor && <Nav isLogged={isLogged}></Nav>}
       <div className="container table-responsive">
-        <table className="table mt-5">
+        <table className="table table-hover mt-5">
           <thead className="table-secondary">
             <tr className="text-center">
               <th scope="col">Nombre</th>

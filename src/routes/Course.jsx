@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Announcements from "../Announcements";
 import Nav from "../Nav";
 import { URL } from "../url";
-
+import { URL_STORAGE } from "../url";
 
 export default function Course() {
   const [course, setCourse] = useState([]);
@@ -56,7 +56,6 @@ export default function Course() {
   if (sessionStorage.getItem("token")) isLogged = true;
 
   if (!isLogged) return (window.location.href = "/login");
-  console.log(course);
   return (
     <div>
       <Nav isLogged={isLogged}></Nav>
@@ -64,10 +63,9 @@ export default function Course() {
         <div className="col-lg-9">
           <div>
             <h1 className="fw-bold">
-              {course.name} &bull;{" "}
-              <Link to={url} className="">
-                Compañeros
-              </Link>
+              {course.name}
+              <span className="mx-3">{"➜"}</span>
+              <Link to={url}>Compañeros</Link>
             </h1>
             {units.length == 0 && (
               <div className="py-4 text-secondary">
@@ -93,20 +91,18 @@ export default function Course() {
                     {unit.description}
                   </div>
                   <div className="fs-4">Teoría de la unidad:</div>
-                  <div className="ps-3">
-                    <Link to={`http://127.0.0.1:8000/storage/${unit.theory}`}>
+                  <div className="ps-4">
+                    <Link to={`${URL_STORAGE}/${unit.theory}`}>
                       {unit.theory}
                     </Link>
                   </div>
-                  <div className="fs-4 mt-3">Ejercicios de la unidad:</div>
-                  <div className="ps-3">
-                    <Link
-                      to={`http://127.0.0.1:8000/storage/${unit.exercises}`}
-                    >
+                  <div className="fs-4 mt-2">Ejercicios de la unidad:</div>
+                  <div className="ps-4">
+                    <Link to={`${URL_STORAGE}/${unit.exercises}`}>
                       {unit.exercises}
                     </Link>
                   </div>
-                  <div className="fs-4 mt-3">
+                  <div className="fs-4 mt-2">
                     Aquí puedes subir tus archivos para esta unidad:
                   </div>
                   <div className="d-flex gap-3 my-2 mx-3">

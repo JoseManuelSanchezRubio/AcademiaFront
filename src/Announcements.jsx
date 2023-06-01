@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { URL } from "./url";
 
 export default function Announcements(props) {
-
   const [announcements, setAnnouncements] = useState([]);
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
@@ -73,12 +72,14 @@ export default function Announcements(props) {
   }
 
   const announcementsList = announcements.map((announcement) => {
+    const date = new Date(announcement.created_at).toLocaleDateString();
     return (
       <div key={announcement.id}>
         <div className="card mb-4">
           <h5 className="card-header fw-bold">{announcement.title}</h5>
           <div className="card-body">
-            <p className="card-text">{announcement.body}</p>
+            <div className="card-text">{announcement.body}</div>
+            <div className="text-secondary date-announcement">{date}</div>
           </div>
         </div>
       </div>

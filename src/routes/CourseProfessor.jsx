@@ -91,10 +91,9 @@ export default function CourseProfessor() {
           <div className="col-lg-9 mb-4">
             <div>
               <h1 className="fw-bold">
-                {course.name} &bull;{" "}
-                <Link to={url} className="">
-                  Alumnos
-                </Link>
+                {course.name}
+                <span className="mx-3">{"➜"}</span>
+                <Link to={url}>Alumnos</Link>
               </h1>
               {units.length == 0 && (
                 <div className="py-4 text-secondary">
