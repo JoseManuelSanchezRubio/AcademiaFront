@@ -126,7 +126,7 @@
 }
 .spikes-footer {
   position: relative;
-  background: #f8f9fa;
+  background: white;
   height: 5vh;
   z-index: 10;
   box-shadow: 0px -20px 20px rgba(0, 0, 0, 0.205);
@@ -142,13 +142,33 @@
   display: block;
   height: 65px;
   background-size: 65px 100%;
-  background-image: linear-gradient(135deg, #f8f9fa 25%, transparent 25%), linear-gradient(225deg, #f8f9fa 25%, transparent 25%);
+  background-image: linear-gradient(135deg, white 25%, transparent 25%), linear-gradient(225deg, white 25%, transparent 25%);
   background-position: 0 0;
   transform: rotateX(180deg) rotateY(0deg);
   transform-style: preserve-3d;
 }
 .faq{
   background-color: aquamarine;
+}
+.waves {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  z-index: -1;
+}
+
+.waves svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 260px;
+}
+
+.waves .shape-fill {
+  fill: #0099ff;
 }
 
 .profile-picture {
@@ -248,7 +268,7 @@
 }
 .footer{
   padding-top: 60px;
-  background-color: #f8f9fa;
+  background-color: white;
 }
 .msg-right{
   float: right;
