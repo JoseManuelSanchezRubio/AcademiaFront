@@ -7,10 +7,12 @@ export default function NewCourse() {
   const [professors, setProfessors] = useState([]);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
+  const [price, setPrice] = useState();
   const [professorId, setProfessorId] = useState("");
 
   const [errorName, setErrorName] = useState("");
   const [errorDescription, setErrorDescription] = useState("");
+  const [errorPrice, setErrorPrice] = useState("");
   const [errorProfessorId, setErrorProfessorId] = useState("");
 
   useEffect(() => {
@@ -41,6 +43,14 @@ export default function NewCourse() {
       setErrorDescription("Debes rellenar este campo");
     } else {
       setErrorDescription("");
+    }
+  }
+  function handlePrice(e) {
+    setPrice(e);
+    if (e == "") {
+      setErrorPrice("Debes rellenar este campo");
+    } else {
+      setErrorPrice("");
     }
   }
   function handleProfessorId(e) {
@@ -78,6 +88,7 @@ export default function NewCourse() {
           name: name,
           description: description,
           professor_id: professorId,
+          price: price,
         }),
       };
       fetch(`${URL}/courses`, requestOptions)
@@ -141,6 +152,22 @@ export default function NewCourse() {
               <div className="text-danger fst-italic small">
                 {errorProfessorId}
               </div>
+            </div>
+            <div className="form-outline mb-4 col">
+              <label className="form-label" htmlFor="price">
+                Precio
+              </label>
+              <input
+                type="number"
+                id="price"
+                className={
+                  errorName == ""
+                    ? "form-control"
+                    : "form-control border border-danger shadow-none"
+                }
+                onChange={(e) => handlePrice(e.target.value)}
+              />
+              <div className="text-danger fst-italic small">{errorPrice}</div>
             </div>
           </div>
           <div className="form-outline mb-4">
