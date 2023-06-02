@@ -11,6 +11,9 @@ export default function Course() {
   const [isLogged, setIsLogged] = useState(false);
   const [course, setCourse] = useState([]);
   const [units, setUnits] = useState([]);
+  const [file, setFile] = useState();
+  const [file_name, setFile_name] = useState("");
+  const [unit_id, setUnit_id] = useState("");
   const courseId = JSON.parse(sessionStorage.getItem("courseId"));
   const user = JSON.parse(sessionStorage.getItem("user"));
   const url = `/users/${courseId}`;
@@ -28,31 +31,36 @@ export default function Course() {
         console.log(data);
       });
   }, []);
+  function uploadFile() {
+    if (file) {
+      const requestOptions = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          user_id: user.id,
+          unit_id: unit_id,
+          file_name: file_name,
+          file: file,
+        }),
+      };
+      console.log(requestOptions.body);
+      fetch(`${URL}/postUpload`, requestOptions);
+      alert("Archivo subido a la base de datos correctamente");
+    } else {
+      alert("Primero debes seleccionar un archivo");
+    }
+  }
   function handleFile(event) {
+    setUnit_id(event.target.id);
     let selectedFile = event.target.files;
-    let file = null;
-    let fileName = "";
     if (selectedFile.length > 0) {
       let fileToLoad = selectedFile[0];
-      fileName = fileToLoad.name;
+      setFile_name(fileToLoad.name);
       let fileReader = new FileReader();
       fileReader.onload = function (fileLoadedEvent) {
-        file = fileLoadedEvent.target.result;
-        const requestOptions = {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            user_id: user.id,
-            unit_id: event.target.id,
-            file_name: fileName,
-            file: file,
-          }),
-        };
-        console.log(requestOptions.body);
-        fetch(`${URL}/postUpload`, requestOptions);
-        alert("Archivo subido a la base de datos correctamente");
+        setFile(fileLoadedEvent.target.result);
       };
       fileReader.readAsDataURL(fileToLoad);
     }
@@ -113,7 +121,9 @@ export default function Course() {
                       type="file"
                       onChange={(e) => handleFile(e)}
                     />
-                    <button className="btn btn-primary">Subir</button>
+                    <button className="btn btn-primary" onClick={uploadFile}>
+                      Subir
+                    </button>
                   </div>
                 </div>
               </div>
