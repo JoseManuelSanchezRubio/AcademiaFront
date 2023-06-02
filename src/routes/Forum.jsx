@@ -1,17 +1,29 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Nav from "../Nav";
 //import assets
 import nothing from "../assets/nothing.png";
 import send from "../assets/send.png";
 import { URL } from "../url";
 
-
 export default function Forum() {
+  const navigate = useNavigate();
+  let isLogged = false;
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState("");
   const forum_id = window.location.pathname.split("/")[3];
-  const userId = JSON.parse(sessionStorage.getItem("user")).id;
+  const userId = JSON.parse(sessionStorage.getItem("user"))?.id;
   useEffect(() => {
+    if (
+      sessionStorage.getItem("token") != null &&
+      sessionStorage.getItem("user") != null
+    ) {
+      isLogged = true;
+    }
+
+    if (isLogged == false) {
+      return navigate("/login");
+    }
     const requestOptions = {
       method: "POST",
       headers: {
@@ -28,23 +40,23 @@ export default function Forum() {
 
   const messagesList = messages.map((message) => {
     const date = new Date(message.created_at).toLocaleDateString();
-    return (<div
-      key={message.id}
-      className={
-        message.user_id == userId
-          ? "msg-right m-1 p-2"
-          : "msg-left m-1 p-2"
-      }
-    >
-      {message.user_id != userId && (
-        <div className="fw-bold">
-          {message.user.name} {message.user.surname}
-        </div>
-      )}
-      <div className="float-start">{message.body}</div>
-      <div className="msg-date mt-3">{date}</div>
-    </div>)
-  })
+    return (
+      <div
+        key={message.id}
+        className={
+          message.user_id == userId ? "msg-right m-1 p-2" : "msg-left m-1 p-2"
+        }
+      >
+        {message.user_id != userId && (
+          <div className="fw-bold">
+            {message.user.name} {message.user.surname}
+          </div>
+        )}
+        <div className="float-start">{message.body}</div>
+        <div className="msg-date mt-3">{date}</div>
+      </div>
+    );
+  });
 
   async function saveMessage(e) {
     if (message == "") return alert("Debes escribir un mensaje");
@@ -63,10 +75,7 @@ export default function Forum() {
     await fetch(`${URL}/messages/`, requestOptions);
     window.location.reload();
   }
-  let isLogged = false;
-  if (sessionStorage.getItem("token")) isLogged = true;
 
-  if (!isLogged) return (window.location.href = "/login");
   return (
     <div>
       <Nav isLogged={isLogged}></Nav>

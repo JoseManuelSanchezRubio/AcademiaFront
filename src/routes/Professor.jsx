@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import NavProfessor from "../NavProfessor";
 import Profile from "../Profile";
@@ -7,12 +8,22 @@ import { URL } from "../url";
 import nothing from "../assets/nothing.png";
 
 export default function Professor() {
-  /* const [professor, setProfessor] = useState(); */
+  const navigate = useNavigate();
+  let isLogged = false;
   const [courses, setCourses] = useState([]);
   const professor = JSON.parse(sessionStorage.getItem("professor"));
 
   useEffect(() => {
-    const professorId = JSON.parse(sessionStorage.getItem("professor")).id;
+    if (
+      sessionStorage.getItem("token") != null &&
+      sessionStorage.getItem("professor") != null
+    ) {
+      isLogged = true;
+    }
+    if (!isLogged) {
+      return navigate("/login");
+    }
+    const professorId = JSON.parse(sessionStorage.getItem("professor"))?.id;
     fetch(`${URL}/professors/${professorId}`)
       .then((response) => response.json())
       .then((data) => {
@@ -25,23 +36,23 @@ export default function Professor() {
     let random = Math.floor(Math.random() * 9);
     let color = "";
     if (random === 1) {
-      color = "#F0A990"; //rojo
+      color = "#FFCCCC"; //rojo
     } else if (random === 2) {
-      color = "#fbd28a"; //amarillo
+      color = "#FFE5CC"; //naranja
     } else if (random === 3) {
       color = "#A5FCE5"; //cian
     } else if (random === 4) {
-      color = "#A5E2FC"; //azul
+      color = "#CCFFFF"; //azul
     } else if (random === 5) {
-      color = "#CDBFFE"; //morado
+      color = "#CCCCFF"; //morado
     } else if (random === 6) {
       color = "#FFD1F9"; //rosa
     } else if (random === 7) {
-      color = "#FF8C8C"; //rojo
+      color = "#FF8C8C"; //rojo oscuro
     } else if (random === 8) {
-      color = "#8CA8FF"; //azul oscuro
+      color = "#99CCFF"; //azul oscuro
     } else {
-      color = "#9EFE9E"; //verde
+      color = "#CCFFCC"; //verde
     }
     return (
       <div
@@ -71,10 +82,6 @@ export default function Professor() {
     sessionStorage.setItem("courseId", JSON.stringify(e.target.id));
   }
 
-  let isLogged = false;
-  if (sessionStorage.getItem("token")) isLogged = true;
-
-  //if (!isLogged) return window.location.href = '/login';
   return (
     <div>
       <NavProfessor isLogged={isLogged} />

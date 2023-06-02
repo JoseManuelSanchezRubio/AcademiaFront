@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Nav from "../Nav";
 import NavProfessor from "../NavProfessor";
@@ -7,11 +8,27 @@ import { URL, URL_STORAGE } from "../url";
 import nothing from "../assets/nothing.png";
 
 export default function Users() {
+  const navigate = useNavigate();
+  let isLogged = false;
+  let isProfessor = false;
   const [users, setUsers] = useState([]);
   const [uploads, setUploads] = useState([]);
   const [userId, setUserId] = useState("1");
 
   useEffect(() => {
+    if (sessionStorage.getItem("professor") != null) {
+      isProfessor = true;
+    }
+    if (
+      (sessionStorage.getItem("token") != null &&
+        sessionStorage.getItem("user") != null) ||
+      sessionStorage.getItem("professor") != null
+    ) {
+      isLogged = true;
+    }
+    if (isLogged == false) {
+      return navigate("/login");
+    }
     const courseId = JSON.parse(sessionStorage.getItem("courseId"));
     fetch(`${URL}/courses/${courseId}`)
       .then((res) => res.json())
@@ -44,20 +61,13 @@ export default function Users() {
       </div>
     );
   });
-  let isProfessor = false;
-  let isLogged = false;
-  if (sessionStorage.getItem("professor")) isProfessor = true;
-  if (sessionStorage.getItem("token")) {
-    isLogged = true;
-  }
 
-  if (!isLogged) return window.location.href = '/login';
   return (
     <div>
       {isProfessor && <NavProfessor isLogged={isLogged}></NavProfessor>}
       {!isProfessor && <Nav isLogged={isLogged}></Nav>}
       <div className="container table-responsive">
-        <table className="table mt-5">
+        <table className="table table-hover mt-5">
           <thead className="table-secondary">
             <tr className="text-center">
               <th scope="col">Nombre</th>

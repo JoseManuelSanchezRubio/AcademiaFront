@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import NavAdmin from "../NavAdmin";
 import { URL } from "../url";
 
-
 export default function NewCourse() {
+  const navigate = useNavigate();
+  let isLogged = false;
   const [professors, setProfessors] = useState([]);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -16,6 +18,16 @@ export default function NewCourse() {
   const [errorProfessorId, setErrorProfessorId] = useState("");
 
   useEffect(() => {
+    if (
+      sessionStorage.getItem("token") != null &&
+      sessionStorage.getItem("admin") != null
+    ) {
+      isLogged = true;
+    }
+
+    if (isLogged == false) {
+      return navigate("/login");
+    }
     fetch(`${URL}/professors`)
       .then((res) => res.json())
       .then((data) => setProfessors(data));
@@ -96,12 +108,6 @@ export default function NewCourse() {
         .then((data) => checkNewCourse(data));
     }
   }
-
-  let isLogged = false;
-  if (sessionStorage.getItem("token") && sessionStorage.getItem("admin"))
-    isLogged = true;
-
-  if (!isLogged) return (window.location.href = "/login");
 
   return (
     <div>

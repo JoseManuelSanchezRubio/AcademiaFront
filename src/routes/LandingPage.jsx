@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Nav from "../Nav";
 import NavAdmin from "../NavAdmin";
 import NavProfessor from "../NavProfessor";
+import { URL } from "../url";
 //assets imports
 import boy from "../assets/boy.webp";
 import certificate from "../assets/certificate.webp";
@@ -15,10 +16,11 @@ import opos from "../assets/opos.webp";
 import quotes from "../assets/quotes.png";
 import telegram from "../assets/telegram.png";
 import twitter from "../assets/twitter.png";
-import { URL } from "../url";
+import bug from "../assets/bug.png";
 
 export default function LandingPage() {
   const [courses, setCourses] = useState([]);
+
   let isLogged = false;
   let isProfessor = false;
   let isAdmin = false;
@@ -27,11 +29,11 @@ export default function LandingPage() {
   if (sessionStorage.getItem("admin")) isAdmin = true;
   useEffect(() => {
     fetch(`${URL}/courses`)
-      .then(res => res.json())
-      .then(data => {
-        setCourses(data)
-      })
-  }, [])
+      .then((res) => res.json())
+      .then((data) => {
+        setCourses(data);
+      });
+  }, []);
   let coursesList = courses.map((course) => {
     return (
       <div key={course.id}>
@@ -39,8 +41,8 @@ export default function LandingPage() {
           <div>{course.name}</div>
         </div>
       </div>
-    )
-  })
+    );
+  });
   if (courses) {
     return (
       <div>
@@ -51,19 +53,22 @@ export default function LandingPage() {
           <div className="text-center">
             <h1 className="fw-bold title">Learning Enjoying</h1>
             <p className="fs-4">La mejor academia para aprender</p>
-            <Link to="/login">
-              <div className="btn my-5 access-btn">Acceder</div>
+            <Link style={{ textDecoration: "none", color: "none" }} to="/login">
+              <div className="my-5 access-btn">Acceder</div>
             </Link>
           </div>
         </div>
-        <div className="container-fluid cards-section">
+        <h1 className="text-center py-5 fw-bold title separator">
+          Te ayudamos a aprender
+        </h1>
+        <section>
+          <div className="skewed-up"></div>
+        </section>
+        <div className="container-flex cards-section-bg">
           <section className="container">
-            <h1 className="text-center py-5 fw-bold title">
-              Te ayudamos a aprender
-            </h1>
             <div className="row justify-content-center text-center">
               <article className="card col-lg-4 my-2 border-0">
-                <div className="border rounded bg-white">
+                <div className="rounded bg-white course-card">
                   <img
                     alt="photo-of-girl-studying"
                     src={certificate}
@@ -78,16 +83,16 @@ export default function LandingPage() {
                       forma amena y divertida, mientras te preparas para
                       afrontar los exámenes de Cambridge.
                     </p>
-                    <Link to="/courses">
-                      <button className="btn btn-primary my-3">
-                        Nuestros cursos
-                      </button>
+                  </div>
+                  <div className="mb-4">
+                    <Link to="/courses" className="btn-courses">
+                      Nuestros cursos
                     </Link>
                   </div>
                 </div>
               </article>
               <article className="card col-lg-4 my-2 border-0">
-                <div className="border rounded bg-white">
+                <div className="rounded bg-white course-card">
                   <img
                     alt="photo-of-girl-studying"
                     src={opos}
@@ -102,16 +107,16 @@ export default function LandingPage() {
                       conseguir tu plaza. Oposiciones de secundaria, primaria,
                       estatales, provinciales y locales.
                     </p>
-                    <Link to="/courses">
-                      <button className="btn btn-primary my-3">
-                        Nuestros cursos
-                      </button>
+                  </div>
+                  <div className="mb-4">
+                    <Link to="/courses" className="btn-courses">
+                      Nuestros cursos
                     </Link>
                   </div>
                 </div>
               </article>
               <article className="card col-lg-4 my-2 border-0">
-                <div className="border rounded bg-white">
+                <div className="rounded bg-white course-card">
                   <img
                     alt="photo-of-worried-girl"
                     src={math}
@@ -126,10 +131,10 @@ export default function LandingPage() {
                       esos dolores de cabeza que a todos nos han dado las
                       mátematicas. !Apúntate!
                     </p>
-                    <Link to="/courses">
-                      <button className="btn btn-primary my-3">
-                        Nuestros cursos
-                      </button>
+                  </div>
+                  <div className="mb-4">
+                    <Link to="/courses" className="btn-courses">
+                      Nuestros cursos
                     </Link>
                   </div>
                 </div>
@@ -137,7 +142,11 @@ export default function LandingPage() {
             </div>
           </section>
         </div>
-        <section className="container mb-5">
+        <section>
+          <div className="skewed-down"></div>
+        </section>
+        <img src={bug} className="bug"></img>
+        <section className="container mb-5 testimonials">
           <h1 className="text-center pt-5 mb-5 fw-bold title">
             ¿Y qué dicen nuestros alumnos?
           </h1>
@@ -220,155 +229,163 @@ export default function LandingPage() {
             </div>
           </div>
         </section>
-        <section className="container my-5">
-          <h1 className="text-center my-5 fw-bold title">
-            Preguntas frecuentes
-          </h1>
-          <div className="accordion" id="accordionQA">
-            <div className="accordion-item">
-              <h2 className="accordion-header fw-bold">
-                <button
-                  className="accordion-button collapsed accordion-box"
-                  type="button"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#collapseOne"
-                  aria-expanded="false"
-                  aria-controls="collapseOne"
+        <section className="spikes"></section>
+        <div className="faq pb-5">
+          <section className="container my-5">
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <h1 className="text-center my-5 fw-bold title">
+              Preguntas frecuentes
+            </h1>
+            <div className="accordion" id="accordionQA">
+              <div className="accordion-item">
+                <h2 className="accordion-header fw-bold">
+                  <button
+                    className="accordion-button shadow-none collapsed accordion-box"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseOne"
+                    aria-expanded="false"
+                    aria-controls="collapseOne"
+                  >
+                    <div className="accordion-card">
+                      ¿Cuál es la duración de los cursos?
+                    </div>
+                  </button>
+                </h2>
+                <div
+                  id="collapseOne"
+                  className="accordion-collapse collapse"
+                  data-bs-parent="#accordionQA"
                 >
-                  <div className="accordion-card">
-                    ¿Cuál es la duración de los cursos?
+                  <div className="accordion-body">
+                    La duración de los cursos depende del curso en el que estés
+                    matriculado. Si estás matriculado en un curso de alguna
+                    asignatura de la universidad, su duración será de un
+                    cuatrimestre, es decir, igual que en la universidad. Otro
+                    tipo de cursos, como son los de idiomas, tienen una duración
+                    de un año, ya que los exámenes oficiales de idiomas son
+                    anuales.
                   </div>
-                </button>
-              </h2>
-              <div
-                id="collapseOne"
-                className="accordion-collapse collapse"
-                data-bs-parent="#accordionQA"
-              >
-                <div className="accordion-body">
-                  La duración de los cursos depende del curso en el que estés
-                  matriculado. Si estás matriculado en un curso de alguna
-                  asignatura de la universidad, su duración será de un
-                  cuatrimestre, es decir, igual que en la universidad. Otro tipo
-                  de cursos, como son los de idiomas, tienen una duración de un
-                  año, ya que los exámenes oficiales de idiomas son anuales.
                 </div>
               </div>
-            </div>
-            <div className="accordion-item">
-              <h2 className="accordion-header fw-bold">
-                <button
-                  className="accordion-button collapsed accordion-box"
-                  type="button"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#collapseTwo"
-                  aria-expanded="false"
-                  aria-controls="collapseTwo"
+              <div className="accordion-item">
+                <h2 className="accordion-header fw-bold">
+                  <button
+                    className="accordion-button shadow-none collapsed accordion-box"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseTwo"
+                    aria-expanded="false"
+                    aria-controls="collapseTwo"
+                  >
+                    <div className="accordion-card">
+                      ¿Se obtiene alguna titulación en la Academia?
+                    </div>
+                  </button>
+                </h2>
+                <div
+                  id="collapseTwo"
+                  className="accordion-collapse collapse"
+                  data-bs-parent="#accordionQA"
                 >
-                  <div className="accordion-card">
-                    ¿Se obtiene alguna titulación en la Academia?
+                  <div className="accordion-body border-top">
+                    Actualmente no se obtiene ninguna titulación oficial por
+                    estudiar en nuestra academia, si bien estamos trabajando en
+                    poder ofrecerte una certificación proporcional a tu trabajo
+                    en la academia.
                   </div>
-                </button>
-              </h2>
-              <div
-                id="collapseTwo"
-                className="accordion-collapse collapse"
-                data-bs-parent="#accordionQA"
-              >
-                <div className="accordion-body">
-                  Actualmente no se obtiene ninguna titulación oficial por
-                  estudiar en nuestra academia, si bien estamos trabajando en
-                  poder ofrecerte una certificación proporcional a tu trabajo en
-                  la academia.
                 </div>
               </div>
-            </div>
-            <div className="accordion-item">
-              <h2 className="accordion-header fw-bold">
-                <button
-                  className="accordion-button collapsed accordion-box"
-                  type="button"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#collapseThree"
-                  aria-expanded="false"
-                  aria-controls="collapseThree"
+              <div className="accordion-item">
+                <h2 className="accordion-header fw-bold">
+                  <button
+                    className="accordion-button shadow-none collapsed accordion-box"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseThree"
+                    aria-expanded="false"
+                    aria-controls="collapseThree"
+                  >
+                    <div className="accordion-card">
+                      ¿Cuántos estudiantes hay por grupo?
+                    </div>
+                  </button>
+                </h2>
+                <div
+                  id="collapseThree"
+                  className="accordion-collapse collapse"
+                  data-bs-parent="#accordionQA"
                 >
-                  <div className="accordion-card">
-                    ¿Cuántos estudiantes hay por grupo?
+                  <div className="accordion-body border-top">
+                    El tamaño de los grupos depende de la demanda que tenga.
+                    Normalmente suelen asistir entre 10 y 15 alumnos, pero el
+                    máximo es de 20 para poder un servicio de máxima calidad.
                   </div>
-                </button>
-              </h2>
-              <div
-                id="collapseThree"
-                className="accordion-collapse collapse"
-                data-bs-parent="#accordionQA"
-              >
-                <div className="accordion-body">
-                  El tamaño de los grupos depende de la demanda que tenga.
-                  Normalmente suelen asistir entre 10 y 15 alumnos, pero el
-                  máximo es de 20 para poder un servicio de máxima calidad.
                 </div>
               </div>
-            </div>
-            <div className="accordion-item">
-              <h2 className="accordion-header fw-bold">
-                <button
-                  className="accordion-button collapsed accordion-box"
-                  type="button"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#collapseFour"
-                  aria-expanded="false"
-                  aria-controls="collapseFour"
+              <div className="accordion-item">
+                <h2 className="accordion-header fw-bold">
+                  <button
+                    className="accordion-button shadow-none collapsed accordion-box"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseFour"
+                    aria-expanded="false"
+                    aria-controls="collapseFour"
+                  >
+                    <div className="accordion-card">
+                      ¿Qué necesito traer a la academia?
+                    </div>
+                  </button>
+                </h2>
+                <div
+                  id="collapseFour"
+                  className="accordion-collapse collapse"
+                  data-bs-parent="#accordionQA"
                 >
-                  <div className="accordion-card">
-                    ¿Qué necesito traer a la academia?
+                  <div className="accordion-body border-top">
+                    En Learning Enjoying te proporcionamos los apuntes de la
+                    manera en la que tú quieras, tanto en papel como en formato
+                    PDF. Por tanto, al aula solo es necesario que traigas papel
+                    y boli para tomar apuntes, aunque eres libre de traer lo que
+                    quieras.
                   </div>
-                </button>
-              </h2>
-              <div
-                id="collapseFour"
-                className="accordion-collapse collapse"
-                data-bs-parent="#accordionQA"
-              >
-                <div className="accordion-body">
-                  En Learning Enjoying te proporcionamos los apuntes de la
-                  manera en la que tú quieras, tanto en papel como en formato
-                  PDF. Por tanto, al aula solo es necesario que traigas papel y
-                  boli para tomar apuntes, aunque eres libre de traer lo que
-                  quieras.
                 </div>
               </div>
-            </div>
-            <div className="accordion-item">
-              <h2 className="accordion-header fw-bold">
-                <button
-                  className="accordion-button collapsed accordion-box"
-                  type="button"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#collapseFive"
-                  aria-expanded="false"
-                  aria-controls="collapseFive"
+              <div className="accordion-item">
+                <h2 className="accordion-header fw-bold">
+                  <button
+                    className="accordion-button shadow-none collapsed accordion-box"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseFive"
+                    aria-expanded="false"
+                    aria-controls="collapseFive"
+                  >
+                    <div className="accordion-card">¿Ofrecéis descuentos?</div>
+                  </button>
+                </h2>
+                <div
+                  id="collapseFive"
+                  className="accordion-collapse collapse"
+                  data-bs-parent="#accordionQA"
                 >
-                  <div className="accordion-card">¿Ofrecéis descuentos?</div>
-                </button>
-              </h2>
-              <div
-                id="collapseFive"
-                className="accordion-collapse collapse"
-                data-bs-parent="#accordionQA"
-              >
-                <div className="accordion-body">
-                  Sí, si estás matriculado en una asignatura, te ofrecemos un
-                  descuento del 10% si te apuntas al curso intensivo.
+                  <div className="accordion-body border-top">
+                    Sí, si estás matriculado en una asignatura, te ofrecemos un
+                    descuento del 10% si te apuntas al curso intensivo.
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </section>
-
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+          </section>
+        </div>
+        <section className="spikes-footer"></section>
         <footer className="footer">
           <div className="container">
-            <div className="row pt-5">
+            <div className="row">
               <div className="col-lg-6">
                 <h5 className="fw-bold">Learning Enjoying</h5>
                 <p>
@@ -385,7 +402,17 @@ export default function LandingPage() {
                   <div className="col">
                     <div>
                       <div className="fw-bold mb-1">Nuestros cursos</div>
-                      {coursesList}
+                      {courses.length < 5 ? (
+                        coursesList
+                      ) : (
+                        <div key="coursesList">
+                          <div key="uno">{courses[0].name}</div>
+                          <div key="dos">{courses[1].name}</div>
+                          <div key="tres">{courses[2].name}</div>
+                          <div key="cuatro">{courses[3].name}</div>
+                          <div key="cinco">Y más...</div>
+                        </div>
+                      )}
                     </div>
                   </div>
                   <div className="col">
@@ -393,6 +420,7 @@ export default function LandingPage() {
                       <div className="fw-bold mb-1">Contacto</div>
                       <div>+34 947 813 746</div>
                       <div>learningenjoying@gmail.com</div>
+                      <div>C/ Colón, 56 (03578)</div>
                     </div>
                   </div>
                 </div>

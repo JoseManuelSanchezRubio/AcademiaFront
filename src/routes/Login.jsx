@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import ForgotPassword from "../ForgotPassword";
 import Nav from "../Nav";
@@ -7,6 +8,7 @@ import showPassword from "../assets/show-password.png";
 import { URL } from "../url";
 
 export default function Login() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isProfessor, setIsProfessor] = useState(false);
@@ -54,15 +56,15 @@ export default function Login() {
       if (email == "admin@learningenjoying.com") {
         sessionStorage.setItem("token", data.token);
         sessionStorage.setItem("admin", JSON.stringify(data.user));
-        window.location.href = "/admin";
+        navigate("/admin");
       } else if (isProfessor) {
         sessionStorage.setItem("token", data.token);
         sessionStorage.setItem("professor", JSON.stringify(data.professor));
-        window.location.href = "/professor";
+        navigate("/professor");
       } else {
         sessionStorage.setItem("token", data.token);
         sessionStorage.setItem("user", JSON.stringify(data.user));
-        window.location.href = "/user";
+        navigate("/user");
       }
     } else {
       alert(data.message);

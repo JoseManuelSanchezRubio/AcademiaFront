@@ -1,13 +1,15 @@
 /* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Pomodoro from "./Pomodoro";
 
 export default function Nav(props) {
+  const navigate = useNavigate();
   function logout() {
     sessionStorage.removeItem("token");
     sessionStorage.removeItem("user");
     sessionStorage.removeItem("courseId");
-    window.location.href = "/";
+    return navigate("/login");
   }
 
   if (props.isLogged) {
@@ -89,7 +91,7 @@ export default function Nav(props) {
             className="navbar-brand ps-5"
             to="/"
           >
-            Learning enjoying
+            Learning Enjoying
           </Link>
           <button
             className="navbar-toggler"
@@ -103,7 +105,17 @@ export default function Nav(props) {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbar-not-logged">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0"></ul>
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+              <li className="nav-item">
+                <Link
+                  aria-label="link-to-courses"
+                  className="nav-link"
+                  to="/courses"
+                >
+                  Nuestros cursos
+                </Link>
+              </li>
+            </ul>
             <div className="navbar-nav me-5">
               <li className="nav-item">
                 <Link

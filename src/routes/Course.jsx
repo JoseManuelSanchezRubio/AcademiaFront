@@ -1,18 +1,34 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Announcements from "../Announcements";
 import Nav from "../Nav";
 import { URL } from "../url";
-
+import { URL_STORAGE } from "../url";
 
 export default function Course() {
+  const navigate = useNavigate();
+  let isLogged = false;
   const [course, setCourse] = useState([]);
   const [units, setUnits] = useState([]);
+  const [file, setFile] = useState();
+  const [file_name, setFile_name] = useState("");
+  const [unit_id, setUnit_id] = useState("");
   const courseId = JSON.parse(sessionStorage.getItem("courseId"));
   const user = JSON.parse(sessionStorage.getItem("user"));
   const url = `/users/${courseId}`;
 
   useEffect(() => {
+    if (
+      sessionStorage.getItem("token") != null &&
+      sessionStorage.getItem("user") != null
+    ) {
+      isLogged = true;
+    }
+
+    if (isLogged == false) {
+      return navigate("/login");
+    }
     const courseId = JSON.parse(sessionStorage.getItem("courseId"));
     fetch(`${URL}/courses/${courseId}`)
       .then((res) => res.json())
@@ -22,41 +38,40 @@ export default function Course() {
         console.log(data);
       });
   }, []);
+  function uploadFile() {
+    if (file) {
+      const requestOptions = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          user_id: user.id,
+          unit_id: unit_id,
+          file_name: file_name,
+          file: file,
+        }),
+      };
+      console.log(requestOptions.body);
+      fetch(`${URL}/postUpload`, requestOptions);
+      alert("Archivo subido a la base de datos correctamente");
+    } else {
+      alert("Primero debes seleccionar un archivo");
+    }
+  }
   function handleFile(event) {
+    setUnit_id(event.target.id);
     let selectedFile = event.target.files;
-    let file = null;
-    let fileName = "";
     if (selectedFile.length > 0) {
       let fileToLoad = selectedFile[0];
-      fileName = fileToLoad.name;
+      setFile_name(fileToLoad.name);
       let fileReader = new FileReader();
       fileReader.onload = function (fileLoadedEvent) {
-        file = fileLoadedEvent.target.result;
-        const requestOptions = {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            user_id: user.id,
-            unit_id: event.target.id,
-            file_name: fileName,
-            file: file,
-          }),
-        };
-        console.log(requestOptions.body);
-        fetch(`${URL}/postUpload`, requestOptions);
-        alert("Archivo subido a la base de datos correctamente");
+        setFile(fileLoadedEvent.target.result);
       };
       fileReader.readAsDataURL(fileToLoad);
     }
   }
-
-  let isLogged = false;
-  if (sessionStorage.getItem("token")) isLogged = true;
-
-  if (!isLogged) return (window.location.href = "/login");
-  console.log(course);
   return (
     <div>
       <Nav isLogged={isLogged}></Nav>
@@ -64,10 +79,9 @@ export default function Course() {
         <div className="col-lg-9">
           <div>
             <h1 className="fw-bold">
-              {course.name} &bull;{" "}
-              <Link to={url} className="">
-                Compañeros
-              </Link>
+              {course.name}
+              <span className="mx-3">{"➜"}</span>
+              <Link to={url}>Compañeros</Link>
             </h1>
             {units.length == 0 && (
               <div className="py-4 text-secondary">
@@ -93,20 +107,18 @@ export default function Course() {
                     {unit.description}
                   </div>
                   <div className="fs-4">Teoría de la unidad:</div>
-                  <div className="ps-3">
-                    <Link to={`http://127.0.0.1:8000/storage/${unit.theory}`}>
+                  <div className="ps-4">
+                    <Link to={`${URL_STORAGE}/${unit.theory}`}>
                       {unit.theory}
                     </Link>
                   </div>
-                  <div className="fs-4 mt-3">Ejercicios de la unidad:</div>
-                  <div className="ps-3">
-                    <Link
-                      to={`http://127.0.0.1:8000/storage/${unit.exercises}`}
-                    >
+                  <div className="fs-4 mt-2">Ejercicios de la unidad:</div>
+                  <div className="ps-4">
+                    <Link to={`${URL_STORAGE}/${unit.exercises}`}>
                       {unit.exercises}
                     </Link>
                   </div>
-                  <div className="fs-4 mt-3">
+                  <div className="fs-4 mt-2">
                     Aquí puedes subir tus archivos para esta unidad:
                   </div>
                   <div className="d-flex gap-3 my-2 mx-3">
@@ -116,7 +128,9 @@ export default function Course() {
                       type="file"
                       onChange={(e) => handleFile(e)}
                     />
-                    <button className="btn btn-primary">Subir</button>
+                    <button className="btn btn-primary" onClick={uploadFile}>
+                      Subir
+                    </button>
                   </div>
                 </div>
               </div>

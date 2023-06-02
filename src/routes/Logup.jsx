@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Tooltip } from "reactstrap";
 import Nav from "../Nav";
 //assets imports
@@ -7,6 +8,7 @@ import showPassword from "../assets/show-password.png";
 import { URL } from "../url";
 
 export default function Logup() {
+  const navigate = useNavigate();
   const [popoverOpen, setPopoverOpen] = useState(false);
 
   const [name, setName] = useState("");
@@ -51,7 +53,7 @@ export default function Logup() {
       sessionStorage.setItem("token", data.token);
       sessionStorage.setItem("user", JSON.stringify(data.user));
       alert("Cuenta creada correctamente");
-      window.location.href = "/login";
+      navigate("/login");
     } else {
       alert(data.message);
     }
