@@ -150,26 +150,7 @@
 .faq{
   background-color: aquamarine;
 }
-.waves {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  overflow: hidden;
-  line-height: 0;
-  z-index: -1;
-}
 
-.waves svg {
-  position: relative;
-  display: block;
-  width: calc(100% + 1.3px);
-  height: 260px;
-}
-
-.waves .shape-fill {
-  fill: #0099ff;
-}
 
 .profile-picture {
   height: 150px;

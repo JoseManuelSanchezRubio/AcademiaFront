@@ -1,13 +1,15 @@
 import emailjs from "@emailjs/browser";
-import { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useRef, useState, useEffect } from "react";
 import { Tooltip } from "reactstrap";
 import NavAdmin from "../NavAdmin";
 import { URL } from "../url";
 //imports assets
 import info from "../assets/info.png";
 
-
 export default function NewProfessor() {
+  const navigate = useNavigate();
+  const [isLogged, setIsLogged] = useState(false);
   const [popoverOpen, setPopoverOpen] = useState(false);
   const form = useRef();
   const [name, setName] = useState("");
@@ -27,6 +29,12 @@ export default function NewProfessor() {
   const [errorPhone, setErrorPhone] = useState("");
   const [errorPassword, setErrorPassword] = useState("");
   const [errorConfirmPassword, setErrorConfirmPassword] = useState("");
+
+  useEffect(() => {
+    if (sessionStorage.getItem("token") && sessionStorage.getItem("admin"))
+      setIsLogged(true);
+    if (!isLogged) return navigate("/login");
+  }, []);
 
   function handleName(e) {
     setName(e);
@@ -124,10 +132,11 @@ export default function NewProfessor() {
   function checkLogup(data) {
     if (data.status) {
       sendEmail();
-      alert("Profesor añadido correctamente. Serás redirigido a la página de inicio");
+      alert(
+        "Profesor añadido correctamente. Serás redirigido a la página de inicio"
+      );
 
-      return window.location.href = "/admin";
-
+      return (window.location.href = "/admin");
     } else {
       alert(data.message);
     }
@@ -202,12 +211,6 @@ export default function NewProfessor() {
         .then((data) => checkLogup(data));
     }
   }
-
-  let isLogged = false;
-  if (sessionStorage.getItem("token") && sessionStorage.getItem("admin"))
-    isLogged = true;
-
-  if (!isLogged) return (window.location.href = "/login");
 
   return (
     <div>

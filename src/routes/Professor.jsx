@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import NavProfessor from "../NavProfessor";
 import Profile from "../Profile";
@@ -7,11 +8,16 @@ import { URL } from "../url";
 import nothing from "../assets/nothing.png";
 
 export default function Professor() {
+  const navigate = useNavigate();
+  const [isLogged, setIsLogged] = useState(false);
   /* const [professor, setProfessor] = useState(); */
   const [courses, setCourses] = useState([]);
   const professor = JSON.parse(sessionStorage.getItem("professor"));
 
   useEffect(() => {
+    if (sessionStorage.getItem("token") && sessionStorage.getItem("professor"))
+      setIsLogged(true);
+    if (!isLogged) return navigate("/login");
     const professorId = JSON.parse(sessionStorage.getItem("professor")).id;
     fetch(`${URL}/professors/${professorId}`)
       .then((response) => response.json())
@@ -71,10 +77,6 @@ export default function Professor() {
     sessionStorage.setItem("courseId", JSON.stringify(e.target.id));
   }
 
-  let isLogged = false;
-  if (sessionStorage.getItem("token")) isLogged = true;
-
-  //if (!isLogged) return window.location.href = '/login';
   return (
     <div>
       <NavProfessor isLogged={isLogged} />

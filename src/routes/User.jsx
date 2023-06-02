@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Nav from "../Nav";
 import Profile from "../Profile";
@@ -7,11 +8,16 @@ import { URL } from "../url";
 import nothing from "../assets/nothing.png";
 
 export default function User() {
+  const navigate = useNavigate();
+  const [isLogged, setIsLogged] = useState(false);
   /* const [user, setUser] = useState(); */
   const [courses, setCourses] = useState([]);
   const user = JSON.parse(sessionStorage.getItem("user"));
 
   useEffect(() => {
+    if (sessionStorage.getItem("token") && sessionStorage.getItem("user"))
+      setIsLogged(true);
+    if (!isLogged) return navigate("/login");
     const userId = JSON.parse(sessionStorage.getItem("user")).id;
     fetch(`${URL}/users/${userId}`)
       .then((response) => response.json())
@@ -70,13 +76,6 @@ export default function User() {
   function handleCourse(e) {
     sessionStorage.setItem("courseId", JSON.stringify(e.target.id));
   }
-
-  let isLogged = false;
-  if (sessionStorage.getItem("token")) {
-    isLogged = true;
-  }
-
-  if (!isLogged) return (window.location.href = "/login");
 
   return (
     <div>

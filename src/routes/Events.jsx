@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Nav from "../Nav";
 import { URL } from "../url";
 /* import UpdateEvent from "../UpdateEvent"; */
 
-
 export default function Events() {
+  const navigate = useNavigate();
+  const [isLogged, setIsLogged] = useState(false);
   const [events, setEvents] = useState([]);
-  const user_id = JSON.parse(sessionStorage.getItem("user")).id;
+  const user_id = JSON.parse(sessionStorage.getItem("user"))?.id;
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [start_date, setStart_date] = useState("");
@@ -50,6 +52,9 @@ export default function Events() {
   }
 
   useEffect(() => {
+    if (sessionStorage.getItem("token") && sessionStorage.getItem("user"))
+      setIsLogged(true);
+    if (!isLogged) return navigate("/login");
     const requestOptions = {
       method: "POST",
       headers: {
@@ -164,10 +169,6 @@ export default function Events() {
     }
   }
 
-  let isLogged = false;
-  if (sessionStorage.getItem("token")) isLogged = true;
-
-  if (!isLogged) return (window.location.href = "/login");
   return (
     <div>
       <Nav isLogged={isLogged}></Nav>

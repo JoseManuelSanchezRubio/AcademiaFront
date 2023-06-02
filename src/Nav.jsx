@@ -1,13 +1,15 @@
 /* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Pomodoro from "./Pomodoro";
 
 export default function Nav(props) {
+  const navigate = useNavigate();
   function logout() {
     sessionStorage.removeItem("token");
     sessionStorage.removeItem("user");
     sessionStorage.removeItem("courseId");
-    window.location.href = "/";
+    return navigate("/login");
   }
 
   if (props.isLogged) {
