@@ -58,11 +58,14 @@ export default function LandingPage() {
             </Link>
           </div>
         </div>
-        <div className=" cards-section">
-          <section className=" cards-section-inside">
-            <h1 className="text-center py-5 fw-bold title separator">
-              Te ayudamos a aprender
-            </h1>
+        <h1 className="text-center py-5 fw-bold title separator">
+          Te ayudamos a aprender
+        </h1>
+        <section>
+          <div className="skewed-up"></div>
+        </section>
+        <div className="container-flex cards-section-bg">
+          <section className="container">
             <div className="row justify-content-center text-center">
               <article className="card col-lg-4 my-2 border-0">
                 <div className="rounded bg-white course-card">
@@ -139,6 +142,9 @@ export default function LandingPage() {
             </div>
           </section>
         </div>
+        <section>
+          <div className="skewed-down"></div>
+        </section>
         <img src={bug} className="bug"></img>
         <section className="container mb-5 testimonials">
           <h1 className="text-center pt-5 mb-5 fw-bold title">
