@@ -4,6 +4,7 @@ import { URL } from "./url";
 
 export default function Announcements(props) {
   const [announcements, setAnnouncements] = useState([]);
+  
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
 
@@ -28,6 +29,7 @@ export default function Announcements(props) {
   }
 
   useEffect(() => {
+    setAnnouncements(JSON.parse(sessionStorage.getItem("ann")));
     const requestOptions = {
       method: "POST",
       headers: {
@@ -67,7 +69,23 @@ export default function Announcements(props) {
         }),
       };
       await fetch(`${URL}/announcements`, requestOptions);
-      window.location.reload();
+
+      //ESTO HAY QUE METERLO EN EL THEN DEL FETCH
+      /* setAnnouncements((announcements) => {
+        return [
+          {
+            id: 2,
+            title: "titulooooo",
+            body: "cuerpoooooo",
+            professorId: 1,
+            course_id: 1,
+          },
+          ...announcements,
+        ];
+      }); */
+
+      sessionStorage.setItem("ann", JSON.stringify(announcements));
+      //window.location.reload();
     }
   }
 

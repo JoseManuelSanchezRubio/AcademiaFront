@@ -19,7 +19,11 @@ export default function Users() {
     if (sessionStorage.getItem("professor") != null) {
       isProfessor = true;
     }
-    if (sessionStorage.getItem("token") != null) {
+    if (
+      (sessionStorage.getItem("token") != null &&
+        sessionStorage.getItem("user") != null) ||
+      sessionStorage.getItem("professor") != null
+    ) {
       isLogged = true;
     }
     if (isLogged == false) {
