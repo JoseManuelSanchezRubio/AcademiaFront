@@ -9,16 +9,21 @@ import nothing from "../assets/nothing.png";
 
 export default function User() {
   const navigate = useNavigate();
-  const [isLogged, setIsLogged] = useState(false);
-  /* const [user, setUser] = useState(); */
+  let isLogged = false;
   const [courses, setCourses] = useState([]);
   const user = JSON.parse(sessionStorage.getItem("user"));
 
   useEffect(() => {
-    if (sessionStorage.getItem("token") && sessionStorage.getItem("user"))
-      setIsLogged(true);
-    if (!isLogged) return navigate("/login");
-    const userId = JSON.parse(sessionStorage.getItem("user")).id;
+    if (
+      sessionStorage.getItem("token") != null &&
+      sessionStorage.getItem("user") != null
+    ) {
+      isLogged = true;
+    }
+    if (isLogged == false) {
+      return navigate("/login");
+    }
+    const userId = JSON.parse(sessionStorage.getItem("user"))?.id;
     fetch(`${URL}/users/${userId}`)
       .then((response) => response.json())
       .then((data) => {

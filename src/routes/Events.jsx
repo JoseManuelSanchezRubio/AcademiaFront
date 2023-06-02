@@ -6,7 +6,7 @@ import { URL } from "../url";
 
 export default function Events() {
   const navigate = useNavigate();
-  const [isLogged, setIsLogged] = useState(false);
+  let isLogged = false;
   const [events, setEvents] = useState([]);
   const user_id = JSON.parse(sessionStorage.getItem("user"))?.id;
   const [title, setTitle] = useState("");
@@ -52,9 +52,16 @@ export default function Events() {
   }
 
   useEffect(() => {
-    if (sessionStorage.getItem("token") && sessionStorage.getItem("user"))
-      setIsLogged(true);
-    if (!isLogged) return navigate("/login");
+    if (
+      sessionStorage.getItem("token") != null &&
+      sessionStorage.getItem("user") != null
+    ) {
+      isLogged = true;
+    }
+
+    if (isLogged == false) {
+      return navigate("/login");
+    }
     const requestOptions = {
       method: "POST",
       headers: {

@@ -5,7 +5,7 @@ import { URL } from "../url";
 
 export default function NewCourse() {
   const navigate = useNavigate();
-  const [isLogged, setIsLogged] = useState(false);
+  let isLogged = false;
   const [professors, setProfessors] = useState([]);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -16,9 +16,16 @@ export default function NewCourse() {
   const [errorProfessorId, setErrorProfessorId] = useState("");
 
   useEffect(() => {
-    if (sessionStorage.getItem("token") && sessionStorage.getItem("admin"))
-      setIsLogged(true);
-    if (!isLogged) return navigate("/login");
+    if (
+      sessionStorage.getItem("token") != null &&
+      sessionStorage.getItem("admin") != null
+    ) {
+      isLogged = true;
+    }
+
+    if (isLogged == false) {
+      return navigate("/login");
+    }
     fetch(`${URL}/professors`)
       .then((res) => res.json())
       .then((data) => setProfessors(data));

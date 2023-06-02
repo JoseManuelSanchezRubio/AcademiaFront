@@ -8,15 +8,22 @@ import { URL } from "../url";
 
 export default function Forum() {
   const navigate = useNavigate();
-  const [isLogged, setIsLogged] = useState(false);
+  let isLogged = false;
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState("");
   const forum_id = window.location.pathname.split("/")[3];
   const userId = JSON.parse(sessionStorage.getItem("user"))?.id;
   useEffect(() => {
-    if (sessionStorage.getItem("token") && sessionStorage.getItem("user"))
-      setIsLogged(true);
-    if (!isLogged) return navigate("/login");
+    if (
+      sessionStorage.getItem("token") != null &&
+      sessionStorage.getItem("user") != null
+    ) {
+      isLogged = true;
+    }
+
+    if (isLogged == false) {
+      return navigate("/login");
+    }
     const requestOptions = {
       method: "POST",
       headers: {

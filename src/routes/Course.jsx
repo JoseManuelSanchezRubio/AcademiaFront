@@ -8,7 +8,7 @@ import { URL_STORAGE } from "../url";
 
 export default function Course() {
   const navigate = useNavigate();
-  const [isLogged, setIsLogged] = useState(false);
+  let isLogged = false;
   const [course, setCourse] = useState([]);
   const [units, setUnits] = useState([]);
   const [file, setFile] = useState();
@@ -19,9 +19,16 @@ export default function Course() {
   const url = `/users/${courseId}`;
 
   useEffect(() => {
-    if (sessionStorage.getItem("token") && sessionStorage.getItem("user"))
-      setIsLogged(true);
-    if (!isLogged) return navigate("/login");
+    if (
+      sessionStorage.getItem("token") != null &&
+      sessionStorage.getItem("user") != null
+    ) {
+      isLogged = true;
+    }
+
+    if (isLogged == false) {
+      return navigate("/login");
+    }
     const courseId = JSON.parse(sessionStorage.getItem("courseId"));
     fetch(`${URL}/courses/${courseId}`)
       .then((res) => res.json())

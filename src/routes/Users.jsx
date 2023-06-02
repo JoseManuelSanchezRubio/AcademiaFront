@@ -9,19 +9,22 @@ import nothing from "../assets/nothing.png";
 
 export default function Users() {
   const navigate = useNavigate();
-  const [isLogged, setIsLogged] = useState(false);
-  const [isProfessor, setIsProfessor] = useState(false);
+  let isLogged = false;
+  let isProfessor = false;
   const [users, setUsers] = useState([]);
   const [uploads, setUploads] = useState([]);
   const [userId, setUserId] = useState("1");
 
   useEffect(() => {
-    if (sessionStorage.getItem("professor")) setIsProfessor(true);
-    if (sessionStorage.getItem("token")) {
-      setIsLogged(true);
+    if (sessionStorage.getItem("professor") != null) {
+      isProfessor = true;
     }
-
-    if (!isLogged) return navigate("/login");
+    if (sessionStorage.getItem("token") != null) {
+      isLogged = true;
+    }
+    if (isLogged == false) {
+      return navigate("/login");
+    }
     const courseId = JSON.parse(sessionStorage.getItem("courseId"));
     fetch(`${URL}/courses/${courseId}`)
       .then((res) => res.json())

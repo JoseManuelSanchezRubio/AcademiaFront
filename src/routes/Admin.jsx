@@ -5,18 +5,23 @@ import { URL } from "../url";
 
 export default function Admin() {
   const navigate = useNavigate();
-  const [isLogged, setIsLogged] = useState(false);
+  let isLogged = false;
   const [users, setUsers] = useState([]);
   const [professors, setProfessors] = useState([]);
   const [courses, setCourses] = useState([]);
   const [showUsers, setShowUsers] = useState(true);
 
   useEffect(() => {
-    if (sessionStorage.getItem("token") && sessionStorage.getItem("admin"))
-      setIsLogged(true);
-    if (!isLogged) return navigate("/login");
+    if (
+      sessionStorage.getItem("token") != null &&
+      sessionStorage.getItem("admin") != null
+    ) {
+      isLogged = true;
+    }
 
-    if (!isLogged) navigate("/admin");
+    if (isLogged == false) {
+      return navigate("/login");
+    }
     const fetchUsers = async () => {
       const response = await fetch(`${URL}/users`);
       const data = await response.json();

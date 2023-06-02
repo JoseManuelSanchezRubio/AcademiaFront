@@ -9,7 +9,7 @@ import info from "../assets/info.png";
 
 export default function NewProfessor() {
   const navigate = useNavigate();
-  const [isLogged, setIsLogged] = useState(false);
+  let isLogged = false;
   const [popoverOpen, setPopoverOpen] = useState(false);
   const form = useRef();
   const [name, setName] = useState("");
@@ -31,9 +31,16 @@ export default function NewProfessor() {
   const [errorConfirmPassword, setErrorConfirmPassword] = useState("");
 
   useEffect(() => {
-    if (sessionStorage.getItem("token") && sessionStorage.getItem("admin"))
-      setIsLogged(true);
-    if (!isLogged) return navigate("/login");
+    if (
+      sessionStorage.getItem("token") != null &&
+      sessionStorage.getItem("admin") != null
+    ) {
+      isLogged = true;
+    }
+
+    if (isLogged == false) {
+      return navigate("/login");
+    }
   }, []);
 
   function handleName(e) {

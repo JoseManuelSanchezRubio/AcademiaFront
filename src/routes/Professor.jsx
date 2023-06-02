@@ -9,16 +9,21 @@ import nothing from "../assets/nothing.png";
 
 export default function Professor() {
   const navigate = useNavigate();
-  const [isLogged, setIsLogged] = useState(false);
-  /* const [professor, setProfessor] = useState(); */
+  let isLogged = false;
   const [courses, setCourses] = useState([]);
   const professor = JSON.parse(sessionStorage.getItem("professor"));
 
   useEffect(() => {
-    if (sessionStorage.getItem("token") && sessionStorage.getItem("professor"))
-      setIsLogged(true);
-    if (!isLogged) return navigate("/login");
-    const professorId = JSON.parse(sessionStorage.getItem("professor")).id;
+    if (
+      sessionStorage.getItem("token") != null &&
+      sessionStorage.getItem("professor") != null
+    ) {
+      isLogged = true;
+    }
+    if (!isLogged) {
+      return navigate("/login");
+    }
+    const professorId = JSON.parse(sessionStorage.getItem("professor"))?.id;
     fetch(`${URL}/professors/${professorId}`)
       .then((response) => response.json())
       .then((data) => {
