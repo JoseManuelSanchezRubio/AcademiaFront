@@ -63,23 +63,23 @@ export default function Courses() {
       let random = Math.floor(Math.random() * 9);
       let color = "";
       if (random === 1) {
-        color = "#F0A990"; //rojo
+        color = "#FFCCCC"; //rojo
       } else if (random === 2) {
-        color = "#fbd28a"; //amarillo
+        color = "#FFE5CC"; //naranja
       } else if (random === 3) {
         color = "#A5FCE5"; //cian
       } else if (random === 4) {
-        color = "#A5E2FC"; //azul
+        color = "#CCFFFF"; //azul
       } else if (random === 5) {
-        color = "#CDBFFE"; //morado
+        color = "#CCCCFF"; //morado
       } else if (random === 6) {
         color = "#FFD1F9"; //rosa
       } else if (random === 7) {
         color = "#FF8C8C"; //rojo
       } else if (random === 8) {
-        color = "#8CA8FF"; //azul oscuro
+        color = "#99CCFF"; //azul oscuro
       } else {
-        color = "#9EFE9E"; //verde
+        color = "#CCFFCC"; //verde
       }
       return (
         <div

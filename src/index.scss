@@ -11,6 +11,7 @@
   color: black;
   font-weight: bold;
   border: 3px solid black;
+  //box-shadow: 0px 0px 30px rgb(0, 0, 0, 0.2);
   box-sizing: border-box;
   width: fit-content;
   margin: auto;
@@ -22,7 +23,7 @@
   color: white;
   background-color: black;
   box-sizing: border-box;
-  //border: 3px solid white;
+  box-shadow: none;
 }
 .login{
   max-width: 550px;
@@ -31,6 +32,33 @@
 .padding-cards{
   width: 1px;
 }
+
+
+
+.btn-courses {
+  background: linear-gradient(to bottom right, #EF4765, #FF9A5A);
+  border: 0;
+  border-radius: 25px;
+  color: #FFFFFF;
+  display: inline-block;
+  font-weight: bold;
+  line-height: 2.5;
+  outline: transparent;
+  padding: 0 1rem;
+  text-align: center;
+  text-decoration: none;
+  transition: box-shadow .2s ease-in-out;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+}
+
+.btn-courses:not([disabled]):hover {
+  color: #FFFFFF;
+  box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(239, 71, 101, 0.5), .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
+}
+
 
 .background-mainpage {
   z-index: 1;
@@ -41,7 +69,6 @@
   background-position: center;
   width: 100%;
   height: 100%;
-  //box-shadow: 5px 5px 30px gray;
 }
 .testimonials{
   margin-top: 200px;
@@ -347,7 +374,7 @@
 }
 .accordion-card:hover{
   transition: transform 0.1s;
-  transform: translateX(2em);
+  transform: translateX(1em);
 }
 .accordion-box{
   //background-color:rgb(210, 252, 171) !important;
@@ -358,8 +385,18 @@
 }
 .accordion-box:hover{
   background-color: rgb(255, 252, 220) !important;
-  color: black !important;
+  color: rgb(111, 0, 255) !important;
+  font-size: 1.3rem;
   font-weight: bold;
+}
+.accordion-body{
+  padding-left: 100px;
+  border-top: 1px solid rgb(221, 221, 221) !important;
+  background-color: rgb(247, 247, 247);
+}
+.accordion{
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.205);
+  border-radius: 5px;
 }
 
 

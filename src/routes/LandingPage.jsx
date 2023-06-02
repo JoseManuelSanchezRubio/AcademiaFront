@@ -84,11 +84,11 @@ export default function LandingPage() {
                       afrontar los exámenes de Cambridge.
                     </p>
                   </div>
-                  <Link to="/courses">
-                    <button className="btn btn-primary mb-4">
+                  <div className="mb-4">
+                    <Link to="/courses" className="btn-courses">
                       Nuestros cursos
-                    </button>
-                  </Link>
+                    </Link>
+                  </div>
                 </div>
               </article>
               <article className="card col-lg-4 my-2 border-0">
@@ -108,11 +108,11 @@ export default function LandingPage() {
                       estatales, provinciales y locales.
                     </p>
                   </div>
-                  <Link to="/courses">
-                    <button className="btn btn-primary mb-4">
+                  <div className="mb-4">
+                    <Link to="/courses" className="btn-courses">
                       Nuestros cursos
-                    </button>
-                  </Link>
+                    </Link>
+                  </div>
                 </div>
               </article>
               <article className="card col-lg-4 my-2 border-0">
@@ -132,11 +132,11 @@ export default function LandingPage() {
                       mátematicas. !Apúntate!
                     </p>
                   </div>
-                  <Link to="/courses">
-                    <button className="btn btn-primary mb-4">
+                  <div className="mb-4">
+                    <Link to="/courses" className="btn-courses">
                       Nuestros cursos
-                    </button>
-                  </Link>
+                    </Link>
+                  </div>
                 </div>
               </article>
             </div>
@@ -241,7 +241,7 @@ export default function LandingPage() {
               <div className="accordion-item">
                 <h2 className="accordion-header fw-bold">
                   <button
-                    className="accordion-button collapsed accordion-box"
+                    className="accordion-button shadow-none collapsed accordion-box"
                     type="button"
                     data-bs-toggle="collapse"
                     data-bs-target="#collapseOne"
@@ -272,7 +272,7 @@ export default function LandingPage() {
               <div className="accordion-item">
                 <h2 className="accordion-header fw-bold">
                   <button
-                    className="accordion-button collapsed accordion-box"
+                    className="accordion-button shadow-none collapsed accordion-box"
                     type="button"
                     data-bs-toggle="collapse"
                     data-bs-target="#collapseTwo"
@@ -289,7 +289,7 @@ export default function LandingPage() {
                   className="accordion-collapse collapse"
                   data-bs-parent="#accordionQA"
                 >
-                  <div className="accordion-body">
+                  <div className="accordion-body border-top">
                     Actualmente no se obtiene ninguna titulación oficial por
                     estudiar en nuestra academia, si bien estamos trabajando en
                     poder ofrecerte una certificación proporcional a tu trabajo
@@ -300,7 +300,7 @@ export default function LandingPage() {
               <div className="accordion-item">
                 <h2 className="accordion-header fw-bold">
                   <button
-                    className="accordion-button collapsed accordion-box"
+                    className="accordion-button shadow-none collapsed accordion-box"
                     type="button"
                     data-bs-toggle="collapse"
                     data-bs-target="#collapseThree"
@@ -317,7 +317,7 @@ export default function LandingPage() {
                   className="accordion-collapse collapse"
                   data-bs-parent="#accordionQA"
                 >
-                  <div className="accordion-body">
+                  <div className="accordion-body border-top">
                     El tamaño de los grupos depende de la demanda que tenga.
                     Normalmente suelen asistir entre 10 y 15 alumnos, pero el
                     máximo es de 20 para poder un servicio de máxima calidad.
@@ -327,7 +327,7 @@ export default function LandingPage() {
               <div className="accordion-item">
                 <h2 className="accordion-header fw-bold">
                   <button
-                    className="accordion-button collapsed accordion-box"
+                    className="accordion-button shadow-none collapsed accordion-box"
                     type="button"
                     data-bs-toggle="collapse"
                     data-bs-target="#collapseFour"
@@ -344,7 +344,7 @@ export default function LandingPage() {
                   className="accordion-collapse collapse"
                   data-bs-parent="#accordionQA"
                 >
-                  <div className="accordion-body">
+                  <div className="accordion-body border-top">
                     En Learning Enjoying te proporcionamos los apuntes de la
                     manera en la que tú quieras, tanto en papel como en formato
                     PDF. Por tanto, al aula solo es necesario que traigas papel
@@ -356,7 +356,7 @@ export default function LandingPage() {
               <div className="accordion-item">
                 <h2 className="accordion-header fw-bold">
                   <button
-                    className="accordion-button collapsed accordion-box"
+                    className="accordion-button shadow-none collapsed accordion-box"
                     type="button"
                     data-bs-toggle="collapse"
                     data-bs-target="#collapseFive"
@@ -371,7 +371,7 @@ export default function LandingPage() {
                   className="accordion-collapse collapse"
                   data-bs-parent="#accordionQA"
                 >
-                  <div className="accordion-body">
+                  <div className="accordion-body border-top">
                     Sí, si estás matriculado en una asignatura, te ofrecemos un
                     descuento del 10% si te apuntas al curso intensivo.
                   </div>
