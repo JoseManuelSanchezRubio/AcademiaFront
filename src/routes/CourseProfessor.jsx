@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Announcements from "../Announcements";
 import NavProfessor from "../NavProfessor";
 import { URL } from "../url";
@@ -49,7 +48,6 @@ export default function CourseProfessor() {
       let fileReader = new FileReader();
       fileReader.onload = function (fileLoadedEvent) {
         file = fileLoadedEvent.target.result;
-        //console.log(file);
         if (event.target.id === "theory-modal") {
           setTheoryFile(file);
           setUnitTheory(fileName);
@@ -63,32 +61,35 @@ export default function CourseProfessor() {
   }
 
   async function createUnit() {
-    console.log(unitName, unitTheory, unitExercises, courseId);
-    const requestOptions = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name: unitName,
-        description: unitDescription,
-        theory: unitTheory,
-        theory_file: theoryFile,
-        exercises: unitExercises,
-        exercises_file: exercisesFile,
-        course_id: courseId,
-      }),
-    };
-    console.log(requestOptions.body);
-    await fetch(`${URL}/units`, requestOptions)
-      .then((response) => response.json())
-      .then((data) => console.log(data));
-    window.location.reload();
+    if (unitName != "" && unitTheory != '' && unitExercises != '') {
+      const requestOptions = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: unitName,
+          description: unitDescription,
+          theory: unitTheory,
+          theory_file: theoryFile,
+          exercises: unitExercises,
+          exercises_file: exercisesFile,
+          course_id: courseId,
+        }),
+      };
+      await fetch(`${URL}/units`, requestOptions)
+        .then((response) => response.json())
+        .then((data) => setUnits(data));
+    } else {
+      alert('Faltan campos por rellenar')
+    }
+
   }
 
   return (
     <div>
-      <NavProfessor isLogged={isLogged}></NavProfessor>
+      <NavProfessor isLogged={sessionStorage.getItem("token") != null &&
+        sessionStorage.getItem("professor") != null}></NavProfessor>
       <div className="row mx-4 my-4">
         <div className="col-lg-9 mb-4">
           <div>

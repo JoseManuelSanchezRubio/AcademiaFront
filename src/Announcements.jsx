@@ -4,7 +4,7 @@ import { URL } from "./url";
 
 export default function Announcements(props) {
   const [announcements, setAnnouncements] = useState([]);
-  
+
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
 
@@ -29,7 +29,6 @@ export default function Announcements(props) {
   }
 
   useEffect(() => {
-    setAnnouncements(JSON.parse(sessionStorage.getItem("ann")));
     const requestOptions = {
       method: "POST",
       headers: {
@@ -68,27 +67,16 @@ export default function Announcements(props) {
           course_id: props.courseId,
         }),
       };
-      await fetch(`${URL}/announcements`, requestOptions);
-
-      //ESTO HAY QUE METERLO EN EL THEN DEL FETCH
-      /* setAnnouncements((announcements) => {
-        return [
-          {
-            id: 2,
-            title: "titulooooo",
-            body: "cuerpoooooo",
-            professorId: 1,
-            course_id: 1,
-          },
-          ...announcements,
-        ];
-      }); */
-
-      sessionStorage.setItem("ann", JSON.stringify(announcements));
-      //window.location.reload();
+      await fetch(`${URL}/announcements`, requestOptions).then((res) => res.json()).then((response) => {
+        setAnnouncements((announcements) => {
+          return [
+            response, ...announcements,
+          ];
+        });
+      });
     }
   }
-
+  announcements.sort((a, b) => a.id - b.id);
   const announcementsList = announcements.map((announcement) => {
     const date = new Date(announcement.created_at).toLocaleDateString();
     return (
@@ -197,6 +185,7 @@ export default function Announcements(props) {
                     <button
                       type="button"
                       className="btn btn-primary"
+                      data-bs-dismiss={errorBody == "" && errorTitle == "" && 'modal'}
                       onClick={(e) => addAnnouncement(e)}
                     >
                       Enviar

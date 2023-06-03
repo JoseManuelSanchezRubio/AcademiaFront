@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Nav from "../Nav";
 import Profile from "../Profile";
 import { URL } from "../url";
@@ -71,7 +70,7 @@ export default function User() {
             id={item.id}
             onClick={(e) => handleCourse(e)}
           >
-            <button className="btn btn-primary custom-shadow">Entrar</button>
+            <button id={item.id} className="btn btn-primary custom-shadow">Entrar</button>
           </Link>
         </div>
       </div>
@@ -84,7 +83,8 @@ export default function User() {
 
   return (
     <div>
-      <Nav isLogged={isLogged}></Nav>
+      <Nav isLogged={sessionStorage.getItem("token") != null &&
+        sessionStorage.getItem("user") != null}></Nav>
       <div className="d-flex">
         <div className="container">
           <h1 className="mt-5 fw-bold">Bienvenido, estos son tus cursos:</h1>

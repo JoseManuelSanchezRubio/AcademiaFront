@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ForgotPassword from "../ForgotPassword";
 import Nav from "../Nav";
+import NavAdmin from "../NavAdmin";
+import NavProfessor from "../NavProfessor";
 //assets imports
 import showPassword from "../assets/show-password.png";
 import { URL } from "../url";
@@ -115,11 +116,16 @@ export default function Login() {
     }
   }
 
-  let isLogged = false;
-  if (sessionStorage.getItem("token")) isLogged = true;
   return (
     <div>
-      <Nav isLogged={isLogged} />
+      {sessionStorage.getItem('user') && <Nav isLogged={sessionStorage.getItem("token") != null &&
+        sessionStorage.getItem("user") != null}></Nav>}
+      {sessionStorage.getItem('professor') && <NavProfessor isLogged={sessionStorage.getItem("token") != null &&
+        sessionStorage.getItem("professor") != null}></NavProfessor>}
+      {sessionStorage.getItem('admin') && <NavAdmin isLogged={sessionStorage.getItem("token") != null &&
+        sessionStorage.getItem("admin") != null}></NavAdmin>}
+      {sessionStorage.getItem('user') == null && sessionStorage.getItem('professor') == null && sessionStorage.getItem('admin') == null && <Nav isLogged={sessionStorage.getItem("token") != null &&
+        sessionStorage.getItem("user") != null}></Nav>}
       <section className="login container py-md-5 p-4">
         <div>
           <h1 className="mb-4 fw-bold">Iniciar sesión</h1>

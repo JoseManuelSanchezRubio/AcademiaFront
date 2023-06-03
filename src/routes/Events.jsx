@@ -126,13 +126,18 @@ export default function Events() {
   async function deleteEvent(event_id) {
     if (confirm("Seguro que quieres eliminar este evento?")) {
       const requestOptions = {
-        method: "DELETE",
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
+        body: JSON.stringify({
+          user_id: user_id,
+          event_id: event_id
+        }),
       };
-      await fetch(`${URL}/events/${event_id}`, requestOptions);
-      window.location.reload();
+      await fetch(`${URL}/deleteEvent`, requestOptions)
+        .then((response) => response.json())
+        .then((data) => setEvents(data));
     }
   }
 
@@ -170,15 +175,17 @@ export default function Events() {
           user_id: user_id,
         }),
       };
-      await fetch(`${URL}/events/`, requestOptions);
+      await fetch(`${URL}/events/`, requestOptions)
+        .then((response) => response.json())
+        .then((data) => setEvents(data));
 
-      window.location.reload();
     }
   }
 
   return (
     <div>
-      <Nav isLogged={isLogged}></Nav>
+      <Nav isLogged={sessionStorage.getItem("token") != null &&
+        sessionStorage.getItem("user") != null}></Nav>
       <div className="row mx-5 my-4">
         <div className="col-lg-8">
           <h1 className="fw-bold">Añadir evento</h1>

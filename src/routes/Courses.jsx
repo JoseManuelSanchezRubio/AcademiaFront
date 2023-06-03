@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Nav from "../Nav";
+import NavAdmin from "../NavAdmin";
+import NavProfessor from "../NavProfessor";
 import { URL } from "../url";
 //import assets
 import nothing from "../assets/nothing.png";
@@ -8,7 +11,7 @@ import nothing from "../assets/nothing.png";
 
 
 export default function Courses() {
-
+  const navigate = useNavigate();
   const [courses, setCourses] = useState([]);
   /* const courses = [{id: 1, name: "Matemáticas", description: "Curso de matemáticas básicas en el que podrás aprender los conceptos básicos de matemáticas. No dudes en apuntarte", price: "24,99"}, {id: 2, name: "Lengua", description: "Curso de matemáticas básicas", price: "40,00"}, {id: 3, name: "Biología", description: "Curso de matemáticas básicas", price: "30,00"}, {id: 4, name: "Filosofía", description: "Curso de matemáticas básicas", price: "49,99"}, {id: 5, name: "Música", description: "Curso de matemáticas básicas", price: "49,99"}, {id: 6, name: "Física", description: "Curso de matemáticas básicas", price: "49,99"}]; */
   const [userCourses, setUserCourses] = useState([])
@@ -34,7 +37,7 @@ export default function Courses() {
 
   async function buyCourse(e) {
 
-    if (!isLogged) return window.location.href = '/login';
+    if (!isLogged) return navigate('/login');
 
     if (confirm("Está apunto de comprar el curso, ¿seguro que desea continuar?")) {
       for (let i = 0; i < userCourses.length; i++) {
@@ -54,7 +57,7 @@ export default function Courses() {
       await fetch(`${URL}/users/course`, requestOptions)
 
       alert("Compra realizada");
-      window.location.href = '/user';
+      navigate('/user');
     }
 
   }
@@ -109,7 +112,13 @@ export default function Courses() {
 
   return (
     <div>
-      <Nav isLogged={isLogged} />
+      {sessionStorage.getItem('user') != null && <Nav isLogged={sessionStorage.getItem("token") != null &&
+        sessionStorage.getItem("user") != null} />}
+      {sessionStorage.getItem('professor') != null && <NavProfessor isLogged={sessionStorage.getItem("token") != null &&
+        sessionStorage.getItem("professor") != null} />}
+      {sessionStorage.getItem('admin') != null && <NavAdmin isLogged={sessionStorage.getItem("token") != null &&
+        sessionStorage.getItem("admin") != null} />}
+
       <div className="container">
         <h1 className="my-5 fw-bold">Estos son nuestros cursos:</h1>
         <div className="d-flex flex-wrap gap-5 justify-content-center">

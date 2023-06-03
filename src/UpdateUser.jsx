@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { URL } from "./url";
 
 export default function UpdateUser() {
+  const navigate = useNavigate();
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [address, setAddress] = useState("");
@@ -51,17 +53,17 @@ export default function UpdateUser() {
       professor.surname = surname;
       professor.address = address;
       professor.phone = phone;
-      sessionStorage.setItem('professor', JSON.stringify(professor))
+      sessionStorage.setItem('professor', JSON.stringify(professor));
     } else {
       await fetch(`${URL}/users/${userId}`, requestOptions).then(res => res.json()).then(data => console.log(data))
       user.name = name;
       user.surname = surname;
       user.address = address;
       user.phone = phone;
-      sessionStorage.setItem('user', JSON.stringify(user))
+      sessionStorage.setItem('user', JSON.stringify(user));
     }
     alert('Datos personales actualizados.');
-    window.location.reload();
+    navigate('/user');
   }
   return (
     <div>

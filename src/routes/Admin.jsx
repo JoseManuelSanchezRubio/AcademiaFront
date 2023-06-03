@@ -10,6 +10,21 @@ export default function Admin() {
   const [professors, setProfessors] = useState([]);
   const [courses, setCourses] = useState([]);
   const [showUsers, setShowUsers] = useState(true);
+  const fetchUsers = async () => {
+    const response = await fetch(`${URL}/users`);
+    const data = await response.json();
+    setUsers(data);
+  };
+  const fetchProfessors = async () => {
+    const response = await fetch(`${URL}/professors`);
+    const data = await response.json();
+    setProfessors(data);
+  };
+  const fetchCourses = async () => {
+    const response = await fetch(`${URL}/courses`);
+    const data = await response.json();
+    setCourses(data);
+  };
 
   useEffect(() => {
     if (
@@ -22,25 +37,13 @@ export default function Admin() {
     if (isLogged == false) {
       return navigate("/login");
     }
-    const fetchUsers = async () => {
-      const response = await fetch(`${URL}/users`);
-      const data = await response.json();
-      setUsers(data);
-    };
+
     fetchUsers();
 
-    const fetchProfessors = async () => {
-      const response = await fetch(`${URL}/professors`);
-      const data = await response.json();
-      setProfessors(data);
-    };
+
     fetchProfessors();
 
-    const fetchCourses = async () => {
-      const response = await fetch(`${URL}/courses`);
-      const data = await response.json();
-      setCourses(data);
-    };
+
     fetchCourses();
   }, []);
 
@@ -48,16 +51,18 @@ export default function Admin() {
     if (confirm("Seguro que quieres eliminar este curso?")) {
       await fetch(`${URL}/courses/${e}`, {
         method: "DELETE",
+      }).then((res) => res.json()).then((response) => {
+        setCourses(response);
       });
-      window.location.reload();
     }
   }
   async function deleteUser(e) {
     if (confirm("Seguro que quieres eliminar a este usuario?")) {
       await fetch(`${URL}/users/${e}`, {
         method: "DELETE",
+      }).then((res) => res.json()).then((response) => {
+        setUsers(response);
       });
-      window.location.reload();
     }
   }
 
@@ -127,7 +132,8 @@ export default function Admin() {
 
   return (
     <div>
-      <NavAdmin isLogged={isLogged} />
+      <NavAdmin isLogged={sessionStorage.getItem("token") != null &&
+        sessionStorage.getItem("admin") != null} />
       <section className="p-5">
         <h3 className="fw-bold">Cursos</h3>
         <div className="d-flex flex-wrap gap-3">{coursesList}</div>

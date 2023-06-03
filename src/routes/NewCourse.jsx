@@ -36,7 +36,7 @@ export default function NewCourse() {
   function checkNewCourse(data) {
     if (data.status) {
       alert("Curso añadido correctamente");
-      window.location.href = "/admin";
+      navigate("/admin");
     } else {
       alert(data.message);
     }
@@ -111,7 +111,8 @@ export default function NewCourse() {
 
   return (
     <div>
-      <NavAdmin isLogged={isLogged} />
+      <NavAdmin isLogged={sessionStorage.getItem("token") != null &&
+        sessionStorage.getItem("admin") != null} />
       <div className="container">
         <h1 className="mb-4 pt-5 fw-bold">Nuevo curso</h1>
         <form>
