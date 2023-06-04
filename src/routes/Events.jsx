@@ -179,6 +179,11 @@ export default function Events() {
         .then((response) => response.json())
         .then((data) => setEvents(data));
 
+      document.getElementById('title').value = "";
+      document.getElementById('description').value = "";
+      document.getElementById('start_date').value = "";
+      document.getElementById('end_date').value = "";
+
     }
   }
 

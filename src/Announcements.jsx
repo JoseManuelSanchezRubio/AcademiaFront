@@ -44,8 +44,8 @@ export default function Announcements(props) {
   }, []);
 
   async function addAnnouncement(e) {
-    e.preventDefault();
     let error = false;
+    e.preventDefault();
     if (title == "") {
       setErrorTitle("Debes rellenar este campo");
       error = true;
@@ -74,6 +74,7 @@ export default function Announcements(props) {
           ];
         });
       });
+      document.getElementById('close-modal-announcement').click();
     }
   }
   announcements.sort((a, b) => a.id - b.id);
@@ -179,13 +180,13 @@ export default function Announcements(props) {
                       type="button"
                       className="btn btn-secondary"
                       data-bs-dismiss="modal"
+                      id="close-modal-announcement"
                     >
                       Cerrar
                     </button>
                     <button
                       type="button"
                       className="btn btn-primary"
-                      data-bs-dismiss={errorBody == "" && errorTitle == "" && 'modal'}
                       onClick={(e) => addAnnouncement(e)}
                     >
                       Enviar
