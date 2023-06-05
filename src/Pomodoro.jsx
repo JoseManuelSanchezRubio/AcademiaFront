@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import ReactHowler from "react-howler";
-import { Modal, ModalBody, ModalHeader, Progress, Tooltip } from "reactstrap";
+/* import ReactHowler from "react-howler"; */
+import { Modal, ModalBody, ModalHeader, Tooltip } from "reactstrap";
 //imports assets
-import toStudy from "./assets/to_study.mp3";
-import toBreak from "./assets/to_break.mp3";
+/* import toStudy from "./assets/to_study.mp3";
+import toBreak from "./assets/to_break.mp3"; */
 export default function Pomodoro() {
   const [lableContent, setLabelContent] = useState("¡A estudiar!");
   const [studying, setStudying] = useState(true);
@@ -12,8 +12,8 @@ export default function Pomodoro() {
   const minutes = Math.floor((time % 360000) / 6000);
   const seconds = Math.floor((time % 6000) / 100);
   const [modal, setModal] = useState(false);
-  const [tune, setTune] = useState({toStudy});
-  const [playHowler, setPlayHowler] = useState(false);
+  /* const [tune, setTune] = useState({toStudy});
+  const [playHowler, setPlayHowler] = useState(false); */
 
   const toggle = () => setModal(!modal);
 
@@ -24,32 +24,32 @@ export default function Pomodoro() {
     if (studying && minutes == 25) {
       setStudying(false);
       setTime(0);
-      setTune({toBreak});
-      setPlayHowler(true);
+      /* setTune({toBreak});
+      setPlayHowler(true); */
       setLabelContent("Tómate un descanso");
     }
     if (!studying && minutes == 5) {
       setStudying(true);
       setTime(0);
-      setTune({toStudy});
-      setPlayHowler(true);
+      /* setTune({toStudy});
+      setPlayHowler(true); */
       setLabelContent("¡A estudiar!");
     }
     if (isRunning) {
       intervalId = setInterval(() => setTime(time + 1), 10);
     }
-    if (time == 200) setPlayHowler(false);
+    /* if (time == 200) setPlayHowler(false); */
     return () => clearInterval(intervalId);
   }, [isRunning, time]);
 
   const startAndStop = () => {
     setIsRunning(!isRunning);
-    if (time == 0) setPlayHowler(true);
+    /* if (time == 0) setPlayHowler(true); */
   };
 
   const reset = () => {
     setTime(0);
-    setPlayHowler(true);
+    /* setPlayHowler(true); */
   };
 
   const stopAndReset = () => {
@@ -62,7 +62,7 @@ export default function Pomodoro() {
         <div className="d-flex align-items-center">
           <div>
             <div onClick={toggle}>Pomodoro</div>
-            <Progress
+            {/* <Progress
               name="pomodoro-progress-navbar"
               className="pomodoro-progress-navbar position-absolute"
               color={
@@ -70,7 +70,7 @@ export default function Pomodoro() {
               }
               max={studying ? 150000 : 30000}
               value={time}
-            />
+            /> */}
           </div>
           <span
             id="pomodoro-info"
@@ -110,7 +110,7 @@ export default function Pomodoro() {
             <label>{lableContent}</label>
           </ModalHeader>
           <ModalBody>
-            <ReactHowler src={tune} playing={playHowler} />
+            {/* <ReactHowler src={tune} playing={playHowler} /> */}
             <p className="text-secondary fst-italic small">
               La técnica Pomodoro es un método de gestión de tiempo que sugiere
               trabajar en intervalos de 25 minutos y añadir tiempos de descanso
@@ -127,7 +127,7 @@ export default function Pomodoro() {
                     {seconds.toString().padStart(2, "0")}
                   </span>
                 </div>
-                <Progress
+                {/* <Progress
                   name="pomodoro-progress-modal"
                   className="pomodoro-progress"
                   animated={isRunning}
@@ -137,7 +137,7 @@ export default function Pomodoro() {
                   }
                   max={studying ? 150000 : 30000}
                   value={time}
-                />
+                /> */}
               </div>
               <div>
                 <button

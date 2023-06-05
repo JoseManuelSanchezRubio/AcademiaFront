@@ -32,16 +32,10 @@
   margin: auto;
 }
 
-.padding-cards {
-  width: 1px;
-}
-
-
-
 .btn-courses {
   background: linear-gradient(to bottom right, #EF4765, #FF9A5A);
   border: 0;
-  border-radius: 25px;
+  border-radius: 20px;
   color: #FFFFFF;
   display: inline-block;
   font-weight: bold;
@@ -51,13 +45,10 @@
   text-align: center;
   text-decoration: none;
   transition: box-shadow .2s ease-in-out;
-  user-select: none;
-  -webkit-user-select: none;
   touch-action: manipulation;
-  white-space: nowrap;
 }
 
-.btn-courses:not([disabled]):hover {
+.btn-courses:hover {
   color: #FFFFFF;
   box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(239, 71, 101, 0.5), .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
 }
@@ -126,7 +117,6 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
 }
 
 .spikes {
@@ -186,7 +176,7 @@
   height: 150px;
   width: 150px;
   position: relative;
-  border: 3px solid rgb(255, 255, 255);
+  border: 3px solid rgb(0, 0, 0);
   margin: auto;
   background-color: #74a7e4;
   color: white;
@@ -354,12 +344,14 @@
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: rgb(160, 160, 160);
+  background: rgb(153, 0, 255);
+  //background: rgb(160, 160, 160);
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: rgb(177, 177, 177);
+  background: rgb(186, 82, 255);
+  //background: rgb(177, 177, 177);
 }
 
 

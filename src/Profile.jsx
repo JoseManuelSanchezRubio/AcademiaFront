@@ -4,7 +4,20 @@ import UpdateUser from "./UpdateUser";
 import lessThan from "./assets/less-than.png";
 
 export default function Profile(props) {
-
+  let dni = "";
+  let profilePic = "";
+  if (sessionStorage.getItem("user") != null) {
+    dni = JSON.parse(sessionStorage.getItem("user"))?.dni;
+    profilePic = `https://source.boringavatars.com/beam/145/${dni}`;
+  }
+  if (sessionStorage.getItem("professor") != null) {
+    dni = JSON.parse(sessionStorage.getItem("professor"))?.dni;
+    profilePic = `https://source.boringavatars.com/beam/145/${dni}`;
+  }
+  if (sessionStorage.getItem("admin") != null) {
+    dni = JSON.parse(sessionStorage.getItem("admin"))?.dni;
+    profilePic = `https://source.boringavatars.com/beam/145/${dni}`;
+  }
   return (
     <div>
       <div className="open-button">
@@ -40,13 +53,17 @@ export default function Profile(props) {
             <div className="bg-blue rounded-4 px-4 py-5 m-auto">
               <div className="profile-picture rounded-circle">
                 <h1 className="fw-bold">
-                  {props?.user?.name[0]}
-                  {props?.user?.surname[0]}
+                  {/* {props?.user?.name[0].toUpperCase()}
+                  {props?.user?.surname[0].toUpperCase()} */}
+                  <img src={profilePic}></img>
                 </h1>
               </div>
               <br></br>
               <h3 className="text-center fw-bold">
-                {props?.user?.name} {props?.user?.surname}
+                {props?.user?.name[0].toUpperCase() +
+                  props?.user?.name.slice(1)}{" "}
+                {props?.user?.surname[0].toUpperCase() +
+                  props?.user?.surname.slice(1)}
               </h3>
               <br></br>
               <div className="bg-bluedark rounded-4 p-5">
@@ -56,7 +73,10 @@ export default function Profile(props) {
                 </div>
                 <div>
                   <strong>Dirección:</strong>
-                  <div className="mb-3">{props?.user?.address}</div>
+                  <div className="mb-3">
+                    {props?.user?.address[0].toUpperCase() +
+                      props?.user?.address.slice(1)}
+                  </div>
                 </div>
                 <div>
                   <strong>Teléfono:</strong>
