@@ -18,7 +18,7 @@ export default function ErrorPage() {
             No encontramos la página que estás buscando.
           </div>
         </i>
-        <img src={notFound} width="400vw" className="mb-4"></img>
+        <img src={notFound} width="500vw" className="mb-4"></img>
         <br></br>
         <Link to="/" className="btn btn-primary">
           Volver a la página principal
@@ -32,7 +32,7 @@ export default function ErrorPage() {
         <i>
           <div>Parece que ha habido un error...</div>
         </i>
-        <img src={_error} width="400vw" className="mb-4"></img>
+        <img src={_error} width="500vw" className="mb-4"></img>
         <br></br>
         <Link to="/" className="btn btn-primary">
           Volver a la página principal
