@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Announcements from "../Announcements";
 import Nav from "../Nav";
-import { URL } from "../url";
-import { URL_STORAGE } from "../url";
+import { URL, URL_STORAGE } from "../url";
 
 export default function Course() {
   const navigate = useNavigate();
@@ -74,7 +72,8 @@ export default function Course() {
   }
   return (
     <div>
-      <Nav isLogged={isLogged}></Nav>
+      <Nav isLogged={sessionStorage.getItem("token") != null &&
+        sessionStorage.getItem("user") != null}></Nav>
       <div className="row mx-5 my-4">
         <div className="col-lg-9">
           <div>

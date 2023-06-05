@@ -1,12 +1,11 @@
 /* eslint-disable react/prop-types */
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function NavAdmin(props) {
   const navigate = useNavigate();
   function logout() {
     sessionStorage.removeItem("token");
-    sessionStorage.removeItem("user");
+    sessionStorage.removeItem("admin");
     sessionStorage.removeItem("courseId");
     return navigate("/login");
   }

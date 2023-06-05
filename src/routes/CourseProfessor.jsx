@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Announcements from "../Announcements";
 import NavProfessor from "../NavProfessor";
 import { URL } from "../url";
@@ -16,6 +15,28 @@ export default function CourseProfessor() {
   const [unitExercises, setUnitExercises] = useState("");
   const [theoryFile, setTheoryFile] = useState("");
   const [exercisesFile, setExercisesFile] = useState("");
+
+  const [errorName, setErrorName] = useState("");
+  const [errorDescription, setErrorDescription] = useState("");
+  const [errorTheory, setErrorTheory] = useState("");
+  const [errorExercises, setErrorExercises] = useState("");
+
+  function handleName(e) {
+    setUnitName(e);
+    if (e == "") {
+      setErrorName("Debes rellenar este campo");
+    } else {
+      setErrorName("");
+    }
+  }
+  function handleDescription(e) {
+    setUnitDescription(e);
+    if (e == "") {
+      setErrorDescription("Debes rellenar este campo");
+    } else {
+      setErrorDescription("");
+    }
+  }
 
   const courseId = JSON.parse(sessionStorage.getItem("courseId"));
   const professorId = JSON.parse(sessionStorage.getItem("professor"))?.id;
@@ -49,7 +70,6 @@ export default function CourseProfessor() {
       let fileReader = new FileReader();
       fileReader.onload = function (fileLoadedEvent) {
         file = fileLoadedEvent.target.result;
-        //console.log(file);
         if (event.target.id === "theory-modal") {
           setTheoryFile(file);
           setUnitTheory(fileName);
@@ -62,33 +82,58 @@ export default function CourseProfessor() {
     }
   }
 
-  async function createUnit() {
-    console.log(unitName, unitTheory, unitExercises, courseId);
-    const requestOptions = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name: unitName,
-        description: unitDescription,
-        theory: unitTheory,
-        theory_file: theoryFile,
-        exercises: unitExercises,
-        exercises_file: exercisesFile,
-        course_id: courseId,
-      }),
-    };
-    console.log(requestOptions.body);
-    await fetch(`${URL}/units`, requestOptions)
-      .then((response) => response.json())
-      .then((data) => console.log(data));
-    window.location.reload();
+  async function createUnit(e) {
+    let error = false;
+    e.preventDefault();
+    if (unitName == "") {
+      setErrorName("Debes rellenar este campo");
+      error = true;
+    }
+    if (unitDescription == "") {
+      setErrorDescription("Debes rellenar este campo");
+      error = true;
+    }
+    if (unitTheory == "") {
+      setErrorTheory("Debes rellenar este campo");
+      error = true;
+    } else {
+      setErrorTheory("");
+    }
+    if (unitExercises == "") {
+      setErrorExercises("Debes rellenar este campo");
+      error = true;
+    } else {
+      setErrorExercises("");
+    }
+    if (!error && errorName == "" && errorDescription == "" && errorTheory == "" && errorExercises == "") {
+      const requestOptions = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: unitName,
+          description: unitDescription,
+          theory: unitTheory,
+          theory_file: theoryFile,
+          exercises: unitExercises,
+          exercises_file: exercisesFile,
+          course_id: courseId,
+        }),
+      };
+      await fetch(`${URL}/units`, requestOptions)
+        .then((response) => response.json())
+        .then((data) => setUnits(data));
+      document.getElementById('close-modal-unit').click();
+    }
+    console.log(unitTheory);
+    console.log(unitExercises);
   }
 
   return (
     <div>
-      <NavProfessor isLogged={isLogged}></NavProfessor>
+      <NavProfessor isLogged={sessionStorage.getItem("token") != null &&
+        sessionStorage.getItem("professor") != null}></NavProfessor>
       <div className="row mx-4 my-4">
         <div className="col-lg-9 mb-4">
           <div>
@@ -153,10 +198,17 @@ export default function CourseProfessor() {
                       </label>
                       <input
                         type="text"
-                        className="form-control"
+                        className={
+                          errorName == ""
+                            ? "form-control"
+                            : "form-control border border-danger shadow-none"
+                        }
                         id="name-modal"
-                        onChange={(e) => setUnitName(e.target.value)}
+                        onChange={(e) => handleName(e.target.value)}
                       />
+                      <div className="text-danger fst-italic small">
+                        {errorName}
+                      </div>
                     </div>
                     <div className="mb-3">
                       <label htmlFor="desc-modal" className="form-label">
@@ -166,9 +218,16 @@ export default function CourseProfessor() {
                         id="desc-modal"
                         cols="30"
                         rows="3"
-                        className="form-control"
-                        onChange={(e) => setUnitDescription(e.target.value)}
+                        className={
+                          errorDescription == ""
+                            ? "form-control"
+                            : "form-control border border-danger shadow-none"
+                        }
+                        onChange={(e) => handleDescription(e.target.value)}
                       ></textarea>
+                      <div className="text-danger fst-italic small">
+                        {errorDescription}
+                      </div>
                     </div>
                     <div className="mb-3">
                       <label htmlFor="theory-modal" className="form-label">
@@ -176,10 +235,17 @@ export default function CourseProfessor() {
                       </label>
                       <input
                         type="file"
-                        className="form-control"
+                        className={
+                          errorTheory == ""
+                            ? "form-control"
+                            : "form-control border border-danger shadow-none"
+                        }
                         id="theory-modal"
                         onChange={(e) => handleFile(e)}
                       />
+                      <div className="text-danger fst-italic small">
+                        {errorTheory}
+                      </div>
                     </div>
                     <div className="mb-3">
                       <label htmlFor="exercises-modal" className="form-label">
@@ -187,10 +253,17 @@ export default function CourseProfessor() {
                       </label>
                       <input
                         type="file"
-                        className="form-control"
+                        className={
+                          errorExercises == ""
+                            ? "form-control"
+                            : "form-control border border-danger shadow-none"
+                        }
                         id="exercises-modal"
                         onChange={(e) => handleFile(e)}
                       />
+                      <div className="text-danger fst-italic small">
+                        {errorExercises}
+                      </div>
                     </div>
                   </form>
                 </div>
@@ -199,6 +272,7 @@ export default function CourseProfessor() {
                     type="button"
                     className="btn btn-secondary"
                     data-bs-dismiss="modal"
+                    id="close-modal-unit"
                   >
                     Cerrar
                   </button>

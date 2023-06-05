@@ -72,13 +72,16 @@ export default function Forum() {
         user_id: userId,
       }),
     };
-    await fetch(`${URL}/messages/`, requestOptions);
-    window.location.reload();
+    await fetch(`${URL}/messages/`, requestOptions)
+      .then((response) => response.json())
+      .then((data) => setMessages(data));
+    document.getElementById("msg").value = "";
   }
 
   return (
     <div>
-      <Nav isLogged={isLogged}></Nav>
+      <Nav isLogged={sessionStorage.getItem("token") != null &&
+        sessionStorage.getItem("user") != null}></Nav>
       <div className="container">
         <div className="py-3">
           <h1 className="mb-4 fw-bold">Mensajes del foro</h1>

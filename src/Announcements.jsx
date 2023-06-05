@@ -4,7 +4,7 @@ import { URL } from "./url";
 
 export default function Announcements(props) {
   const [announcements, setAnnouncements] = useState([]);
-  
+
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
 
@@ -29,7 +29,6 @@ export default function Announcements(props) {
   }
 
   useEffect(() => {
-    setAnnouncements(JSON.parse(sessionStorage.getItem("ann")));
     const requestOptions = {
       method: "POST",
       headers: {
@@ -45,8 +44,8 @@ export default function Announcements(props) {
   }, []);
 
   async function addAnnouncement(e) {
-    e.preventDefault();
     let error = false;
+    e.preventDefault();
     if (title == "") {
       setErrorTitle("Debes rellenar este campo");
       error = true;
@@ -68,27 +67,17 @@ export default function Announcements(props) {
           course_id: props.courseId,
         }),
       };
-      await fetch(`${URL}/announcements`, requestOptions);
-
-      //ESTO HAY QUE METERLO EN EL THEN DEL FETCH
-      /* setAnnouncements((announcements) => {
-        return [
-          {
-            id: 2,
-            title: "titulooooo",
-            body: "cuerpoooooo",
-            professorId: 1,
-            course_id: 1,
-          },
-          ...announcements,
-        ];
-      }); */
-
-      sessionStorage.setItem("ann", JSON.stringify(announcements));
-      //window.location.reload();
+      await fetch(`${URL}/announcements`, requestOptions).then((res) => res.json()).then((response) => {
+        setAnnouncements((announcements) => {
+          return [
+            response, ...announcements,
+          ];
+        });
+      });
+      document.getElementById('close-modal-announcement').click();
     }
   }
-
+  announcements.sort((a, b) => a.id - b.id);
   const announcementsList = announcements.map((announcement) => {
     const date = new Date(announcement.created_at).toLocaleDateString();
     return (
@@ -191,6 +180,7 @@ export default function Announcements(props) {
                       type="button"
                       className="btn btn-secondary"
                       data-bs-dismiss="modal"
+                      id="close-modal-announcement"
                     >
                       Cerrar
                     </button>

@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import NavProfessor from "../NavProfessor";
 import Profile from "../Profile";
 import { URL } from "../url";
@@ -71,7 +70,7 @@ export default function Professor() {
             id={item.id}
             onClick={(e) => handleCourse(e)}
           >
-            <button className="btn btn-primary custom-shadow">Entrar</button>
+            <button id={item.id} className="btn btn-primary custom-shadow">Entrar</button>
           </Link>
         </div>
       </div>
@@ -84,7 +83,8 @@ export default function Professor() {
 
   return (
     <div>
-      <NavProfessor isLogged={isLogged} />
+      <NavProfessor isLogged={sessionStorage.getItem("token") != null &&
+        sessionStorage.getItem("professor") != null} />
       <div>
         <div className="container">
           <h1 className="my-5 fw-bold">Bienvenido, estos son tus cursos:</h1>

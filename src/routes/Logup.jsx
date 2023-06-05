@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Tooltip } from "reactstrap";
 import Nav from "../Nav";
+import NavAdmin from "../NavAdmin";
+import NavProfessor from "../NavProfessor";
 //assets imports
 import info from "../assets/info.png";
 import showPassword from "../assets/show-password.png";
@@ -196,18 +198,23 @@ export default function Logup() {
           password: password,
         }),
       };
-      fetch(`${URL}/api/users`, requestOptions)
+      fetch(`${URL}/users`, requestOptions)
         .then((response) => response.json())
         .then((data) => checkLogup(data));
     }
   }
 
-  let isLogged = false;
-  if (sessionStorage.getItem("token")) isLogged = true;
 
   return (
     <div>
-      <Nav isLogged={isLogged} />
+      {sessionStorage.getItem('user') && <Nav isLogged={sessionStorage.getItem("token") != null &&
+        sessionStorage.getItem("user") != null}></Nav>}
+      {sessionStorage.getItem('professor') && <NavProfessor isLogged={sessionStorage.getItem("token") != null &&
+        sessionStorage.getItem("professor") != null}></NavProfessor>}
+      {sessionStorage.getItem('admin') && <NavAdmin isLogged={sessionStorage.getItem("token") != null &&
+        sessionStorage.getItem("admin") != null}></NavAdmin>}
+      {sessionStorage.getItem('user') == null && sessionStorage.getItem('professor') == null && sessionStorage.getItem('admin') == null && <Nav isLogged={sessionStorage.getItem("token") != null &&
+        sessionStorage.getItem("user") != null}></Nav>}
       <br></br>
       <section className="d-flex justify-content-center p-5">
         <div>

@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Nav from "../Nav";
 import NavProfessor from "../NavProfessor";
 import { URL, URL_STORAGE } from "../url";
@@ -64,8 +63,10 @@ export default function Users() {
 
   return (
     <div>
-      {isProfessor && <NavProfessor isLogged={isLogged}></NavProfessor>}
-      {!isProfessor && <Nav isLogged={isLogged}></Nav>}
+      {isProfessor && <NavProfessor isLogged={sessionStorage.getItem("token") != null &&
+        sessionStorage.getItem("professor") != null}></NavProfessor>}
+      {!isProfessor && <Nav isLogged={sessionStorage.getItem("token") != null &&
+        sessionStorage.getItem("user") != null}></Nav>}
       <div className="container table-responsive">
         <table className="table table-hover mt-5">
           <thead className="table-secondary">

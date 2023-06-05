@@ -1,6 +1,6 @@
 import emailjs from "@emailjs/browser";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useRef, useState, useEffect } from "react";
 import { Tooltip } from "reactstrap";
 import NavAdmin from "../NavAdmin";
 import { URL } from "../url";
@@ -143,7 +143,7 @@ export default function NewProfessor() {
         "Profesor añadido correctamente. Serás redirigido a la página de inicio"
       );
 
-      return (window.location.href = "/admin");
+      return (navigate("/admin"));
     } else {
       alert(data.message);
     }
@@ -221,7 +221,8 @@ export default function NewProfessor() {
 
   return (
     <div>
-      <NavAdmin isLogged={isLogged} />
+      <NavAdmin isLogged={sessionStorage.getItem("token") != null &&
+        sessionStorage.getItem("admin") != null} />
       <section className="d-flex justify-content-center p-5">
         <div>
           <h1 className="mb-4 fw-bold">Añadir profesor</h1>

@@ -6,6 +6,7 @@ import NavProfessor from "../NavProfessor";
 import { URL } from "../url";
 //assets imports
 import boy from "../assets/boy.webp";
+import bug from "../assets/bug.png";
 import certificate from "../assets/certificate.webp";
 import facebook from "../assets/facebook.png";
 import girl from "../assets/girl.webp";
@@ -16,17 +17,10 @@ import opos from "../assets/opos.webp";
 import quotes from "../assets/quotes.png";
 import telegram from "../assets/telegram.png";
 import twitter from "../assets/twitter.png";
-import bug from "../assets/bug.png";
 
 export default function LandingPage() {
   const [courses, setCourses] = useState([]);
 
-  let isLogged = false;
-  let isProfessor = false;
-  let isAdmin = false;
-  if (sessionStorage.getItem("token")) isLogged = true;
-  if (sessionStorage.getItem("professor")) isProfessor = true;
-  if (sessionStorage.getItem("admin")) isAdmin = true;
   useEffect(() => {
     fetch(`${URL}/courses`)
       .then((res) => res.json())
@@ -46,9 +40,16 @@ export default function LandingPage() {
   if (courses) {
     return (
       <div>
-        {isProfessor && <NavProfessor isLogged={isLogged}></NavProfessor>}
-        {!isProfessor && !isAdmin && <Nav isLogged={isLogged}></Nav>}
-        {!isProfessor && isAdmin && <NavAdmin isLogged={isLogged}></NavAdmin>}
+        {sessionStorage.getItem('user') && <Nav isLogged={sessionStorage.getItem("token") != null &&
+          sessionStorage.getItem("user") != null}></Nav>}
+        {sessionStorage.getItem('professor') && <NavProfessor isLogged={sessionStorage.getItem("token") != null &&
+          sessionStorage.getItem("professor") != null}></NavProfessor>}
+        {sessionStorage.getItem('admin') && <NavAdmin isLogged={sessionStorage.getItem("token") != null &&
+          sessionStorage.getItem("admin") != null}></NavAdmin>}
+        {sessionStorage.getItem('user') == null && sessionStorage.getItem('professor') == null && sessionStorage.getItem('admin') == null && <Nav isLogged={sessionStorage.getItem("token") != null &&
+          sessionStorage.getItem("user") != null}></Nav>}
+
+
         <div className="background-mainpage">
           <div className="text-center">
             <h1 className="fw-bold title">Learning Enjoying</h1>
@@ -237,7 +238,7 @@ export default function LandingPage() {
             <h1 className="text-center my-5 fw-bold title">
               Preguntas frecuentes
             </h1>
-            <div className="accordion" id="accordionQA">
+            <div className="accordion accordion-faq" id="accordionQA">
               <div className="accordion-item">
                 <h2 className="accordion-header fw-bold">
                   <button
