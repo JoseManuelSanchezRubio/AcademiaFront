@@ -73,9 +73,11 @@ export default function CourseProfessor() {
         if (event.target.id === "theory-modal") {
           setTheoryFile(file);
           setUnitTheory(fileName);
+          setErrorTheory("");
         } else {
           setExercisesFile(file);
           setUnitExercises(fileName);
+          setErrorExercises("");
         }
       };
       fileReader.readAsDataURL(fileToLoad);
@@ -105,7 +107,13 @@ export default function CourseProfessor() {
     } else {
       setErrorExercises("");
     }
-    if (!error && errorName == "" && errorDescription == "" && errorTheory == "" && errorExercises == "") {
+    if (
+      !error &&
+      errorName == "" &&
+      errorDescription == "" &&
+      errorTheory == "" &&
+      errorExercises == ""
+    ) {
       const requestOptions = {
         method: "POST",
         headers: {
@@ -124,10 +132,16 @@ export default function CourseProfessor() {
       await fetch(`${URL}/units`, requestOptions)
         .then((response) => response.json())
         .then((data) => setUnits(data));
-      document.getElementById('close-modal-unit').click();
+      document.getElementById("close-modal-unit").click();
+      setUnitName("");
+      setUnitDescription("");
+      setUnitTheory("");
+      setUnitExercises("");
+      document.getElementById("name-modal").value = "";
+      document.getElementById("desc-modal").value = "";
+      document.getElementById("theory-modal").value = "";
+      document.getElementById("exercises-modal").value = "";
     }
-    console.log(unitTheory);
-    console.log(unitExercises);
   }
 
   return (

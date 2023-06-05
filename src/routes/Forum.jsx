@@ -75,6 +75,7 @@ export default function Forum() {
       .then((response) => response.json())
       .then((data) => setMessages(data));
     document.getElementById("msg").value = "";
+    setMessage("");
   }
 
   return (

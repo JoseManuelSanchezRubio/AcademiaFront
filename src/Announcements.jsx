@@ -74,7 +74,11 @@ export default function Announcements(props) {
           ];
         });
       });
-      document.getElementById('close-modal-announcement').click();
+      document.getElementById("close-modal-announcement").click();
+      setTitle("");
+      setBody("");
+      document.getElementById("title-modal").value = "";
+      document.getElementById("body-modal").value = "";
     }
   }
   announcements.sort((a, b) => a.id - b.id);
