@@ -40,9 +40,7 @@ export default function Admin() {
 
     fetchUsers();
 
-
     fetchProfessors();
-
 
     fetchCourses();
   }, []);
@@ -51,18 +49,22 @@ export default function Admin() {
     if (confirm("Seguro que quieres eliminar este curso?")) {
       await fetch(`${URL}/courses/${e}`, {
         method: "DELETE",
-      }).then((res) => res.json()).then((response) => {
-        setCourses(response);
-      });
+      })
+        .then((res) => res.json())
+        .then((response) => {
+          setCourses(response);
+        });
     }
   }
   async function deleteUser(e) {
     if (confirm("Seguro que quieres eliminar a este usuario?")) {
       await fetch(`${URL}/users/${e}`, {
         method: "DELETE",
-      }).then((res) => res.json()).then((response) => {
-        setUsers(response);
-      });
+      })
+        .then((res) => res.json())
+        .then((response) => {
+          setUsers(response);
+        });
     }
   }
 
@@ -110,20 +112,24 @@ export default function Admin() {
   const coursesList = courses.map((course) => {
     return (
       <div className="card" key={course.id} style={{ width: "250px" }}>
-        <div className="card-body">
-          <h5 className="card-title">{course.name}</h5>
-          <p className="card-subtitle mb-2 text-secondary">
-            {course.description}
-          </p>
-          <p className="card-text">
-            Profesor: {course.professor.name} {course.professor.surname}
-          </p>
-          <div
-            className="btn btn-danger"
-            id={course.id}
-            onClick={(e) => deleteCourse(e.target.id)}
-          >
-            Eliminar
+        <div className="card-body d-flex flex-column justify-content-between">
+          <div>
+            <h5 className="card-title">{course.name}</h5>
+            <p className="card-subtitle mb-2 text-secondary">
+              {course.description}
+            </p>
+          </div>
+          <div>
+            <div className="card-text my-2">
+              Profesor: {course.professor.name} {course.professor.surname}
+            </div>
+            <div
+              className="btn btn-danger w-100"
+              id={course.id}
+              onClick={(e) => deleteCourse(e.target.id)}
+            >
+              Eliminar
+            </div>
           </div>
         </div>
       </div>
@@ -132,8 +138,12 @@ export default function Admin() {
 
   return (
     <div>
-      <NavAdmin isLogged={sessionStorage.getItem("token") != null &&
-        sessionStorage.getItem("admin") != null} />
+      <NavAdmin
+        isLogged={
+          sessionStorage.getItem("token") != null &&
+          sessionStorage.getItem("admin") != null
+        }
+      />
       <section className="p-5">
         <h3 className="fw-bold">Cursos</h3>
         <div className="d-flex flex-wrap gap-3">{coursesList}</div>

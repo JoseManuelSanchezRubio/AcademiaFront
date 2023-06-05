@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Modal, ModalHeader, ModalBody } from "reactstrap";
 import Nav from "../Nav";
 import NavAdmin from "../NavAdmin";
 import NavProfessor from "../NavProfessor";
@@ -7,59 +8,105 @@ import { URL } from "../url";
 //import assets
 import nothing from "../assets/nothing.png";
 
-
-
-
 export default function Courses() {
   const navigate = useNavigate();
   const [courses, setCourses] = useState([]);
-  /* const courses = [{id: 1, name: "Matemáticas", description: "Curso de matemáticas básicas en el que podrás aprender los conceptos básicos de matemáticas. No dudes en apuntarte", price: "24,99"}, {id: 2, name: "Lengua", description: "Curso de matemáticas básicas", price: "40,00"}, {id: 3, name: "Biología", description: "Curso de matemáticas básicas", price: "30,00"}, {id: 4, name: "Filosofía", description: "Curso de matemáticas básicas", price: "49,99"}, {id: 5, name: "Música", description: "Curso de matemáticas básicas", price: "49,99"}, {id: 6, name: "Física", description: "Curso de matemáticas básicas", price: "49,99"}]; */
-  const [userCourses, setUserCourses] = useState([])
+  /* const courses = [
+    {
+      id: 1,
+      name: "Matemáticas",
+      description:
+        "Curso de matemáticas básicas en el que podrás aprender los conceptos básicos de matemáticas. No dudes en apuntarte",
+      price: "24,99",
+    },
+    {
+      id: 2,
+      name: "Lengua",
+      description: "Curso de matemáticas básicas",
+      price: "40,00",
+    },
+    {
+      id: 3,
+      name: "Biología",
+      description: "Curso de matemáticas básicas",
+      price: "30,00",
+    },
+    {
+      id: 4,
+      name: "Filosofía",
+      description: "Curso de matemáticas básicas",
+      price: "49,99",
+    },
+    {
+      id: 5,
+      name: "Música",
+      description: "Curso de matemáticas básicas",
+      price: "49,99",
+    },
+    {
+      id: 6,
+      name: "Física",
+      description: "Curso de matemáticas básicas",
+      price: "49,99",
+    },
+  ]; */
+  const [modal, setModal] = useState(false);
+  const [selectedCourse, setSelectedCourse] = useState();
+  function toggle(e) {
+    setSelectedCourse(e);
+    setModal(!modal);
+  }
+  const [userCourses, setUserCourses] = useState([]);
   const user = JSON.parse(sessionStorage.getItem("user"));
   let isLogged = false;
-  if (sessionStorage.getItem('token')) {
+  if (sessionStorage.getItem("token")) {
     isLogged = true;
   }
 
   useEffect(() => {
     fetch(`${URL}/courses`)
-      .then(res => res.json())
-      .then(data => {
-        setCourses(data)
-      })
+      .then((res) => res.json())
+      .then((data) => {
+        setCourses(data);
+      });
     //const userId = JSON.parse(sessionStorage.getItem("user")).id;
     fetch(`${URL}/users/${user?.id}`)
-      .then(response => response.json())
+      .then((response) => response.json())
       .then((data) => {
         setUserCourses(data.courses);
-      })
-  }, [])
+      });
+  }, []);
 
-  async function buyCourse(e) {
+  async function buyCourse() {
+    if (!isLogged) return navigate("/login");
 
-    if (!isLogged) return navigate('/login');
-
-    if (confirm("Está apunto de comprar el curso, ¿seguro que desea continuar?")) {
-      for (let i = 0; i < userCourses.length; i++) {
-        if (userCourses[i].id == e.target.id) return alert("Ya has comprado ese curso")
-      }
-
-      const requestOptions = {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          user_id: user.id,
-          course_id: e.target.id
-        })
-      };
-      await fetch(`${URL}/users/course`, requestOptions)
-
-      alert("Compra realizada");
-      navigate('/user');
+    for (let i = 0; i < userCourses.length; i++) {
+      if (userCourses[i].id == selectedCourse)
+        return alert("Ya has comprado ese curso");
     }
 
+    const requestOptions = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        user_id: user.id,
+        course_id: selectedCourse,
+      }),
+    };
+    await fetch(`${URL}/users/course`, requestOptions);
+
+    //alert(selectedCourse);
+
+    setModal(!modal);
+
+    let toast = document.getElementById("toast");
+    toast.className = "show";
+    setTimeout(function () {
+      toast.className = toast.className.replace("show", "");
+    }, 3000);
+    //navigate("/user");
   }
 
   let coursesList = courses.map((item) => {
@@ -96,10 +143,17 @@ export default function Courses() {
             <p className="card-text">{item.description}</p>
           </div>
           <div>
-            <button
+            {/* <button
               className="btn btn-primary mt-3"
               id={item.id}
               onClick={(e) => buyCourse(e)}
+            >
+              Comprar
+            </button> */}
+            <button
+              className="btn btn-primary mt-3"
+              id={item.id}
+              onClick={(e) => toggle(e.target.id)}
             >
               Comprar
             </button>
@@ -112,12 +166,40 @@ export default function Courses() {
 
   return (
     <div>
-      {sessionStorage.getItem('user') != null && <Nav isLogged={sessionStorage.getItem("token") != null &&
-        sessionStorage.getItem("user") != null} />}
-      {sessionStorage.getItem('professor') != null && <NavProfessor isLogged={sessionStorage.getItem("token") != null &&
-        sessionStorage.getItem("professor") != null} />}
-      {sessionStorage.getItem('admin') != null && <NavAdmin isLogged={sessionStorage.getItem("token") != null &&
-        sessionStorage.getItem("admin") != null} />}
+      {sessionStorage.getItem("user") && (
+        <Nav
+          isLogged={
+            sessionStorage.getItem("token") != null &&
+            sessionStorage.getItem("user") != null
+          }
+        ></Nav>
+      )}
+      {sessionStorage.getItem("professor") && (
+        <NavProfessor
+          isLogged={
+            sessionStorage.getItem("token") != null &&
+            sessionStorage.getItem("professor") != null
+          }
+        ></NavProfessor>
+      )}
+      {sessionStorage.getItem("admin") && (
+        <NavAdmin
+          isLogged={
+            sessionStorage.getItem("token") != null &&
+            sessionStorage.getItem("admin") != null
+          }
+        ></NavAdmin>
+      )}
+      {sessionStorage.getItem("user") == null &&
+        sessionStorage.getItem("professor") == null &&
+        sessionStorage.getItem("admin") == null && (
+          <Nav
+            isLogged={
+              sessionStorage.getItem("token") != null &&
+              sessionStorage.getItem("user") != null
+            }
+          ></Nav>
+        )}
 
       <div className="container">
         <h1 className="my-5 fw-bold">Estos son nuestros cursos:</h1>
@@ -133,6 +215,21 @@ export default function Courses() {
             </label>
           </div>
         )}
+      </div>
+      <Modal isOpen={modal} toggle={toggle}>
+        <ModalHeader toggle={toggle}>Atención</ModalHeader>
+        <ModalBody>¿Seguro que quieres comprar este curso?</ModalBody>
+        <div className="d-flex justify-content-end gap-3 mb-3 me-3">
+          <button className="btn btn-primary" onClick={buyCourse}>
+            Sí
+          </button>{" "}
+          <button className="btn btn-secondary" onClick={toggle}>
+            No
+          </button>
+        </div>
+      </Modal>
+      <div>
+        <div id="toast">Compra realizada correctamente</div>
       </div>
     </div>
   );

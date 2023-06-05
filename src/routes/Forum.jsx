@@ -59,7 +59,6 @@ export default function Forum() {
   });
 
   async function saveMessage(e) {
-    if (message == "") return alert("Debes escribir un mensaje");
     e.preventDefault();
     const requestOptions = {
       method: "POST",

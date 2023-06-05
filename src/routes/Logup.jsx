@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Tooltip } from "reactstrap";
 import Nav from "../Nav";
@@ -34,6 +34,24 @@ export default function Logup() {
   const [typeInputPassword, setTypeInputPassword] = useState("password");
   const [typeInputConfirmPassword, setTypeInputConfirmPassword] =
     useState("password");
+
+  useEffect(() => {
+    if (
+      sessionStorage.getItem("token") != null &&
+      sessionStorage.getItem("user") != null
+    )
+      return navigate("/user");
+    if (
+      sessionStorage.getItem("token") != null &&
+      sessionStorage.getItem("professor") != null
+    )
+      return navigate("/professor");
+    if (
+      sessionStorage.getItem("token") != null &&
+      sessionStorage.getItem("admin") != null
+    )
+      return navigate("/admin");
+  }, []);
 
   function setInputTypeToText(e) {
     if (e == "password") {
@@ -204,17 +222,42 @@ export default function Logup() {
     }
   }
 
-
   return (
     <div>
-      {sessionStorage.getItem('user') && <Nav isLogged={sessionStorage.getItem("token") != null &&
-        sessionStorage.getItem("user") != null}></Nav>}
-      {sessionStorage.getItem('professor') && <NavProfessor isLogged={sessionStorage.getItem("token") != null &&
-        sessionStorage.getItem("professor") != null}></NavProfessor>}
-      {sessionStorage.getItem('admin') && <NavAdmin isLogged={sessionStorage.getItem("token") != null &&
-        sessionStorage.getItem("admin") != null}></NavAdmin>}
-      {sessionStorage.getItem('user') == null && sessionStorage.getItem('professor') == null && sessionStorage.getItem('admin') == null && <Nav isLogged={sessionStorage.getItem("token") != null &&
-        sessionStorage.getItem("user") != null}></Nav>}
+      {sessionStorage.getItem("user") && (
+        <Nav
+          isLogged={
+            sessionStorage.getItem("token") != null &&
+            sessionStorage.getItem("user") != null
+          }
+        ></Nav>
+      )}
+      {sessionStorage.getItem("professor") && (
+        <NavProfessor
+          isLogged={
+            sessionStorage.getItem("token") != null &&
+            sessionStorage.getItem("professor") != null
+          }
+        ></NavProfessor>
+      )}
+      {sessionStorage.getItem("admin") && (
+        <NavAdmin
+          isLogged={
+            sessionStorage.getItem("token") != null &&
+            sessionStorage.getItem("admin") != null
+          }
+        ></NavAdmin>
+      )}
+      {sessionStorage.getItem("user") == null &&
+        sessionStorage.getItem("professor") == null &&
+        sessionStorage.getItem("admin") == null && (
+          <Nav
+            isLogged={
+              sessionStorage.getItem("token") != null &&
+              sessionStorage.getItem("user") != null
+            }
+          ></Nav>
+        )}
       <br></br>
       <section className="d-flex justify-content-center p-5">
         <div>

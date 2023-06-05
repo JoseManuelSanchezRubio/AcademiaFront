@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import ForgotPassword from "../ForgotPassword";
 import Nav from "../Nav";
@@ -18,6 +18,24 @@ export default function Login() {
   const [errorPassword, setErrorPassword] = useState("");
 
   const [typeInput, setTypeInput] = useState("password");
+
+  useEffect(() => {
+    if (
+      sessionStorage.getItem("token") != null &&
+      sessionStorage.getItem("user") != null
+    )
+      return navigate("/user");
+    if (
+      sessionStorage.getItem("token") != null &&
+      sessionStorage.getItem("professor") != null
+    )
+      return navigate("/professor");
+    if (
+      sessionStorage.getItem("token") != null &&
+      sessionStorage.getItem("admin") != null
+    )
+      return navigate("/admin");
+  }, []);
 
   function setInputTypeToText() {
     setTypeInput("text");
@@ -118,14 +136,40 @@ export default function Login() {
 
   return (
     <div>
-      {sessionStorage.getItem('user') && <Nav isLogged={sessionStorage.getItem("token") != null &&
-        sessionStorage.getItem("user") != null}></Nav>}
-      {sessionStorage.getItem('professor') && <NavProfessor isLogged={sessionStorage.getItem("token") != null &&
-        sessionStorage.getItem("professor") != null}></NavProfessor>}
-      {sessionStorage.getItem('admin') && <NavAdmin isLogged={sessionStorage.getItem("token") != null &&
-        sessionStorage.getItem("admin") != null}></NavAdmin>}
-      {sessionStorage.getItem('user') == null && sessionStorage.getItem('professor') == null && sessionStorage.getItem('admin') == null && <Nav isLogged={sessionStorage.getItem("token") != null &&
-        sessionStorage.getItem("user") != null}></Nav>}
+      {sessionStorage.getItem("user") && (
+        <Nav
+          isLogged={
+            sessionStorage.getItem("token") != null &&
+            sessionStorage.getItem("user") != null
+          }
+        ></Nav>
+      )}
+      {sessionStorage.getItem("professor") && (
+        <NavProfessor
+          isLogged={
+            sessionStorage.getItem("token") != null &&
+            sessionStorage.getItem("professor") != null
+          }
+        ></NavProfessor>
+      )}
+      {sessionStorage.getItem("admin") && (
+        <NavAdmin
+          isLogged={
+            sessionStorage.getItem("token") != null &&
+            sessionStorage.getItem("admin") != null
+          }
+        ></NavAdmin>
+      )}
+      {sessionStorage.getItem("user") == null &&
+        sessionStorage.getItem("professor") == null &&
+        sessionStorage.getItem("admin") == null && (
+          <Nav
+            isLogged={
+              sessionStorage.getItem("token") != null &&
+              sessionStorage.getItem("user") != null
+            }
+          ></Nav>
+        )}
       <section className="login container py-md-5 p-4">
         <div>
           <h1 className="mb-4 fw-bold">Iniciar sesión</h1>
