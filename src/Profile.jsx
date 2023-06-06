@@ -60,10 +60,10 @@ export default function Profile(props) {
               </div>
               <br></br>
               <h3 className="text-center fw-bold">
-                {props?.user?.name[0].toUpperCase() +
+                {props?.user?.name[0]?.toUpperCase() +
                   props?.user?.name.slice(1)}{" "}
-                {props?.user?.surname[0].toUpperCase() +
-                  props?.user?.surname.slice(1)}
+                {props?.user?.surname[0]?.toUpperCase() +
+                  props?.user?.surname?.slice(1)}
               </h3>
               <br></br>
               <div className="bg-bluedark rounded-4 p-5">
@@ -74,8 +74,8 @@ export default function Profile(props) {
                 <div>
                   <strong>Dirección:</strong>
                   <div className="mb-3">
-                    {props?.user?.address[0].toUpperCase() +
-                      props?.user?.address.slice(1)}
+                    {props?.user?.address[0]?.toUpperCase() +
+                      props?.user?.address?.slice(1)}
                   </div>
                 </div>
                 <div>

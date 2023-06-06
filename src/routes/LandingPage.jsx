@@ -40,15 +40,40 @@ export default function LandingPage() {
   if (courses) {
     return (
       <div>
-        {sessionStorage.getItem('user') && <Nav isLogged={sessionStorage.getItem("token") != null &&
-          sessionStorage.getItem("user") != null}></Nav>}
-        {sessionStorage.getItem('professor') && <NavProfessor isLogged={sessionStorage.getItem("token") != null &&
-          sessionStorage.getItem("professor") != null}></NavProfessor>}
-        {sessionStorage.getItem('admin') && <NavAdmin isLogged={sessionStorage.getItem("token") != null &&
-          sessionStorage.getItem("admin") != null}></NavAdmin>}
-        {sessionStorage.getItem('user') == null && sessionStorage.getItem('professor') == null && sessionStorage.getItem('admin') == null && <Nav isLogged={sessionStorage.getItem("token") != null &&
-          sessionStorage.getItem("user") != null}></Nav>}
-
+        {sessionStorage.getItem("user") && (
+          <Nav
+            isLogged={
+              sessionStorage.getItem("token") != null &&
+              sessionStorage.getItem("user") != null
+            }
+          ></Nav>
+        )}
+        {sessionStorage.getItem("professor") && (
+          <NavProfessor
+            isLogged={
+              sessionStorage.getItem("token") != null &&
+              sessionStorage.getItem("professor") != null
+            }
+          ></NavProfessor>
+        )}
+        {sessionStorage.getItem("admin") && (
+          <NavAdmin
+            isLogged={
+              sessionStorage.getItem("token") != null &&
+              sessionStorage.getItem("admin") != null
+            }
+          ></NavAdmin>
+        )}
+        {sessionStorage.getItem("user") == null &&
+          sessionStorage.getItem("professor") == null &&
+          sessionStorage.getItem("admin") == null && (
+            <Nav
+              isLogged={
+                sessionStorage.getItem("token") != null &&
+                sessionStorage.getItem("user") != null
+              }
+            ></Nav>
+          )}
 
         <div className="background-mainpage">
           <div className="text-center">
@@ -177,7 +202,7 @@ export default function LandingPage() {
                 </span>
 
                 <div className="text-secondary mt-4 mb-5 fst-italic">
-                  David Pérez - Estudiante de Contabilidad financiera
+                  David Pérez - Estudiante de Matemáticas
                 </div>
               </div>
             </div>
@@ -203,8 +228,8 @@ export default function LandingPage() {
                   <br></br>
                   Necesitaba el certificado B1 de inglés para poder obtener el
                   título de la carrera y cuando me apunté a la academia no
-                  imaginaba que me gustaría tanto. La profesora era muy buena y
-                  muy maja y fui al examen preparadísima.
+                  imaginaba que me gustaría tanto. La profesora era buenísima y
+                  muy maja y fui al examen súper preparada.
                   <br></br>
                   Recomendable al 100%.
                   <img
@@ -321,7 +346,8 @@ export default function LandingPage() {
                   <div className="accordion-body border-top">
                     El tamaño de los grupos depende de la demanda que tenga.
                     Normalmente suelen asistir entre 10 y 15 alumnos, pero el
-                    máximo es de 20 para poder un servicio de máxima calidad.
+                    máximo es de 20 para poder ofrecer un servicio de máxima
+                    calidad.
                   </div>
                 </div>
               </div>
