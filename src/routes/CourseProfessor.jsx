@@ -146,8 +146,12 @@ export default function CourseProfessor() {
 
   return (
     <div>
-      <NavProfessor isLogged={sessionStorage.getItem("token") != null &&
-        sessionStorage.getItem("professor") != null}></NavProfessor>
+      <NavProfessor
+        isLogged={
+          sessionStorage.getItem("token") != null &&
+          sessionStorage.getItem("professor") != null
+        }
+      ></NavProfessor>
       <div className="row mx-4 my-4">
         <div className="col-lg-9 mb-4">
           <div>
@@ -192,7 +196,7 @@ export default function CourseProfessor() {
             aria-hidden="true"
           >
             <div className="modal-dialog">
-              <div className="modal-content">
+              <div className="modal-content modal-darktheme">
                 <div className="modal-header">
                   <h1 className="modal-title fs-5 fw-bold" id="modal">
                     Añadir una nueva unidad
@@ -214,8 +218,8 @@ export default function CourseProfessor() {
                         type="text"
                         className={
                           errorName == ""
-                            ? "form-control"
-                            : "form-control border border-danger shadow-none"
+                            ? "form-control input-darktheme"
+                            : "form-control border border-danger shadow-none input-darktheme"
                         }
                         id="name-modal"
                         onChange={(e) => handleName(e.target.value)}
@@ -234,8 +238,8 @@ export default function CourseProfessor() {
                         rows="3"
                         className={
                           errorDescription == ""
-                            ? "form-control"
-                            : "form-control border border-danger shadow-none"
+                            ? "form-control input-darktheme"
+                            : "form-control border border-danger shadow-none input-darktheme"
                         }
                         onChange={(e) => handleDescription(e.target.value)}
                       ></textarea>
@@ -251,8 +255,8 @@ export default function CourseProfessor() {
                         type="file"
                         className={
                           errorTheory == ""
-                            ? "form-control"
-                            : "form-control border border-danger shadow-none"
+                            ? "form-control input-darktheme"
+                            : "form-control border border-danger shadow-none input-darktheme"
                         }
                         id="theory-modal"
                         onChange={(e) => handleFile(e)}
@@ -269,8 +273,8 @@ export default function CourseProfessor() {
                         type="file"
                         className={
                           errorExercises == ""
-                            ? "form-control"
-                            : "form-control border border-danger shadow-none"
+                            ? "form-control input-darktheme"
+                            : "form-control border border-danger shadow-none input-darktheme"
                         }
                         id="exercises-modal"
                         onChange={(e) => handleFile(e)}

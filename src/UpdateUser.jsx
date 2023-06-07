@@ -86,7 +86,7 @@ export default function UpdateUser() {
         data-bs-backdrop="false"
       >
         <div className="modal-dialog">
-          <div className="modal-content">
+          <div className="modal-content modal-darktheme">
             <div className="modal-header">
               <h1 className="modal-title fs-5 fw-bold" id="exampleModalLabel">
                 Edita tus datos personales
@@ -106,7 +106,7 @@ export default function UpdateUser() {
                   </label>
                   <input
                     type="text"
-                    className="form-control"
+                    className="form-control input-darktheme"
                     id="name"
                     defaultValue={name}
                     onChange={(e) => setName(e.target.value)}
@@ -118,7 +118,7 @@ export default function UpdateUser() {
                   </label>
                   <input
                     type="text"
-                    className="form-control"
+                    className="form-control input-darktheme"
                     id="surname"
                     defaultValue={surname}
                     onChange={(e) => setSurname(e.target.value)}
@@ -130,7 +130,7 @@ export default function UpdateUser() {
                   </label>
                   <input
                     type="text"
-                    className="form-control"
+                    className="form-control input-darktheme"
                     id="address"
                     defaultValue={address}
                     onChange={(e) => setAddress(e.target.value)}
@@ -142,7 +142,7 @@ export default function UpdateUser() {
                   </label>
                   <input
                     type="number"
-                    className="form-control"
+                    className="form-control input-darktheme"
                     id="phone"
                     defaultValue={phone}
                     onChange={(e) => setPhone(e.target.value)}
@@ -154,7 +154,7 @@ export default function UpdateUser() {
                   </label>
                   <input
                     type="password"
-                    className="form-control"
+                    className="form-control input-darktheme mb-4"
                     id="password"
                     onChange={(e) => setPassword(e.target.value)}
                   />

@@ -126,7 +126,7 @@ export default function Announcements(props) {
               aria-hidden="true"
             >
               <div className="modal-dialog">
-                <div className="modal-content">
+                <div className="modal-content modal-darktheme">
                   <div className="modal-header">
                     <h1 className="modal-title fs-5 fw-bold" id="modal">
                       Nuevo anuncio
@@ -148,8 +148,8 @@ export default function Announcements(props) {
                           type="text"
                           className={
                             errorTitle == ""
-                              ? "form-control"
-                              : "form-control border border-danger shadow-none"
+                              ? "form-control input-darktheme"
+                              : "form-control border border-danger shadow-none input-darktheme"
                           }
                           id="title-modal"
                           onChange={(e) => handleTitle(e.target.value)}
@@ -168,8 +168,8 @@ export default function Announcements(props) {
                           rows="3"
                           className={
                             errorBody == ""
-                              ? "form-control"
-                              : "form-control border border-danger shadow-none"
+                              ? "form-control input-darktheme"
+                              : "form-control border border-danger shadow-none input-darktheme"
                           }
                           onChange={(e) => handleBody(e.target.value)}
                         ></textarea>

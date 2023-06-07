@@ -40,7 +40,7 @@ export default function Profile(props) {
         id="offcanvasScrolling"
         aria-labelledby="offcanvasScrollingLabel"
       >
-        <div className="offcanvas-header">
+        <div className="offcanvas-header modal-darktheme">
           <button
             type="button"
             className="btn-close"
@@ -48,7 +48,7 @@ export default function Profile(props) {
             aria-label="Close"
           ></button>
         </div>
-        <div className="offcanvas-body">
+        <div className="offcanvas-body modal-darktheme">
           <div className="col">
             <div className="bg-blue rounded-4 px-4 py-5 m-auto">
               <div className="profile-picture rounded-circle">

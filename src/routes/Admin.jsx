@@ -111,7 +111,11 @@ export default function Admin() {
 
   const coursesList = courses.map((course) => {
     return (
-      <div className="card" key={course.id} style={{ width: "250px" }}>
+      <div
+        className="card course-admin"
+        key={course.id}
+        style={{ width: "250px" }}
+      >
         <div className="card-body d-flex flex-column justify-content-between">
           <div>
             <h5 className="card-title">{course.name}</h5>
@@ -146,7 +150,13 @@ export default function Admin() {
       />
       <section className="p-5">
         <h3 className="fw-bold">Cursos</h3>
-        <div className="d-flex flex-wrap gap-3">{coursesList}</div>
+        {courses.length > 0 ? (
+          <div className="d-flex flex-wrap gap-3">{coursesList}</div>
+        ) : (
+          <div className="text-secondary">
+            Todavía no hay cursos disponibles
+          </div>
+        )}
       </section>
       <section className="px-5">
         <h3 className="fw-bold">Usuarios</h3>
@@ -179,7 +189,7 @@ export default function Admin() {
           </div>
         </div>
         <div className="table-responsive">
-          <table className="table">
+          <table className="table modal-darktheme">
             <thead>
               <tr>
                 <th scope="col">#</th>

@@ -1,8 +1,27 @@
 /* eslint-disable react/prop-types */
 import { Link, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+//import assets
+import sun from "./assets/sun.png";
+import moon from "./assets/moon.png";
 
 export default function NavProfessor(props) {
   const navigate = useNavigate();
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+
+  useEffect(() => {
+    localStorage.setItem("theme", theme);
+    document.body.className = theme;
+  }, [theme]);
+
+  const toggleTheme = () => {
+    console.log(theme);
+    if (theme === "light") {
+      setTheme("dark");
+    } else {
+      setTheme("light");
+    }
+  };
   function logout() {
     sessionStorage.removeItem("token");
     sessionStorage.removeItem("professor");
@@ -50,6 +69,17 @@ export default function NavProfessor(props) {
             >
               Cerrar sesión
             </a>
+            <div
+              onClick={toggleTheme}
+              className="nav-link"
+              style={{ cursor: "pointer" }}
+            >
+              {theme === "light" ? (
+                <img src={moon} width="15px"></img>
+              ) : (
+                <img src={sun} width="15px"></img>
+              )}
+            </div>
           </div>
         </div>
 
@@ -68,6 +98,17 @@ export default function NavProfessor(props) {
                 Acceso
               </Link>
             </li>
+            <div
+              onClick={toggleTheme}
+              className="nav-link"
+              style={{ cursor: "pointer" }}
+            >
+              {theme === "light" ? (
+                <img src={moon} width="15px"></img>
+              ) : (
+                <img src={sun} width="15px"></img>
+              )}
+            </div>
           </div>
         </div>
       </div>

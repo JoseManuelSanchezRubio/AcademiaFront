@@ -111,8 +111,12 @@ export default function NewCourse() {
 
   return (
     <div>
-      <NavAdmin isLogged={sessionStorage.getItem("token") != null &&
-        sessionStorage.getItem("admin") != null} />
+      <NavAdmin
+        isLogged={
+          sessionStorage.getItem("token") != null &&
+          sessionStorage.getItem("admin") != null
+        }
+      />
       <div className="container">
         <h1 className="mb-4 pt-5 fw-bold">Nuevo curso</h1>
         <form>
@@ -126,8 +130,8 @@ export default function NewCourse() {
                 id="name"
                 className={
                   errorName == ""
-                    ? "form-control"
-                    : "form-control border border-danger shadow-none"
+                    ? "form-control input-darktheme"
+                    : "form-control border border-danger shadow-none input-darktheme"
                 }
                 onChange={(e) => handleName(e.target.value)}
               />
@@ -141,8 +145,8 @@ export default function NewCourse() {
               <select
                 className={
                   errorProfessorId == ""
-                    ? "form-control"
-                    : "form-control border border-danger shadow-none"
+                    ? "form-control input-darktheme"
+                    : "form-control border border-danger shadow-none input-darktheme"
                 }
                 onChange={(e) => handleProfessorId(e.target.value)}
               >
@@ -169,8 +173,8 @@ export default function NewCourse() {
                 id="price"
                 className={
                   errorName == ""
-                    ? "form-control"
-                    : "form-control border border-danger shadow-none"
+                    ? "form-control input-darktheme"
+                    : "form-control border border-danger shadow-none input-darktheme"
                 }
                 onChange={(e) => handlePrice(e.target.value)}
               />
@@ -184,8 +188,8 @@ export default function NewCourse() {
             <textarea
               className={
                 errorDescription == ""
-                  ? "form-control"
-                  : "form-control border border-danger shadow-none"
+                  ? "form-control input-darktheme"
+                  : "form-control border border-danger shadow-none input-darktheme"
               }
               id="description"
               rows="3"

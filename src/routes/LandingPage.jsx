@@ -7,13 +7,13 @@ import { URL } from "../url";
 //assets imports
 import boy from "../assets/boy.webp";
 import bug from "../assets/bug.png";
-import certificate from "../assets/certificate.webp";
+import certificate from "../assets/certificate.png";
 import facebook from "../assets/facebook.png";
 import girl from "../assets/girl.webp";
 import instagram from "../assets/instagram.png";
 import maps from "../assets/maps.png";
-import math from "../assets/math.webp";
-import opos from "../assets/opos.webp";
+import math from "../assets/math.png";
+import opos from "../assets/opos.png";
 import quotes from "../assets/quotes.png";
 import telegram from "../assets/telegram.png";
 import twitter from "../assets/twitter.png";
@@ -91,7 +91,7 @@ export default function LandingPage() {
           <div className="skewed-up"></div>
         </section>
         <div className="container-flex cards-section-bg">
-          <section className="container">
+          <section className="container cards-section">
             <div className="row justify-content-center text-center">
               <article className="card col-lg-4 my-2 border-0">
                 <div className="rounded bg-white course-card">

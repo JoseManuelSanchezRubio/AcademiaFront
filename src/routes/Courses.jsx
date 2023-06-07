@@ -10,8 +10,8 @@ import nothing from "../assets/nothing.png";
 
 export default function Courses() {
   const navigate = useNavigate();
-  const [courses, setCourses] = useState([]);
-  /* const courses = [
+  //const [courses, setCourses] = useState([]);
+  const courses = [
     {
       id: 1,
       name: "Matemáticas",
@@ -49,7 +49,7 @@ export default function Courses() {
       description: "Curso de matemáticas básicas",
       price: "49,99",
     },
-  ]; */
+  ];
   const [modal, setModal] = useState(false);
   const [selectedCourse, setSelectedCourse] = useState();
   function toggle(e) {
@@ -217,15 +217,17 @@ export default function Courses() {
         )}
       </div>
       <Modal isOpen={modal} toggle={toggle}>
-        <ModalHeader toggle={toggle}>Atención</ModalHeader>
-        <ModalBody>¿Seguro que quieres comprar este curso?</ModalBody>
-        <div className="d-flex justify-content-end gap-3 mb-3 me-3">
-          <button className="btn btn-primary" onClick={buyCourse}>
-            Sí
-          </button>{" "}
-          <button className="btn btn-secondary" onClick={toggle}>
-            No
-          </button>
+        <div className="modal-darktheme">
+          <ModalHeader toggle={toggle}>Atención</ModalHeader>
+          <ModalBody>¿Seguro que quieres comprar este curso?</ModalBody>
+          <div className="d-flex justify-content-end gap-3 mb-3 me-3">
+            <button className="btn btn-primary" onClick={buyCourse}>
+              Sí
+            </button>{" "}
+            <button className="btn btn-secondary" onClick={toggle}>
+              No
+            </button>
+          </div>
         </div>
       </Modal>
       <div>

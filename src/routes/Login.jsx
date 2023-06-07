@@ -183,8 +183,8 @@ export default function Login() {
                 id="emailForm"
                 className={
                   errorEmail == ""
-                    ? "form-control"
-                    : "form-control border border-danger shadow-none"
+                    ? "form-control input-darktheme"
+                    : "form-control border border-danger shadow-none input-darktheme"
                 }
                 onChange={(e) => handleEmail(e.target.value)}
               />
@@ -201,8 +201,8 @@ export default function Login() {
                   id="passwordForm"
                   className={
                     errorPassword == ""
-                      ? "form-control"
-                      : "form-control border border-danger shadow-none"
+                      ? "form-control input-darktheme"
+                      : "form-control border border-danger shadow-none input-darktheme"
                   }
                   onChange={(e) => handlePassword(e.target.value)}
                 />
@@ -225,7 +225,7 @@ export default function Login() {
             <div className="d-flex justify-content-between">
               <div className="form-check col-6">
                 <input
-                  className="form-check-input"
+                  className="form-check-input input-darktheme"
                   type="checkbox"
                   value=""
                   id="check"
@@ -246,7 +246,7 @@ export default function Login() {
             </button>
 
             <div className="text-center">
-              <div>
+              <div className="text-secondary">
                 ¿No tienes una cuenta? <Link to="/logup">Regístrate</Link>
               </div>
             </div>

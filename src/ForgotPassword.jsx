@@ -120,63 +120,65 @@ export default function ForgotPassword() {
         </span>
       </div>
       <Modal isOpen={modal} toggle={toggle}>
-        <ModalHeader toggle={toggle}>
-          <div className="fw-bold">Recuperación de contraseña</div>
-        </ModalHeader>
-        <ModalBody>
-          <div className="mb-3">
-            Si has olvidado tu contraseña te enviaremos un correo electrónico
-            con una nueva. Recuerda cambiarla cuando inicies sesión.
-          </div>
-          <form ref={form} onSubmit={sendEmail}>
-            <div className="form-outline mb-4">
-              <label className="form-label" htmlFor="emailForm">
-                Email
-              </label>
-              <input
-                type="email"
-                id="emailForm"
-                name="to_email"
-                className={
-                  errorEmail == ""
-                    ? "form-control"
-                    : "form-control border border-danger shadow-none"
-                }
-                onChange={(e) => handleEmail(e.target.value)}
-              />
-              <div className="text-danger fst-italic small">{errorEmail}</div>
+        <div className="modal-darktheme">
+          <ModalHeader toggle={toggle}>
+            <div className="fw-bold">Recuperación de contraseña</div>
+          </ModalHeader>
+          <ModalBody>
+            <div className="mb-3">
+              Si has olvidado tu contraseña te enviaremos un correo electrónico
+              con una nueva. Recuerda cambiarla cuando inicies sesión.
             </div>
-            <div className="form-outline mb-4 col">
-              <label className="form-label" htmlFor="dni">
-                DNI
-              </label>
-              <input
-                type="text"
-                id="dni"
-                className={
-                  errorDni == ""
-                    ? "form-control"
-                    : "form-control border border-danger shadow-none"
-                }
-                onChange={(e) => handleDni(e.target.value)}
-              />
-              <div className="text-danger fst-italic small">
-                {errorDni != "" && errorDni}
+            <form ref={form} onSubmit={sendEmail}>
+              <div className="form-outline mb-4">
+                <label className="form-label" htmlFor="emailForm">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  id="emailForm"
+                  name="to_email"
+                  className={
+                    errorEmail == ""
+                      ? "form-control input-darktheme"
+                      : "form-control border border-danger shadow-none input-darktheme"
+                  }
+                  onChange={(e) => handleEmail(e.target.value)}
+                />
+                <div className="text-danger fst-italic small">{errorEmail}</div>
               </div>
-            </div>
-            <input
-              type="hidden"
-              name="password"
-              defaultValue={password}
-            ></input>
+              <div className="form-outline mb-4 col">
+                <label className="form-label" htmlFor="dni">
+                  DNI
+                </label>
+                <input
+                  type="text"
+                  id="dni"
+                  className={
+                    errorDni == ""
+                      ? "form-control input-darktheme"
+                      : "form-control border border-danger shadow-none input-darktheme"
+                  }
+                  onChange={(e) => handleDni(e.target.value)}
+                />
+                <div className="text-danger fst-italic small">
+                  {errorDni != "" && errorDni}
+                </div>
+              </div>
+              <input
+                type="hidden"
+                name="password"
+                defaultValue={password}
+              ></input>
 
-            <input
-              type="submit"
-              className="btn btn-primary"
-              value="Enviar"
-            ></input>
-          </form>
-        </ModalBody>
+              <input
+                type="submit"
+                className="btn btn-primary"
+                value="Enviar"
+              ></input>
+            </form>
+          </ModalBody>
+        </div>
       </Modal>
     </div>
   );

@@ -9,7 +9,79 @@ import { URL } from "../url";
 export default function Forum() {
   const navigate = useNavigate();
   let isLogged = false;
-  const [messages, setMessages] = useState([]);
+  //const [messages, setMessages] = useState([]);
+  const messages = [
+    {
+      id: 1,
+      body: "asdf",
+      created_at: new Date(),
+      user_id: 1,
+      user: { id: 1, name: "Iván", surname: "Pérez" },
+    },
+    {
+      id: 2,
+      body: "asasdfafdf erghwerghwe rger poaogaogv ogbiaeobiaobi roigboerboeb opfbipobh aobiaobihao aorbhaòbih aoivbaobiaòbih arbiar",
+      created_at: new Date(),
+      user_id: 2,
+      user: { id: 2, name: "Iván", surname: "Pérez" },
+    },
+    {
+      id: 3,
+      body: "añsldfgj ñgeorijherop werogpoeruh eropgheopuh epohpeothu eroihjepohi sdf",
+      created_at: new Date(),
+      user_id: 1,
+      user: { id: 1, name: "Iván", surname: "Pérez" },
+    },
+    {
+      id: 4,
+      body: "asdf",
+      created_at: new Date(),
+      user_id: 2,
+      user: { id: 2, name: "Iván", surname: "Pérez" },
+    },
+    {
+      id: 5,
+      body: "asdf",
+      created_at: new Date(),
+      user_id: 1,
+      user: { id: 1, name: "asdf", surname: "asdf" },
+    },
+    {
+      id: 6,
+      body: "asdf",
+      created_at: new Date(),
+      user_id: 2,
+      user: { id: 2, name: "asdf", surname: "asdf" },
+    },
+    {
+      id: 7,
+      body: "asdf",
+      created_at: new Date(),
+      user_id: 1,
+      user: { id: 1, name: "asdf", surname: "asdf" },
+    },
+    {
+      id: 8,
+      body: "asdf",
+      created_at: new Date(),
+      user_id: 2,
+      user: { id: 2, name: "asdf", surname: "asdf" },
+    },
+    {
+      id: 9,
+      body: "asdf",
+      created_at: new Date(),
+      user_id: 1,
+      user: { id: 1, name: "asdf", surname: "asdf" },
+    },
+    {
+      id: 10,
+      body: "asdf",
+      created_at: new Date(),
+      user_id: 2,
+      user: { id: 2, name: "asdf", surname: "asdf" },
+    },
+  ];
   const [message, setMessage] = useState("");
   const forum_id = window.location.pathname.split("/")[3];
   const userId = JSON.parse(sessionStorage.getItem("user"))?.id;
@@ -52,7 +124,7 @@ export default function Forum() {
             {message.user.name} {message.user.surname}
           </div>
         )}
-        <div className="float-start">{message.body}</div>
+        <div className="float-start msg-body-dark">{message.body}</div>
         <div className="msg-date mt-3">{date}</div>
       </div>
     );
@@ -60,7 +132,8 @@ export default function Forum() {
 
   async function saveMessage(e) {
     e.preventDefault();
-    const requestOptions = {
+    if (message != "") {
+      /* const requestOptions = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -73,15 +146,20 @@ export default function Forum() {
     };
     await fetch(`${URL}/messages/`, requestOptions)
       .then((response) => response.json())
-      .then((data) => setMessages(data));
-    document.getElementById("msg").value = "";
-    setMessage("");
+      .then((data) => setMessages(data)); */
+      document.getElementById("msg").value = "";
+      setMessage("");
+    }
   }
 
   return (
     <div>
-      <Nav isLogged={sessionStorage.getItem("token") != null &&
-        sessionStorage.getItem("user") != null}></Nav>
+      <Nav
+        isLogged={
+          sessionStorage.getItem("token") != null &&
+          sessionStorage.getItem("user") != null
+        }
+      ></Nav>
       <div className="container">
         <div className="py-3">
           <h1 className="mb-4 fw-bold">Mensajes del foro</h1>
@@ -104,7 +182,7 @@ export default function Forum() {
             <div className="form-group d-flex pt-4">
               <input
                 type="text"
-                className="form-control me-2 rounded-pill"
+                className="form-control me-2 rounded-pill input-darktheme"
                 id="msg"
                 placeholder="Mensaje"
                 onChange={(e) => setMessage(e.target.value)}
@@ -112,8 +190,7 @@ export default function Forum() {
               {message == "" ? (
                 <button
                   type="submit"
-                  className="rounded-circle btn border border-white"
-                  disabled
+                  className="rounded-circle btn"
                   onClick={(e) => saveMessage(e)}
                 >
                   <img src={send} width="25px"></img>

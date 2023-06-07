@@ -1,10 +1,30 @@
 /* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import Pomodoro from "./Pomodoro";
+import "./index.scss";
+//import assets
+import sun from "./assets/sun.png";
+import moon from "./assets/moon.png";
 
 export default function Nav(props) {
   const navigate = useNavigate();
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+
+  useEffect(() => {
+    localStorage.setItem("theme", theme);
+    document.body.className = theme;
+  }, [theme]);
+
+  const toggleTheme = () => {
+    console.log(theme);
+    if (theme === "light") {
+      setTheme("dark");
+    } else {
+      setTheme("light");
+    }
+  };
   function logout() {
     sessionStorage.removeItem("token");
     sessionStorage.removeItem("user");
@@ -77,6 +97,17 @@ export default function Nav(props) {
               >
                 Cerrar sesión
               </div>
+              <div
+                onClick={toggleTheme}
+                className="nav-link"
+                style={{ cursor: "pointer" }}
+              >
+                {theme === "light" ? (
+                  <img src={moon} width="15px"></img>
+                ) : (
+                  <img src={sun} width="15px"></img>
+                )}
+              </div>
             </div>
           </div>
         </div>
@@ -126,6 +157,17 @@ export default function Nav(props) {
                   Acceso
                 </Link>
               </li>
+              <div
+                onClick={toggleTheme}
+                className="nav-link"
+                style={{ cursor: "pointer" }}
+              >
+                {theme === "light" ? (
+                  <img src={moon} width="15px"></img>
+                ) : (
+                  <img src={sun} width="15px"></img>
+                )}
+              </div>
             </div>
           </div>
         </div>

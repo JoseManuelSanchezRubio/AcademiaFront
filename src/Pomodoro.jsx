@@ -81,8 +81,8 @@ export default function Pomodoro() {
                   ? "pomodoro-primary"
                   : "pomodoro-warning"
                 : time == 0
-                  ? "pomodoro-danger"
-                  : "pomodoro-secondary"
+                ? "pomodoro-danger"
+                : "pomodoro-secondary"
             }
           ></span>
           <Tooltip
@@ -106,28 +106,29 @@ export default function Pomodoro() {
           </span>
         </div>
         <Modal isOpen={modal} toggle={toggle}>
-          <ModalHeader toggle={toggle} className="modal-header">
-            <label>{lableContent}</label>
-          </ModalHeader>
-          <ModalBody>
-            {/* <ReactHowler src={tune} playing={playHowler} /> */}
-            <p className="text-secondary fst-italic small">
-              La técnica Pomodoro es un método de gestión de tiempo que sugiere
-              trabajar en intervalos de 25 minutos y añadir tiempos de descanso
-              de 5 minutos.
-            </p>
-            <div className="d-flex justify-content-between align-items-center">
-              <div className="fs-4">
-                <div>
-                  <span className="pomodoro-minutes">
-                    {minutes.toString().padStart(2, "0")}
-                  </span>
-                  <span className="mx-2">:</span>
-                  <span className="pomodoro-seconds">
-                    {seconds.toString().padStart(2, "0")}
-                  </span>
-                </div>
-                {/* <Progress
+          <div className="modal-darktheme">
+            <ModalHeader toggle={toggle} className="modal-header">
+              <label>{lableContent}</label>
+            </ModalHeader>
+            <ModalBody>
+              {/* <ReactHowler src={tune} playing={playHowler} /> */}
+              <p className="text-secondary fst-italic small pomodoro-info">
+                La técnica Pomodoro es un método de gestión de tiempo que
+                sugiere trabajar en intervalos de 25 minutos y añadir tiempos de
+                descanso de 5 minutos.
+              </p>
+              <div className="d-flex justify-content-between align-items-center">
+                <div className="fs-4">
+                  <div>
+                    <span className="pomodoro-minutes">
+                      {minutes.toString().padStart(2, "0")}
+                    </span>
+                    <span className="mx-2">:</span>
+                    <span className="pomodoro-seconds">
+                      {seconds.toString().padStart(2, "0")}
+                    </span>
+                  </div>
+                  {/* <Progress
                   name="pomodoro-progress-modal"
                   className="pomodoro-progress"
                   animated={isRunning}
@@ -138,27 +139,28 @@ export default function Pomodoro() {
                   max={studying ? 150000 : 30000}
                   value={time}
                 /> */}
+                </div>
+                <div>
+                  <button
+                    className={
+                      isRunning
+                        ? "me-2 btn btn-danger btn-sm pomodoro-button"
+                        : "me-2 btn btn-primary btn-sm pomodoro-button"
+                    }
+                    onClick={startAndStop}
+                  >
+                    {isRunning ? "Parar" : time == 0 ? "Empezar" : "Renaudar"}
+                  </button>
+                  <button
+                    className="btn btn-secondary btn-sm pomodoro-button"
+                    onClick={reset}
+                  >
+                    Reiniciar
+                  </button>
+                </div>
               </div>
-              <div>
-                <button
-                  className={
-                    isRunning
-                      ? "me-2 btn btn-danger btn-sm pomodoro-button"
-                      : "me-2 btn btn-primary btn-sm pomodoro-button"
-                  }
-                  onClick={startAndStop}
-                >
-                  {isRunning ? "Parar" : time == 0 ? "Empezar" : "Renaudar"}
-                </button>
-                <button
-                  className="btn btn-secondary btn-sm pomodoro-button"
-                  onClick={reset}
-                >
-                  Reiniciar
-                </button>
-              </div>
-            </div>
-          </ModalBody>
+            </ModalBody>
+          </div>
         </Modal>
       </div>
     </div>

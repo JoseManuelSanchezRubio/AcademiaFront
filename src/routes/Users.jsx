@@ -10,7 +10,33 @@ export default function Users() {
   const navigate = useNavigate();
   let isLogged = false;
   let isProfessor = false;
-  const [users, setUsers] = useState([]);
+  //const [users, setUsers] = useState([]);
+  const users = [
+    {
+      id: 1,
+      name: "John",
+      surname: "John",
+      address: "John",
+      dni: "John",
+      email: "John",
+    },
+    {
+      id: 2,
+      name: "John",
+      surname: "John",
+      address: "John",
+      dni: "John",
+      email: "John",
+    },
+    {
+      id: 3,
+      name: "John",
+      surname: "John",
+      address: "John",
+      dni: "John",
+      email: "John",
+    },
+  ];
   const [uploads, setUploads] = useState([]);
   const [userId, setUserId] = useState("1");
 
@@ -63,12 +89,24 @@ export default function Users() {
 
   return (
     <div>
-      {isProfessor && <NavProfessor isLogged={sessionStorage.getItem("token") != null &&
-        sessionStorage.getItem("professor") != null}></NavProfessor>}
-      {!isProfessor && <Nav isLogged={sessionStorage.getItem("token") != null &&
-        sessionStorage.getItem("user") != null}></Nav>}
+      {isProfessor && (
+        <NavProfessor
+          isLogged={
+            sessionStorage.getItem("token") != null &&
+            sessionStorage.getItem("professor") != null
+          }
+        ></NavProfessor>
+      )}
+      {!isProfessor && (
+        <Nav
+          isLogged={
+            sessionStorage.getItem("token") != null &&
+            sessionStorage.getItem("user") != null
+          }
+        ></Nav>
+      )}
       <div className="container table-responsive">
-        <table className="table table-hover mt-5">
+        <table className="table mt-5 modal-darktheme">
           <thead className="table-secondary">
             <tr className="text-center">
               <th scope="col">Nombre</th>
@@ -110,7 +148,7 @@ export default function Users() {
                   aria-hidden="true"
                 >
                   <div className="modal-dialog">
-                    <div className="modal-content">
+                    <div className="modal-content modal-darktheme">
                       <div className="modal-header">
                         <h1 className="modal-title fs-5" id="modal">
                           Archivos subidos

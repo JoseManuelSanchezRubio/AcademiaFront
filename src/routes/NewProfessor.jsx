@@ -6,6 +6,7 @@ import NavAdmin from "../NavAdmin";
 import { URL } from "../url";
 //imports assets
 import info from "../assets/info.png";
+import showPassword from "../assets/show-password.png";
 
 export default function NewProfessor() {
   const navigate = useNavigate();
@@ -29,6 +30,25 @@ export default function NewProfessor() {
   const [errorPhone, setErrorPhone] = useState("");
   const [errorPassword, setErrorPassword] = useState("");
   const [errorConfirmPassword, setErrorConfirmPassword] = useState("");
+
+  const [typeInputPassword, setTypeInputPassword] = useState("password");
+  const [typeInputConfirmPassword, setTypeInputConfirmPassword] =
+    useState("password");
+
+  function setInputTypeToText(e) {
+    if (e == "password") {
+      setTypeInputPassword("text");
+    } else {
+      setTypeInputConfirmPassword("text");
+    }
+  }
+  function setInputTypeToPassword(e) {
+    if (e == "password") {
+      setTypeInputPassword("password");
+    } else {
+      setTypeInputConfirmPassword("password");
+    }
+  }
 
   useEffect(() => {
     if (
@@ -143,7 +163,7 @@ export default function NewProfessor() {
         "Profesor añadido correctamente. Serás redirigido a la página de inicio"
       );
 
-      return (navigate("/admin"));
+      return navigate("/admin");
     } else {
       alert(data.message);
     }
@@ -221,8 +241,12 @@ export default function NewProfessor() {
 
   return (
     <div>
-      <NavAdmin isLogged={sessionStorage.getItem("token") != null &&
-        sessionStorage.getItem("admin") != null} />
+      <NavAdmin
+        isLogged={
+          sessionStorage.getItem("token") != null &&
+          sessionStorage.getItem("admin") != null
+        }
+      />
       <section className="d-flex justify-content-center p-5">
         <div>
           <h1 className="mb-4 fw-bold">Añadir profesor</h1>
@@ -238,8 +262,8 @@ export default function NewProfessor() {
                   name="to_name"
                   className={
                     errorName == ""
-                      ? "form-control"
-                      : "form-control border border-danger shadow-none"
+                      ? "form-control input-darktheme"
+                      : "form-control border border-danger shadow-none input-darktheme"
                   }
                   onChange={(e) => handleName(e.target.value)}
                 />
@@ -254,8 +278,8 @@ export default function NewProfessor() {
                   id="surname"
                   className={
                     errorSurname == ""
-                      ? "form-control"
-                      : "form-control border border-danger shadow-none"
+                      ? "form-control input-darktheme"
+                      : "form-control border border-danger shadow-none input-darktheme"
                   }
                   onChange={(e) => handleSurname(e.target.value)}
                 />
@@ -272,8 +296,8 @@ export default function NewProfessor() {
                   id="dni"
                   className={
                     errorDni == ""
-                      ? "form-control"
-                      : "form-control border border-danger shadow-none"
+                      ? "form-control input-darktheme"
+                      : "form-control border border-danger shadow-none input-darktheme"
                   }
                   onChange={(e) => handleDni(e.target.value)}
                 />
@@ -293,8 +317,8 @@ export default function NewProfessor() {
                   id="address"
                   className={
                     errorAddress == ""
-                      ? "form-control"
-                      : "form-control border border-danger shadow-none"
+                      ? "form-control input-darktheme"
+                      : "form-control border border-danger shadow-none input-darktheme"
                   }
                   onChange={(e) => handleAddress(e.target.value)}
                 />
@@ -312,8 +336,8 @@ export default function NewProfessor() {
                   id="phone"
                   className={
                     errorPhone == ""
-                      ? "form-control"
-                      : "form-control border border-danger shadow-none"
+                      ? "form-control input-darktheme"
+                      : "form-control border border-danger shadow-none input-darktheme"
                   }
                   onChange={(e) => handlePhone(e.target.value)}
                 />
@@ -331,8 +355,8 @@ export default function NewProfessor() {
                 name="to_email"
                 className={
                   errorEmail == ""
-                    ? "form-control"
-                    : "form-control border border-danger shadow-none"
+                    ? "form-control input-darktheme"
+                    : "form-control border border-danger shadow-none input-darktheme"
                 }
                 onChange={(e) => handleEmail(e.target.value)}
               />
@@ -343,17 +367,30 @@ export default function NewProfessor() {
               <label className="form-label" htmlFor="password">
                 Contraseña
               </label>
-              <input
-                type="password"
-                id="password"
-                name="password"
-                className={
-                  errorPassword == ""
-                    ? "form-control"
-                    : "form-control border border-danger shadow-none"
-                }
-                onChange={(e) => handlePassword(e.target.value)}
-              />
+              <div className="position-relative">
+                <input
+                  type={typeInputPassword}
+                  id="password"
+                  name="password"
+                  className={
+                    errorPassword == ""
+                      ? "form-control input-darktheme"
+                      : "form-control border border-danger shadow-none input-darktheme"
+                  }
+                  onChange={(e) => handlePassword(e.target.value)}
+                />
+                <div className="position-absolute top-50 end-0 translate-middle-y pe-2">
+                  <img
+                    src={showPassword}
+                    width="20px"
+                    style={{ cursor: "pointer" }}
+                    id="password"
+                    onMouseDown={(e) => setInputTypeToText(e.target.id)}
+                    onMouseUp={(e) => setInputTypeToPassword(e.target.id)}
+                    onMouseLeave={(e) => setInputTypeToPassword(e.target.id)}
+                  ></img>
+                </div>
+              </div>
               <div className="text-danger fst-italic small">
                 {password == "" || errorPassword == "" ? (
                   errorPassword
@@ -385,16 +422,29 @@ export default function NewProfessor() {
               <label className="form-label" htmlFor="confirmPass">
                 Repite contraseña
               </label>
-              <input
-                type="password"
-                id="confirmPass"
-                className={
-                  errorConfirmPassword == ""
-                    ? "form-control"
-                    : "form-control border border-danger shadow-none"
-                }
-                onChange={(e) => handleConfirmPassword(e.target.value)}
-              />
+              <div className="position-relative">
+                <input
+                  type={typeInputConfirmPassword}
+                  id="confirmPass"
+                  className={
+                    errorConfirmPassword == ""
+                      ? "form-control input-darktheme"
+                      : "form-control border border-danger shadow-none input-darktheme"
+                  }
+                  onChange={(e) => handleConfirmPassword(e.target.value)}
+                />
+                <div className="position-absolute top-50 end-0 translate-middle-y pe-2">
+                  <img
+                    src={showPassword}
+                    width="20px"
+                    style={{ cursor: "pointer" }}
+                    id="confirmPassword"
+                    onMouseDown={(e) => setInputTypeToText(e.target.id)}
+                    onMouseUp={(e) => setInputTypeToPassword(e.target.id)}
+                    onMouseLeave={(e) => setInputTypeToPassword(e.target.id)}
+                  ></img>
+                </div>
+              </div>
               <div className="text-danger fst-italic small">
                 {errorConfirmPassword}
               </div>

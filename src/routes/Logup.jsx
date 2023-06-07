@@ -273,8 +273,8 @@ export default function Logup() {
                   id="name"
                   className={
                     errorName == ""
-                      ? "form-control"
-                      : "form-control border border-danger shadow-none"
+                      ? "form-control input-darktheme"
+                      : "form-control border border-danger shadow-none input-darktheme"
                   }
                   onChange={(e) => handleName(e.target.value)}
                 />
@@ -289,8 +289,8 @@ export default function Logup() {
                   id="surname"
                   className={
                     errorSurname == ""
-                      ? "form-control"
-                      : "form-control border border-danger shadow-none"
+                      ? "form-control input-darktheme"
+                      : "form-control border border-danger shadow-none input-darktheme"
                   }
                   onChange={(e) => handleSurname(e.target.value)}
                 />
@@ -307,8 +307,8 @@ export default function Logup() {
                   id="dni"
                   className={
                     errorDni == ""
-                      ? "form-control"
-                      : "form-control border border-danger shadow-none"
+                      ? "form-control input-darktheme"
+                      : "form-control border border-danger shadow-none input-darktheme"
                   }
                   onChange={(e) => handleDni(e.target.value)}
                 />
@@ -328,8 +328,8 @@ export default function Logup() {
                   id="address"
                   className={
                     errorAddress == ""
-                      ? "form-control"
-                      : "form-control border border-danger shadow-none"
+                      ? "form-control input-darktheme"
+                      : "form-control border border-danger shadow-none input-darktheme"
                   }
                   onChange={(e) => handleAddress(e.target.value)}
                 />
@@ -347,8 +347,8 @@ export default function Logup() {
                   id="phone"
                   className={
                     errorPhone == ""
-                      ? "form-control"
-                      : "form-control border border-danger shadow-none"
+                      ? "form-control input-darktheme"
+                      : "form-control border border-danger shadow-none input-darktheme"
                   }
                   onChange={(e) => handlePhone(e.target.value)}
                 />
@@ -365,8 +365,8 @@ export default function Logup() {
                 id="email"
                 className={
                   errorEmail == ""
-                    ? "form-control"
-                    : "form-control border border-danger shadow-none"
+                    ? "form-control input-darktheme"
+                    : "form-control border border-danger shadow-none input-darktheme"
                 }
                 onChange={(e) => handleEmail(e.target.value)}
               />
@@ -383,8 +383,8 @@ export default function Logup() {
                   id="passwordForm"
                   className={
                     errorPassword == ""
-                      ? "form-control"
-                      : "form-control border border-danger shadow-none"
+                      ? "form-control input-darktheme"
+                      : "form-control border border-danger shadow-none input-darktheme"
                   }
                   onChange={(e) => handlePassword(e.target.value)}
                 />
@@ -436,9 +436,9 @@ export default function Logup() {
                   type={typeInputConfirmPassword}
                   id="confirmPasswordForm"
                   className={
-                    errorPassword == ""
-                      ? "form-control"
-                      : "form-control border border-danger shadow-none"
+                    errorConfirmPassword == ""
+                      ? "form-control input-darktheme"
+                      : "form-control border border-danger shadow-none input-darktheme"
                   }
                   onChange={(e) => handleConfirmPassword(e.target.value)}
                 />

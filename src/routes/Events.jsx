@@ -8,6 +8,7 @@ export default function Events() {
   const navigate = useNavigate();
   let isLogged = false;
   const [events, setEvents] = useState([]);
+
   const user_id = JSON.parse(sessionStorage.getItem("user"))?.id;
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -132,7 +133,7 @@ export default function Events() {
         },
         body: JSON.stringify({
           user_id: user_id,
-          event_id: event_id
+          event_id: event_id,
         }),
       };
       await fetch(`${URL}/deleteEvent`, requestOptions)
@@ -179,18 +180,21 @@ export default function Events() {
         .then((response) => response.json())
         .then((data) => setEvents(data));
 
-      document.getElementById('title').value = "";
-      document.getElementById('description').value = "";
-      document.getElementById('start_date').value = "";
-      document.getElementById('end_date').value = "";
-
+      document.getElementById("title").value = "";
+      document.getElementById("description").value = "";
+      document.getElementById("start_date").value = "";
+      document.getElementById("end_date").value = "";
     }
   }
 
   return (
     <div>
-      <Nav isLogged={sessionStorage.getItem("token") != null &&
-        sessionStorage.getItem("user") != null}></Nav>
+      <Nav
+        isLogged={
+          sessionStorage.getItem("token") != null &&
+          sessionStorage.getItem("user") != null
+        }
+      ></Nav>
       <div className="row mx-5 my-4">
         <div className="col-lg-8">
           <h1 className="fw-bold">Añadir evento</h1>
@@ -203,8 +207,8 @@ export default function Events() {
                 type="text"
                 className={
                   errorTitle == ""
-                    ? "form-control"
-                    : "form-control border border-danger shadow-none"
+                    ? "form-control input-darktheme"
+                    : "form-control border border-danger shadow-none input-darktheme"
                 }
                 id="title"
                 onChange={(e) => handleTitle(e.target.value)}
@@ -216,7 +220,7 @@ export default function Events() {
                 Descripción
               </label>
               <textarea
-                className="form-control"
+                className="form-control input-darktheme"
                 id="description"
                 cols="30"
                 rows="5"
@@ -232,8 +236,8 @@ export default function Events() {
                   type="date"
                   className={
                     errorStart_date == ""
-                      ? "form-control"
-                      : "form-control border border-danger shadow-none"
+                      ? "form-control input-darktheme"
+                      : "form-control border border-danger shadow-none input-darktheme"
                   }
                   id="start_date"
                   onChange={(e) => handleStart_date(e.target.value)}
@@ -250,8 +254,8 @@ export default function Events() {
                   type="date"
                   className={
                     errorEnd_date == ""
-                      ? "form-control"
-                      : "form-control border border-danger shadow-none"
+                      ? "form-control input-darktheme"
+                      : "form-control border border-danger shadow-none input-darktheme"
                   }
                   id="end_date"
                   onChange={(e) => handleEnd_date(e.target.value)}
