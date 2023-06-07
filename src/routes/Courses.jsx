@@ -10,46 +10,7 @@ import nothing from "../assets/nothing.png";
 
 export default function Courses() {
   const navigate = useNavigate();
-  //const [courses, setCourses] = useState([]);
-  const courses = [
-    {
-      id: 1,
-      name: "Matemáticas",
-      description:
-        "Curso de matemáticas básicas en el que podrás aprender los conceptos básicos de matemáticas. No dudes en apuntarte",
-      price: "24,99",
-    },
-    {
-      id: 2,
-      name: "Lengua",
-      description: "Curso de matemáticas básicas",
-      price: "40,00",
-    },
-    {
-      id: 3,
-      name: "Biología",
-      description: "Curso de matemáticas básicas",
-      price: "30,00",
-    },
-    {
-      id: 4,
-      name: "Filosofía",
-      description: "Curso de matemáticas básicas",
-      price: "49,99",
-    },
-    {
-      id: 5,
-      name: "Música",
-      description: "Curso de matemáticas básicas",
-      price: "49,99",
-    },
-    {
-      id: 6,
-      name: "Física",
-      description: "Curso de matemáticas básicas",
-      price: "49,99",
-    },
-  ];
+  const [courses, setCourses] = useState([]);
   const [modal, setModal] = useState(false);
   const [selectedCourse, setSelectedCourse] = useState();
   function toggle(e) {

@@ -94,16 +94,17 @@ body.dark{
   }
   
   .cards-section-bg {
-    background-color: rgb(140, 0, 233);
+    background-color: rgb(107, 0, 179);
   }
   
   .cards-section-bg article {
-    background-color: rgb(140, 0, 233);
+    background-color: rgb(107, 0, 179);
+    //background-color: rgb(107, 0, 179);
   }
   
   .skewed-up {
     position: relative;
-    background: rgb(140, 0, 233);
+    background: rgb(107, 0, 179);
     height: 40vh;
     z-index: -1;
     transform: skewY(-6deg);
@@ -113,7 +114,7 @@ body.dark{
   
   .skewed-down {
     position: relative;
-    background: rgb(140, 0, 233);
+    background: rgb(107, 0, 179);
     height: 40vh;
     z-index: -1;
     transform: skewY(-6deg);
@@ -134,6 +135,10 @@ body.dark{
     background-color: $bg-darkmode !important;
     color: $color-darkmode !important;
     border-radius: 5px;
+  }
+  .modal-darktheme-profile{
+    background-color: $bg-darkmode !important;
+    color: $color-darkmode !important;
   }
 
   .course-admin{

@@ -9,79 +9,8 @@ import { URL } from "../url";
 export default function Forum() {
   const navigate = useNavigate();
   let isLogged = false;
-  //const [messages, setMessages] = useState([]);
-  const messages = [
-    {
-      id: 1,
-      body: "asdf",
-      created_at: new Date(),
-      user_id: 1,
-      user: { id: 1, name: "Iván", surname: "Pérez" },
-    },
-    {
-      id: 2,
-      body: "asasdfafdf erghwerghwe rger poaogaogv ogbiaeobiaobi roigboerboeb opfbipobh aobiaobihao aorbhaòbih aoivbaobiaòbih arbiar",
-      created_at: new Date(),
-      user_id: 2,
-      user: { id: 2, name: "Iván", surname: "Pérez" },
-    },
-    {
-      id: 3,
-      body: "añsldfgj ñgeorijherop werogpoeruh eropgheopuh epohpeothu eroihjepohi sdf",
-      created_at: new Date(),
-      user_id: 1,
-      user: { id: 1, name: "Iván", surname: "Pérez" },
-    },
-    {
-      id: 4,
-      body: "asdf",
-      created_at: new Date(),
-      user_id: 2,
-      user: { id: 2, name: "Iván", surname: "Pérez" },
-    },
-    {
-      id: 5,
-      body: "asdf",
-      created_at: new Date(),
-      user_id: 1,
-      user: { id: 1, name: "asdf", surname: "asdf" },
-    },
-    {
-      id: 6,
-      body: "asdf",
-      created_at: new Date(),
-      user_id: 2,
-      user: { id: 2, name: "asdf", surname: "asdf" },
-    },
-    {
-      id: 7,
-      body: "asdf",
-      created_at: new Date(),
-      user_id: 1,
-      user: { id: 1, name: "asdf", surname: "asdf" },
-    },
-    {
-      id: 8,
-      body: "asdf",
-      created_at: new Date(),
-      user_id: 2,
-      user: { id: 2, name: "asdf", surname: "asdf" },
-    },
-    {
-      id: 9,
-      body: "asdf",
-      created_at: new Date(),
-      user_id: 1,
-      user: { id: 1, name: "asdf", surname: "asdf" },
-    },
-    {
-      id: 10,
-      body: "asdf",
-      created_at: new Date(),
-      user_id: 2,
-      user: { id: 2, name: "asdf", surname: "asdf" },
-    },
-  ];
+  const [messages, setMessages] = useState([]);
+  
   const [message, setMessage] = useState("");
   const forum_id = window.location.pathname.split("/")[3];
   const userId = JSON.parse(sessionStorage.getItem("user"))?.id;
