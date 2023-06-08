@@ -332,7 +332,7 @@ export default function NewProfessor() {
                   Teléfono
                 </label>
                 <input
-                  type="text"
+                  type="number"
                   id="phone"
                   className={
                     errorPhone == ""

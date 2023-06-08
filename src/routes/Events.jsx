@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Nav from "../Nav";
 import { URL } from "../url";
-/* import UpdateEvent from "../UpdateEvent"; */
 
 export default function Events() {
   const navigate = useNavigate();
@@ -86,7 +85,7 @@ export default function Events() {
         <div className="accordion-item mb-3">
           <h2 className="accordion-header">
             <button
-              className="accordion-button collapsed"
+              className="accordion-button collapsed event-darktheme"
               type="button"
               data-bs-toggle="collapse"
               data-bs-target={`#id${event.id}`}
@@ -98,7 +97,7 @@ export default function Events() {
           </h2>
           <div
             id={`id${event.id}`}
-            className="accordion-collapse collapse"
+            className="accordion-collapse collapse event-darktheme"
             data-bs-parent={`#idd${event.id}`}
           >
             <div className="accordion-body">
@@ -109,7 +108,6 @@ export default function Events() {
               </p>
               <div className="card-text">Desde {start_date}</div>
               <div className="card-text mb-3">Hasta {end_date}</div>
-              {/* <UpdateEvent event={event} /> */}
               <div
                 className="btn btn-danger"
                 id={event.id}
@@ -195,97 +193,99 @@ export default function Events() {
           sessionStorage.getItem("user") != null
         }
       ></Nav>
-      <div className="row mx-5 my-4">
-        <div className="col-lg-8">
-          <h1 className="fw-bold">Añadir evento</h1>
-          <form>
-            <div className="mb-3">
-              <label htmlFor="title" className="form-label">
-                Título
-              </label>
-              <input
-                type="text"
-                className={
-                  errorTitle == ""
-                    ? "form-control input-darktheme"
-                    : "form-control border border-danger shadow-none input-darktheme"
-                }
-                id="title"
-                onChange={(e) => handleTitle(e.target.value)}
-              />
-              <div className="text-danger fst-italic small">{errorTitle}</div>
-            </div>
-            <div className="mb-3">
-              <label htmlFor="description" className="form-label">
-                Descripción
-              </label>
-              <textarea
-                className="form-control input-darktheme"
-                id="description"
-                cols="30"
-                rows="5"
-                onChange={(e) => setDescription(e.target.value)}
-              ></textarea>
-            </div>
-            <div className="row">
-              <div className="col">
-                <label htmlFor="start_date" className="form-label">
-                  Fecha de inicio
+      <div className="container-fluid">
+        <div className="row my-4">
+          <div className="col-lg-8">
+            <h1 className="fw-bold">Añadir evento</h1>
+            <form>
+              <div className="mb-3">
+                <label htmlFor="title" className="form-label">
+                  Título
                 </label>
                 <input
-                  type="date"
+                  type="text"
                   className={
-                    errorStart_date == ""
+                    errorTitle == ""
                       ? "form-control input-darktheme"
                       : "form-control border border-danger shadow-none input-darktheme"
                   }
-                  id="start_date"
-                  onChange={(e) => handleStart_date(e.target.value)}
+                  id="title"
+                  onChange={(e) => handleTitle(e.target.value)}
                 />
-                <div className="text-danger fst-italic small">
-                  {errorStart_date}
-                </div>
+                <div className="text-danger fst-italic small">{errorTitle}</div>
               </div>
-              <div className="col mb-3">
-                <label htmlFor="end_date" className="form-label">
-                  Fecha de fin
+              <div className="mb-3">
+                <label htmlFor="description" className="form-label">
+                  Descripción
                 </label>
-                <input
-                  type="date"
-                  className={
-                    errorEnd_date == ""
-                      ? "form-control input-darktheme"
-                      : "form-control border border-danger shadow-none input-darktheme"
-                  }
-                  id="end_date"
-                  onChange={(e) => handleEnd_date(e.target.value)}
-                />
-                <div className="text-danger fst-italic small">
-                  {errorEnd_date}
+                <textarea
+                  className="form-control input-darktheme"
+                  id="description"
+                  cols="30"
+                  rows="5"
+                  onChange={(e) => setDescription(e.target.value)}
+                ></textarea>
+              </div>
+              <div className="row">
+                <div className="col">
+                  <label htmlFor="start_date" className="form-label">
+                    Fecha de inicio
+                  </label>
+                  <input
+                    type="date"
+                    className={
+                      errorStart_date == ""
+                        ? "form-control input-darktheme"
+                        : "form-control border border-danger shadow-none input-darktheme"
+                    }
+                    id="start_date"
+                    onChange={(e) => handleStart_date(e.target.value)}
+                  />
+                  <div className="text-danger fst-italic small">
+                    {errorStart_date}
+                  </div>
+                </div>
+                <div className="col mb-3">
+                  <label htmlFor="end_date" className="form-label">
+                    Fecha de fin
+                  </label>
+                  <input
+                    type="date"
+                    className={
+                      errorEnd_date == ""
+                        ? "form-control input-darktheme"
+                        : "form-control border border-danger shadow-none input-darktheme"
+                    }
+                    id="end_date"
+                    onChange={(e) => handleEnd_date(e.target.value)}
+                  />
+                  <div className="text-danger fst-italic small">
+                    {errorEnd_date}
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <button
-              type="submit"
-              className="btn btn-primary mb-3"
-              onClick={(e) => saveEvent(e)}
-            >
-              Añadir
-            </button>
-          </form>
-        </div>
-        <aside className="col-lg-4">
-          <h1 className="text-lg-end mb-4 fw-bold">Tus eventos</h1>
-          <div className="text-secondary text-lg-end">
-            {eventsList.length == 0 && (
-              <div>
-                Vaya... parece que todavía no tienes eventos. ¡Añade uno!
-              </div>
-            )}
+              <button
+                type="submit"
+                className="btn btn-primary mb-3"
+                onClick={(e) => saveEvent(e)}
+              >
+                Añadir
+              </button>
+            </form>
           </div>
-          <div className="pt-3">{eventsList}</div>
-        </aside>
+          <aside className="col-lg-4">
+            <h1 className="text-lg-end mb-4 fw-bold">Tus eventos</h1>
+            <div className="text-secondary text-lg-end">
+              {eventsList.length == 0 && (
+                <div>
+                  Vaya... parece que todavía no tienes eventos. ¡Añade uno!
+                </div>
+              )}
+            </div>
+            <div className="pt-3">{eventsList}</div>
+          </aside>
+        </div>
       </div>
     </div>
   );

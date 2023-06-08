@@ -72,73 +72,83 @@ export default function Course() {
   }
   return (
     <div>
-      <Nav isLogged={sessionStorage.getItem("token") != null &&
-        sessionStorage.getItem("user") != null}></Nav>
-      <div className="row mx-5 my-4">
-        <div className="col-lg-9">
-          <div>
-            <h1 className="fw-bold">
-              {course.name}
-              <span className="mx-3">{"➜"}</span>
-              <Link to={url}>Compañeros</Link>
-            </h1>
-            {units.length == 0 && (
-              <div className="py-4 text-secondary">
-                Vaya... parece que el profesor todavía no ha añadido ninguna
-                unidad.
-              </div>
-            )}
-            {units.map((unit) => (
-              <div key={unit.id} className="card mb-4 me-4">
-                <div className="card-body">
-                  <div className="d-flex">
-                    <h2 className="card-title text-decoration-underline fw-bold">
-                      {unit.name}
-                    </h2>
-                    <h2 className="px-3 fw-bold">
-                      &bull;
-                      <Link className="px-3" to={`forum/${unit.forum_id}`}>
-                        Foro
+      <Nav
+        isLogged={
+          sessionStorage.getItem("token") != null &&
+          sessionStorage.getItem("user") != null
+        }
+      ></Nav>
+      <div className="container-fluid">
+        <div className="row my-4">
+          <div className="col-lg-9">
+            <div>
+              <h1 className="fw-bold">
+                {course.name}
+                <span className="mx-3">{"➜"}</span>
+                <Link to={url}>Compañeros</Link>
+              </h1>
+              {units.length == 0 && (
+                <div className="py-4 text-secondary">
+                  Vaya... parece que el profesor todavía no ha añadido ninguna
+                  unidad.
+                </div>
+              )}
+              {units.map((unit) => (
+                <div key={unit.id} className="card mb-4 me-4 card-course">
+                  <div className="card-body">
+                    <div className="d-flex">
+                      <h2 className="card-title text-decoration-underline fw-bold">
+                        {unit.name}
+                      </h2>
+                      <h2 className="px-3 fw-bold">
+                        &bull;
+                        <Link className="px-3" to={`forum/${unit.forum_id}`}>
+                          Foro
+                        </Link>
+                      </h2>
+                    </div>
+                    <div className="card-subtitle mb-2 text-body-secondary text-secondary">
+                      {unit.description}
+                    </div>
+                    <div className="fs-4">Teoría de la unidad:</div>
+                    <div className="ps-4">
+                      <Link to={`${URL_STORAGE}/${unit.theory}`}>
+                        {unit.theory}
                       </Link>
-                    </h2>
-                  </div>
-                  <div className="card-subtitle mb-2 text-body-secondary text-secondary">
-                    {unit.description}
-                  </div>
-                  <div className="fs-4">Teoría de la unidad:</div>
-                  <div className="ps-4">
-                    <Link to={`${URL_STORAGE}/${unit.theory}`}>
-                      {unit.theory}
-                    </Link>
-                  </div>
-                  <div className="fs-4 mt-2">Ejercicios de la unidad:</div>
-                  <div className="ps-4">
-                    <Link to={`${URL_STORAGE}/${unit.exercises}`}>
-                      {unit.exercises}
-                    </Link>
-                  </div>
-                  <div className="fs-4 mt-2">
-                    Aquí puedes subir tus archivos para esta unidad:
-                  </div>
-                  <div className="d-flex gap-3 my-2 mx-3">
-                    <input
-                      className="form-control"
-                      id={unit.id}
-                      type="file"
-                      onChange={(e) => handleFile(e)}
-                    />
-                    <button className="btn btn-primary" onClick={uploadFile}>
-                      Subir
-                    </button>
+                    </div>
+                    <div className="fs-4 mt-2">Ejercicios de la unidad:</div>
+                    <div className="ps-4">
+                      <Link to={`${URL_STORAGE}/${unit.exercises}`}>
+                        {unit.exercises}
+                      </Link>
+                    </div>
+                    <div className="fs-4 mt-2">
+                      Aquí puedes subir tus archivos para esta unidad:
+                    </div>
+                    <div className="d-md-flex gap-3 my-2 mx-3">
+                      <input
+                        className="form-control input-darktheme"
+                        id={unit.id}
+                        type="file"
+                        accept="application/pdf"
+                        onChange={(e) => handleFile(e)}
+                      />
+                      <button
+                        className="btn btn-primary mt-3 mt-md-0"
+                        onClick={uploadFile}
+                      >
+                        Subir
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
+          <aside className="col-lg-3">
+            <Announcements courseId={courseId}></Announcements>
+          </aside>
         </div>
-        <aside className="col-lg-3">
-          <Announcements courseId={courseId}></Announcements>
-        </aside>
       </div>
     </div>
   );

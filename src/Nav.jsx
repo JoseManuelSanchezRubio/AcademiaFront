@@ -11,6 +11,7 @@ import moon from "./assets/moon.png";
 export default function Nav(props) {
   const navigate = useNavigate();
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+  /* const [theme, setTheme] = useState((window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? "light" : "dark" || "light"); */
 
   useEffect(() => {
     localStorage.setItem("theme", theme);
@@ -38,7 +39,7 @@ export default function Nav(props) {
         <div className="container-fluid">
           <Link
             aria-label="link-to-main-page"
-            className="navbar-brand ps-5"
+            className="navbar-brand ps-lg-5"
             to="/"
           >
             Learning enjoying
@@ -119,7 +120,7 @@ export default function Nav(props) {
         <div className="container-fluid">
           <Link
             aria-label="link-to-main-page"
-            className="navbar-brand ps-5"
+            className="navbar-brand ps-lg-5"
             to="/"
           >
             Learning Enjoying

@@ -10,7 +10,6 @@ export default function Forum() {
   const navigate = useNavigate();
   let isLogged = false;
   const [messages, setMessages] = useState([]);
-  
   const [message, setMessage] = useState("");
   const forum_id = window.location.pathname.split("/")[3];
   const userId = JSON.parse(sessionStorage.getItem("user"))?.id;
@@ -49,8 +48,16 @@ export default function Forum() {
         }
       >
         {message.user_id != userId && (
-          <div className="fw-bold">
-            {message.user.name} {message.user.surname}
+          <div>
+            <div className="msg-pic">
+              <span>
+                {message.user.name[0].toUpperCase()}
+                {message.user.surname[0].toUpperCase()}
+              </span>
+            </div>
+            <div className="fw-bold">
+              {message.user.name} {message.user.surname}
+            </div>
           </div>
         )}
         <div className="float-start msg-body-dark">{message.body}</div>
@@ -62,20 +69,20 @@ export default function Forum() {
   async function saveMessage(e) {
     e.preventDefault();
     if (message != "") {
-      /* const requestOptions = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        body: message,
-        forum_id: forum_id,
-        user_id: userId,
-      }),
-    };
-    await fetch(`${URL}/messages/`, requestOptions)
-      .then((response) => response.json())
-      .then((data) => setMessages(data)); */
+      const requestOptions = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          body: message,
+          forum_id: forum_id,
+          user_id: userId,
+        }),
+      };
+      await fetch(`${URL}/messages/`, requestOptions)
+        .then((response) => response.json())
+        .then((data) => setMessages(data));
       document.getElementById("msg").value = "";
       setMessage("");
     }

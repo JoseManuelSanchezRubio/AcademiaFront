@@ -32,7 +32,7 @@ export default function NavProfessor(props) {
   return (
     <nav className="navbar sticky-top navbar-expand-lg bg-body-tertiary navbar-dark bg-dark">
       <div className="container-fluid">
-        <Link className="navbar-brand ps-5" to="/">
+        <Link className="navbar-brand ps-lg-5" to="/">
           Learning Enjoying
         </Link>
         <button

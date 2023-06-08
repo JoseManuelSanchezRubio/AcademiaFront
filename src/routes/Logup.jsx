@@ -343,7 +343,7 @@ export default function Logup() {
                   Teléfono
                 </label>
                 <input
-                  type="text"
+                  type="number"
                   id="phone"
                   className={
                     errorPhone == ""
