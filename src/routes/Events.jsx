@@ -123,21 +123,20 @@ export default function Events() {
   });
 
   async function deleteEvent(event_id) {
-    if (confirm("Seguro que quieres eliminar este evento?")) {
-      const requestOptions = {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          user_id: user_id,
-          event_id: event_id,
-        }),
-      };
-      await fetch(`${URL}/deleteEvent`, requestOptions)
-        .then((response) => response.json())
-        .then((data) => setEvents(data));
-    }
+    const requestOptions = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        user_id: user_id,
+        event_id: event_id,
+      }),
+    };
+    await fetch(`${URL}/deleteEvent`, requestOptions)
+      .then((response) => response.json())
+      .then((data) => setEvents(data));
+
   }
 
   async function saveEvent(e) {

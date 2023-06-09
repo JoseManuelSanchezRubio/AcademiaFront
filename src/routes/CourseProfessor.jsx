@@ -225,14 +225,14 @@ export default function CourseProfessor() {
                           id={unit.id}
                           className="btn btn-primary me-3"
                           data-bs-toggle="modal"
-                          data-bs-target="#exampleModal"
+                          data-bs-target="#uploads-modal"
                           onClick={showUploads}
                         >
                           Feedback
                         </button>
                         <div
                           className="modal fade"
-                          id="exampleModal"
+                          id="uploads-modal"
                           tabIndex="-1"
                           aria-labelledby="modal"
                           aria-hidden="true"
@@ -251,7 +251,16 @@ export default function CourseProfessor() {
                                 ></button>
                               </div>
                               <div className="modal-body">
-                                {uploads.length == 0 ? <div>De momento ningún alumno ha subido ningún archivo</div> : uploadsHtml}
+                                {uploads.length == 0 ? <div>De momento ningún alumno ha subido ningún archivo</div> : <div>
+                                  <div className="d-flex justify-content-between mb-2 fw-bold">
+                                    <div>Alumno</div>
+                                    <div>Archivo</div>
+                                    <div>Fecha</div>
+                                  </div>
+                                  <div>
+                                    {uploadsHtml}
+                                  </div>
+                                </div>}
                               </div>
                               <div className="modal-footer">
                                 <button

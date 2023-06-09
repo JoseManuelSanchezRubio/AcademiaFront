@@ -1,12 +1,11 @@
 /* eslint-disable react/prop-types */
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Pomodoro from "./Pomodoro";
 import "./index.scss";
 //import assets
-import sun from "./assets/sun.png";
 import moon from "./assets/moon.png";
+import sun from "./assets/sun.png";
 
 export default function Nav(props) {
   const navigate = useNavigate();
@@ -30,7 +29,7 @@ export default function Nav(props) {
     sessionStorage.removeItem("token");
     sessionStorage.removeItem("user");
     sessionStorage.removeItem("courseId");
-    return navigate("/login");
+    return navigate("/");
   }
 
   if (props.isLogged) {

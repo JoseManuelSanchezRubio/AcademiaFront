@@ -87,7 +87,7 @@ export default function Announcements(props) {
     return (
       <div key={announcement.id}>
         <div className="card mb-4 card-course">
-          <h5 className="card-header fw-bold">{announcement.title}</h5>
+          <h5 className="card-header fw-bold header-announcement">{announcement.title}</h5>
           <div className="card-body">
             <div className="card-text">{announcement.body}</div>
             <div className="text-secondary date-announcement">{date}</div>

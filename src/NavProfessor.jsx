@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
 //import assets
-import sun from "./assets/sun.png";
 import moon from "./assets/moon.png";
+import sun from "./assets/sun.png";
 
 export default function NavProfessor(props) {
   const navigate = useNavigate();
@@ -26,7 +26,7 @@ export default function NavProfessor(props) {
     sessionStorage.removeItem("token");
     sessionStorage.removeItem("professor");
     sessionStorage.removeItem("courseId");
-    return navigate("/login");
+    return navigate("/");
   }
 
   return (

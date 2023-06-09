@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Modal, ModalHeader, ModalBody } from "reactstrap";
+import { Modal, ModalBody, ModalHeader } from "reactstrap";
 import Nav from "../Nav";
 import NavAdmin from "../NavAdmin";
 import NavProfessor from "../NavProfessor";

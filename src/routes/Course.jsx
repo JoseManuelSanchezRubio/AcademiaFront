@@ -93,8 +93,7 @@ export default function Course() {
               </h1>
               {units.length == 0 && (
                 <div className="py-4 text-secondary">
-                  Vaya... parece que el profesor todavía no ha añadido ninguna
-                  unidad.
+                  Vaya... parece que el profesor todavía no ha añadido ninguna unidad.
                 </div>
               )}
               {units.map((unit) => (
