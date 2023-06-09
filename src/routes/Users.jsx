@@ -1,49 +1,24 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Nav from "../Nav";
+import NavAdmin from "../NavAdmin";
 import NavProfessor from "../NavProfessor";
-import { URL, URL_STORAGE } from "../url";
+import { URL } from "../url";
 //import assets
 import nothing from "../assets/nothing.png";
 
 export default function Users() {
   const navigate = useNavigate();
   let isLogged = false;
-  let isProfessor = false;
-  //const [users, setUsers] = useState([]);
-  const users = [
-    {
-      id: 1,
-      name: "John",
-      surname: "John",
-      address: "John",
-      dni: "John",
-      email: "John",
-    },
-    {
-      id: 2,
-      name: "John",
-      surname: "John",
-      address: "John",
-      dni: "John",
-      email: "John",
-    },
-    {
-      id: 3,
-      name: "John",
-      surname: "John",
-      address: "John",
-      dni: "John",
-      email: "John",
-    },
-  ];
-  const [uploads, setUploads] = useState([]);
-  const [userId, setUserId] = useState("1");
+  //let isProfessor = false;
+  const [users, setUsers] = useState([]);
+  //const [uploads, setUploads] = useState([]);
+  //const [userId, setUserId] = useState("1");
 
   useEffect(() => {
-    if (sessionStorage.getItem("professor") != null) {
+    /* if (sessionStorage.getItem("professor") != null) {
       isProfessor = true;
-    }
+    } */
     if (
       (sessionStorage.getItem("token") != null &&
         sessionStorage.getItem("user") != null) ||
@@ -61,7 +36,7 @@ export default function Users() {
         setUsers(data[0].users);
       });
 
-    fetch(`${URL}/uploadsByUser`, {
+    /* fetch(`${URL}/uploadsByUser`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -73,10 +48,10 @@ export default function Users() {
       .then((res) => res.json())
       .then((data) => {
         setUploads(data);
-      });
-  }, [userId]);
+      }); */
+  }, []);
 
-  let uploadsHtml = [];
+  /* let uploadsHtml = [];
   uploadsHtml = uploads.map((upload) => {
     return (
       <div key={upload.id}>
@@ -85,11 +60,19 @@ export default function Users() {
         </Link>
       </div>
     );
-  });
+  }); */
 
   return (
     <div>
-      {isProfessor && (
+      {sessionStorage.getItem("user") && (
+        <Nav
+          isLogged={
+            sessionStorage.getItem("token") != null &&
+            sessionStorage.getItem("user") != null
+          }
+        ></Nav>
+      )}
+      {sessionStorage.getItem("professor") && (
         <NavProfessor
           isLogged={
             sessionStorage.getItem("token") != null &&
@@ -97,13 +80,13 @@ export default function Users() {
           }
         ></NavProfessor>
       )}
-      {!isProfessor && (
-        <Nav
+      {sessionStorage.getItem("admin") && (
+        <NavAdmin
           isLogged={
             sessionStorage.getItem("token") != null &&
-            sessionStorage.getItem("user") != null
+            sessionStorage.getItem("admin") != null
           }
-        ></Nav>
+        ></NavAdmin>
       )}
       <div className="container table-responsive">
         <table className="table mt-5 modal-darktheme">
@@ -112,9 +95,9 @@ export default function Users() {
               <th scope="col">Nombre</th>
               <th scope="col">Apellidos</th>
               <th scope="col">Correo electrónico</th>
-              {sessionStorage.getItem("professor") && (
+              {/* {sessionStorage.getItem("professor") && (
                 <th scope="col">Archivos</th>
-              )}
+              )} */}
             </tr>
           </thead>
           {users.map((user) => (
@@ -125,20 +108,19 @@ export default function Users() {
                 </td>
                 <td className="text-center">{user.surname}</td>
                 <td className="text-center">{user.email}</td>
-                {sessionStorage.getItem("professor") && (
-                  <td className="text-center">
-                    <button
-                      type="button"
-                      id={user.id}
-                      className="btn btn-primary btn-sm"
-                      data-bs-toggle="modal"
-                      data-bs-target="#exampleModal"
-                      onClick={(e) => setUserId(e.target.id)}
-                    >
-                      Ver archvos subidos
-                    </button>
-                  </td>
-                )}
+
+                {/* <td className="text-center">
+                  <button
+                    type="button"
+                    id={user.id}
+                    className="btn btn-primary btn-sm"
+                    data-bs-toggle="modal"
+                    data-bs-target="#exampleModal"
+                  >
+                    Ver archvos subidos
+                  </button>
+                </td>
+
 
                 <div
                   className="modal fade"
@@ -161,13 +143,7 @@ export default function Users() {
                         ></button>
                       </div>
                       <div className="modal-body">
-                        {uploadsHtml.length == 0 ? (
-                          <div>
-                            El alumno todavía no ha subido ningún archivo
-                          </div>
-                        ) : (
-                          uploadsHtml
-                        )}
+
                       </div>
                       <div className="modal-footer">
                         <button
@@ -180,7 +156,7 @@ export default function Users() {
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> */}
               </tr>
             </tbody>
           ))}

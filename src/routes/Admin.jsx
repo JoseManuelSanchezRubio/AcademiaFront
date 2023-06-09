@@ -67,6 +67,18 @@ export default function Admin() {
         });
     }
   }
+  async function deleteProfessor(e) {
+    if (confirm("Seguro que quieres eliminar a este profesor? Se eliminaran también todos los cursos que imparta")) {
+      await fetch(`${URL}/professors/${e}`, {
+        method: "DELETE",
+      })
+        .then((res) => res.json())
+        .then((response) => {
+          setProfessors(response);
+          fetchCourses();
+        });
+    }
+  }
 
   const usersList = users.map((user) => {
     if (user.email !== "admin@learningenjoying.com") {
@@ -103,7 +115,13 @@ export default function Admin() {
         <td>{professor.phone}</td>
         <td>{professor.email}</td>
         <td>
-          {/* <button className="btn btn-danger btn-sm">Eliminar</button> */}
+          <button
+            id={professor.id}
+            className="btn btn-danger btn-sm"
+            onClick={(e) => deleteProfessor(e.target.id)}
+          >
+            Eliminar
+          </button>
         </td>
       </tr>
     );

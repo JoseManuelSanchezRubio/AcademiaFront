@@ -36,7 +36,7 @@ export default function Pomodoro() {
       setLabelContent("¡A estudiar!");
     }
     if (isRunning) {
-      intervalId = setInterval(() => setTime(time + 1), 10);
+      intervalId = setInterval(() => setTime(time + 100), 10);
     }
     /* if (time == 200) setPlayHowler(false); */
     return () => clearInterval(intervalId);
@@ -81,8 +81,8 @@ export default function Pomodoro() {
                   ? "pomodoro-primary"
                   : "pomodoro-warning"
                 : time == 0
-                ? "pomodoro-danger"
-                : "pomodoro-secondary"
+                  ? "pomodoro-danger"
+                  : "pomodoro-secondary"
             }
           ></span>
           <Tooltip

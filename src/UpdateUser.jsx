@@ -54,6 +54,8 @@ export default function UpdateUser() {
       professor.address = address;
       professor.phone = phone;
       sessionStorage.setItem('professor', JSON.stringify(professor));
+      document.getElementById('close-update-user-modal').click();
+      navigate('/professor');
     } else {
       await fetch(`${URL}/users/${userId}`, requestOptions).then(res => res.json()).then(data => console.log(data))
       user.name = name;
@@ -61,9 +63,10 @@ export default function UpdateUser() {
       user.address = address;
       user.phone = phone;
       sessionStorage.setItem('user', JSON.stringify(user));
+      document.getElementById('close-update-user-modal').click();
+      navigate('/user');
     }
-    alert('Datos personales actualizados.');
-    navigate('/user');
+
   }
   return (
     <div>
@@ -164,6 +167,7 @@ export default function UpdateUser() {
                     type="button"
                     className="btn btn-secondary"
                     data-bs-dismiss="modal"
+                    id="close-update-user-modal"
                   >
                     Cerrar
                   </button>

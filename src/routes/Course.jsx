@@ -53,6 +53,10 @@ export default function Course() {
       console.log(requestOptions.body);
       fetch(`${URL}/postUpload`, requestOptions);
       alert("Archivo subido a la base de datos correctamente");
+      document.getElementsByClassName('input-darktheme')[0].value = '';
+      setFile('');
+      setFile_name('');
+      setUnit_id('');
     } else {
       alert("Primero debes seleccionar un archivo");
     }
@@ -110,19 +114,19 @@ export default function Course() {
                     <div className="card-subtitle mb-2 text-body-secondary text-secondary">
                       {unit.description}
                     </div>
-                    <div className="fs-4">Teoría de la unidad:</div>
+                    <div className="fs-5">Teoría de la unidad:</div>
                     <div className="ps-4">
                       <Link to={`${URL_STORAGE}/${unit.theory}`}>
                         {unit.theory}
                       </Link>
                     </div>
-                    <div className="fs-4 mt-2">Ejercicios de la unidad:</div>
+                    <div className="fs-5 mt-2">Ejercicios de la unidad:</div>
                     <div className="ps-4">
                       <Link to={`${URL_STORAGE}/${unit.exercises}`}>
                         {unit.exercises}
                       </Link>
                     </div>
-                    <div className="fs-4 mt-2">
+                    <div className="fs-5 mt-2">
                       Aquí puedes subir tus archivos para esta unidad:
                     </div>
                     <div className="d-md-flex gap-3 my-2 mx-3">
