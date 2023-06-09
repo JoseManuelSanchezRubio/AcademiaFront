@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import BackButton from "../BackButton";
 import Nav from "../Nav";
 import NavAdmin from "../NavAdmin";
 import NavProfessor from "../NavProfessor";
-import { URL } from "../url";
+import { URL, URL_STORAGE } from "../url";
 //import assets
 import nothing from "../assets/nothing.png";
 
@@ -89,7 +90,15 @@ export default function Users() {
         ></NavAdmin>
       )}
       <div className="container table-responsive">
-        <table className="table mt-5 modal-darktheme">
+        <div className="d-flex align-items-center mt-4">
+          <BackButton></BackButton>
+          {sessionStorage.getItem("professor") != null ? (
+            <h1 className="ms-4 pt-2">Alumnos: </h1>
+          ) : (
+            <h1 className="ms-4 pt-2 fw-bold">Compañeros: </h1>
+          )}
+        </div>
+        <table className="table mt-4 modal-darktheme">
           <thead className="table-secondary">
             <tr className="text-center">
               <th scope="col">Nombre</th>
