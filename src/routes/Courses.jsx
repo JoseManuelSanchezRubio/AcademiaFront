@@ -169,7 +169,7 @@ export default function Courses() {
         </div>
         {courses.length == 0 && (
           <div className="empty">
-            <img src={nothing} width="200px" />
+            <img src={nothing} width="200px" alt="photo-of-emptyness" />
             <br></br>
             <label className="py-4">
               La academia todavía no despone de ningún curso

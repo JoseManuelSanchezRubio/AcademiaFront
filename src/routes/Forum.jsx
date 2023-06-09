@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Nav from "../Nav";
+import BackButton from "../BackButton";
 //import assets
 import nothing from "../assets/nothing.png";
 import send from "../assets/send.png";
@@ -55,7 +56,7 @@ export default function Forum() {
                 {message.user.surname[0].toUpperCase()}
               </span>
             </div>
-            <div className="fw-bold">
+            <div className="fw-bold msg-user-name">
               {message.user.name} {message.user.surname}
             </div>
           </div>
@@ -98,8 +99,11 @@ export default function Forum() {
       ></Nav>
       <div className="container">
         <div className="py-3">
-          <h1 className="mb-4 fw-bold">Mensajes del foro</h1>
-          <div className="forum-background rounded p-3">
+          <div className="d-flex align-items-center">
+            <BackButton></BackButton>
+            <h1 className="fw-bold ms-4 pt-2">Mensajes del foro</h1>
+          </div>
+          <div className="mt-4 forum-background rounded p-3">
             <div>
               {messages.length == 0 && (
                 <div className="empty">

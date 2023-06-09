@@ -42,7 +42,7 @@ export default function Nav(props) {
             className="navbar-brand ps-lg-5"
             to="/"
           >
-            Learning enjoying
+            Learning Enjoying
           </Link>
           <button
             className="navbar-toggler"
@@ -104,9 +104,9 @@ export default function Nav(props) {
                 style={{ cursor: "pointer" }}
               >
                 {theme === "light" ? (
-                  <img src={moon} width="15px"></img>
+                  <img alt="moon" src={moon} width="15px"></img>
                 ) : (
-                  <img src={sun} width="15px"></img>
+                  <img alt="sun" src={sun} width="15px"></img>
                 )}
               </div>
             </div>
@@ -164,9 +164,9 @@ export default function Nav(props) {
                 style={{ cursor: "pointer" }}
               >
                 {theme === "light" ? (
-                  <img src={moon} width="15px"></img>
+                  <img alt="moon" src={moon} width="15px"></img>
                 ) : (
-                  <img src={sun} width="15px"></img>
+                  <img alt="sun" src={sun} width="15px"></img>
                 )}
               </div>
             </div>

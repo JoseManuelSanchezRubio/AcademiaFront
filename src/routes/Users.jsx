@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Nav from "../Nav";
 import NavProfessor from "../NavProfessor";
+import BackButton from "../BackButton";
 import { URL, URL_STORAGE } from "../url";
 //import assets
 import nothing from "../assets/nothing.png";
@@ -10,8 +11,8 @@ export default function Users() {
   const navigate = useNavigate();
   let isLogged = false;
   let isProfessor = false;
-  //const [users, setUsers] = useState([]);
-  const users = [
+  const [users, setUsers] = useState([]);
+  /* const users = [
     {
       id: 1,
       name: "John",
@@ -36,7 +37,7 @@ export default function Users() {
       dni: "John",
       email: "John",
     },
-  ];
+  ]; */
   const [uploads, setUploads] = useState([]);
   const [userId, setUserId] = useState("1");
 
@@ -106,7 +107,15 @@ export default function Users() {
         ></Nav>
       )}
       <div className="container table-responsive">
-        <table className="table mt-5 modal-darktheme">
+        <div className="d-flex align-items-center mt-4">
+          <BackButton></BackButton>
+          {sessionStorage.getItem("professor") != null ? (
+            <h1 className="ms-4 pt-2">Alumnos: </h1>
+          ) : (
+            <h1 className="ms-4 pt-2 fw-bold">Compañeros: </h1>
+          )}
+        </div>
+        <table className="table mt-4 modal-darktheme">
           <thead className="table-secondary">
             <tr className="text-center">
               <th scope="col">Nombre</th>
